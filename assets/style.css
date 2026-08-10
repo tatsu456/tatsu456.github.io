@@ -1,0 +1,164 @@
+:root {
+  color-scheme: light dark;
+  --accent: #2f6b40;
+  --text: #1c1c1e;
+  --muted: #6b6b6b;
+  --bg: #fff;
+  --card: #fafafa;
+  --line: #e2e2e2;
+  --code-bg: #f2f2f4;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --accent: #7cc496;
+    --text: #eaeaea;
+    --bg: #131313;
+    --card: #1a1a1a;
+    --line: #2e2e2e;
+    --code-bg: #202022;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans",
+               "Noto Sans JP", sans-serif;
+  line-height: 1.85;
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 3rem 1.25rem 5rem;
+  color: var(--text);
+  background: var(--bg);
+}
+
+h1 { font-size: 2rem; margin: 0 0 .3rem; }
+h2 { font-size: 1.15rem; margin-top: 2.5rem; }
+h3 { font-size: 1rem; margin: 1.4rem 0 .3rem; }
+p { margin: .8rem 0; }
+.tagline { color: var(--muted); margin-top: 0; }
+a { color: var(--accent); }
+ul { padding-left: 1.2rem; }
+li { margin: .35rem 0; }
+
+.card {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1.1rem 1.3rem;
+  margin: 1.5rem 0;
+  background: var(--card);
+}
+
+footer {
+  margin-top: 4rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--line);
+  font-size: .85rem;
+  color: var(--muted);
+}
+
+/* --- ポータル（アプリ一覧） --- */
+
+.app {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 1.2rem 1.3rem 1.4rem;
+  margin: 1.6rem 0;
+  background: var(--card);
+}
+
+.app-head {
+  display: flex;
+  align-items: center;
+  gap: .9rem;
+  margin-bottom: .2rem;
+}
+
+.app-head img {
+  width: 60px;
+  height: 60px;
+  border-radius: 13px;
+  flex: 0 0 auto;
+}
+
+.app-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.app-sub {
+  color: var(--muted);
+  font-size: .9rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.status {
+  display: inline-block;
+  font-size: .75rem;
+  line-height: 1.6;
+  padding: 0 .5rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  white-space: nowrap;
+  margin-left: .1rem;
+}
+
+.urls {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+}
+
+.urls li {
+  display: grid;
+  grid-template-columns: 8.5rem 1fr auto;
+  gap: .4rem .7rem;
+  align-items: baseline;
+  padding: .45rem 0;
+  border-top: 1px solid var(--line);
+  margin: 0;
+}
+
+.urls .label {
+  color: var(--muted);
+  font-size: .85rem;
+}
+
+.urls .value {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: .82rem;
+  line-height: 1.6;
+  word-break: break-all;
+}
+
+.copy {
+  font: inherit;
+  font-size: .75rem;
+  line-height: 1.6;
+  padding: 0 .55rem;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--muted);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.copy:hover { color: var(--accent); border-color: var(--accent); }
+.copy.done { color: var(--accent); border-color: var(--accent); }
+
+.note {
+  font-size: .85rem;
+  color: var(--muted);
+  margin: .9rem 0 0;
+}
+
+@media (max-width: 30rem) {
+  .urls li { grid-template-columns: 1fr auto; }
+  .urls .label { grid-column: 1 / -1; }
+}

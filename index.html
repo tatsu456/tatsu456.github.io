@@ -3,71 +3,159 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>献立メーカー</title>
-<style>
-  :root { color-scheme: light dark; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans",
-                 "Noto Sans JP", sans-serif;
-    line-height: 1.85;
-    max-width: 40rem;
-    margin: 0 auto;
-    padding: 4rem 1.25rem 5rem;
-    color: #1c1c1e;
-    background: #fff;
-  }
-  @media (prefers-color-scheme: dark) {
-    body { color: #eaeaea; background: #131313; }
-    a { color: #7cc496; }
-    .card { background: #1a1a1a; border-color: #2e2e2e; }
-    footer { border-color: #2e2e2e; }
-  }
-  h1 { font-size: 2rem; margin: 0 0 .3rem; }
-  .tagline { color: #6b6b6b; margin-top: 0; }
-  h2 { font-size: 1.15rem; margin-top: 2.5rem; }
-  a { color: #2f6b40; }
-  ul { padding-left: 1.2rem; }
-  li { margin: .35rem 0; }
-  .card { border: 1px solid #e2e2e2; border-radius: 12px; padding: 1.1rem 1.3rem;
-          margin: 1.5rem 0; background: #fafafa; }
-  footer { margin-top: 4rem; padding-top: 1.2rem; border-top: 1px solid #e2e2e2;
-           font-size: .85rem; color: #6b6b6b; }
-</style>
+<title>アプリ一覧｜tatsu456</title>
+<link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 
-<h1>献立メーカー</h1>
-<p class="tagline">今日のごはん、決めましょう。</p>
+<h1>アプリ</h1>
+<p class="tagline">公開している 4 本のアプリと、各ストアに登録している URL の一覧です。</p>
 
+<!-- ───────────── Counter1234 ───────────── -->
+<section class="app">
+  <div class="app-head">
+    <img src="assets/icon-counter1234.png" alt="Counter1234 のアイコン">
+    <div>
+      <p class="app-name">Counter1234 <span class="status">iOS 2.5.2</span></p>
+      <p class="app-sub">数えることだけに徹したカウンター。音量ボタンでも数えられます。</p>
+    </div>
+  </div>
+  <ul class="urls">
+    <li>
+      <span class="label">サポート URL</span>
+      <span class="value"><a href="counter1234/">https://tatsu456.github.io/counter1234/</a></span>
+      <button class="copy" data-url="https://tatsu456.github.io/counter1234/">コピー</button>
+    </li>
+    <li>
+      <span class="label">マーケティング URL</span>
+      <span class="value"><a href="counter1234/">https://tatsu456.github.io/counter1234/</a></span>
+      <button class="copy" data-url="https://tatsu456.github.io/counter1234/">コピー</button>
+    </li>
+    <li>
+      <span class="label">プライバシーポリシー</span>
+      <span class="value"><a href="https://sites.google.com/view/counter-privacy-2026/" target="_blank" rel="noopener">https://sites.google.com/view/counter-privacy-2026/</a></span>
+      <button class="copy" data-url="https://sites.google.com/view/counter-privacy-2026/">コピー</button>
+    </li>
+  </ul>
+  <p class="note">Apple ID 6789396006 ／ com.takadev.CounterApp<br>
+  プライバシーポリシーのみ Google サイト上にあります。</p>
+</section>
+
+<!-- ───────────── 献立メーカー_EX ───────────── -->
+<section class="app">
+  <div class="app-head">
+    <img src="assets/icon-kondate.png" alt="献立メーカー_EX のアイコン">
+    <div>
+      <p class="app-name">献立メーカー_EX 晩ごはんの献立 <span class="status">iOS 1.0.1</span></p>
+      <p class="app-sub">一汁三菜の形を選ぶだけ。旬と原価を考えた献立を組み立てます。</p>
+    </div>
+  </div>
+  <ul class="urls">
+    <li>
+      <span class="label">サポート URL</span>
+      <span class="value"><a href="kondate/">https://tatsu456.github.io/kondate/</a></span>
+      <button class="copy" data-url="https://tatsu456.github.io/kondate/">コピー</button>
+    </li>
+    <li>
+      <span class="label">マーケティング URL</span>
+      <span class="value"><a href="kondate/">https://tatsu456.github.io/kondate/</a></span>
+      <button class="copy" data-url="https://tatsu456.github.io/kondate/">コピー</button>
+    </li>
+    <li>
+      <span class="label">プライバシーポリシー</span>
+      <span class="value"><a href="privacy-policy.html">https://tatsu456.github.io/privacy-policy.html</a></span>
+      <button class="copy" data-url="https://tatsu456.github.io/privacy-policy.html">コピー</button>
+    </li>
+  </ul>
+  <p class="note">App Store Connect には現在このページ自体（<code>https://tatsu456.github.io/</code>）が
+  登録されています。都合のよいときに <code>/kondate/</code> に差し替えてください。
+  差し替えなくても、このページから各アプリへ辿れます。</p>
+</section>
+
+<!-- ───────────── SplitBill_EX ───────────── -->
+<section class="app">
+  <div class="app-head">
+    <img src="assets/icon-splitbill.png" alt="SplitBill_EX のアイコン">
+    <div>
+      <p class="app-name">SplitBill_EX 多通貨の割り勘 <span class="status">iOS 1.0.1</span></p>
+      <p class="app-sub">手数料・外税・チップまで含めて、誰が誰にいくら払うかだけを出します。</p>
+    </div>
+  </div>
+  <ul class="urls">
+    <li>
+      <span class="label">サポート URL</span>
+      <span class="value"><a href="splitbill/">https://tatsu456.github.io/splitbill/</a></span>
+      <button class="copy" data-url="https://tatsu456.github.io/splitbill/">コピー</button>
+    </li>
+    <li>
+      <span class="label">マーケティング URL</span>
+      <span class="value"><a href="splitbill/">https://tatsu456.github.io/splitbill/</a></span>
+      <button class="copy" data-url="https://tatsu456.github.io/splitbill/">コピー</button>
+    </li>
+    <li>
+      <span class="label">プライバシーポリシー</span>
+      <span class="value"><a href="https://sites.google.com/view/splitbillex/" target="_blank" rel="noopener">https://sites.google.com/view/splitbillex/</a></span>
+      <button class="copy" data-url="https://sites.google.com/view/splitbillex/">コピー</button>
+    </li>
+  </ul>
+  <p class="note">プライバシーポリシーは iOS 版と Android 版で同じページを使っています。</p>
+</section>
+
+<!-- ───────────── Nuka Diary ───────────── -->
+<section class="app">
+  <div class="app-head">
+    <img src="assets/icon-nukadoko.png" alt="ぬか床日記のアイコン">
+    <div>
+      <p class="app-name">ぬか床日記 / Nuka Diary <span class="status">iOS 1.0</span></p>
+      <p class="app-sub">毎日のかき混ぜをワンタップで記録。困ったら症状から診断できます。</p>
+    </div>
+  </div>
+  <ul class="urls">
+    <li>
+      <span class="label">サポート URL</span>
+      <span class="value"><a href="nukadoko-diary/">https://tatsu456.github.io/nukadoko-diary/</a></span>
+      <button class="copy" data-url="https://tatsu456.github.io/nukadoko-diary/">コピー</button>
+    </li>
+    <li>
+      <span class="label">マーケティング URL</span>
+      <span class="value"><a href="nukadoko-diary/">https://tatsu456.github.io/nukadoko-diary/</a></span>
+      <button class="copy" data-url="https://tatsu456.github.io/nukadoko-diary/">コピー</button>
+    </li>
+    <li>
+      <span class="label">プライバシーポリシー</span>
+      <span class="value"><a href="nukadoko-diary/privacy.html">https://tatsu456.github.io/nukadoko-diary/privacy.html</a></span>
+      <button class="copy" data-url="https://tatsu456.github.io/nukadoko-diary/privacy.html">コピー</button>
+    </li>
+  </ul>
+  <p class="note">Apple ID 6798459101 ／ com.taka.nukadoko<br>
+  このページだけは別リポジトリ（tatsu456/nukadoko-diary）で配信しています。URL は同じドメインです。</p>
+</section>
+
+<h2>お問い合わせ</h2>
 <p>
-一汁三菜・一汁二菜など献立の形を選ぶだけで、旬の食材と原価を考えた献立を
-組み立てるアプリです。1,000品以上のレシピを内蔵しており、
-オフラインでも動きます。
+すべてのアプリについて、こちらで承ります：
+<a href="mailto:tatlink002@gmail.com">tatlink002@gmail.com</a>
 </p>
 
-<h2>できること</h2>
-<ul>
-  <li>献立をワンタップで作成。気に入った一品は残して、それ以外だけ引き直せます</li>
-  <li>何日分でもまとめて計画でき、買い物リストが同時にできあがります</li>
-  <li>材料費と原価率の目安を自動で計算します</li>
-  <li>白ごはんとパンの割合、旬をどれくらい優先するかを設定できます</li>
-  <li>レシピごとに自分のメモや写真を残せます</li>
-</ul>
-
-<div class="card">
-  作成した献立・メモ・写真は、すべてお使いの端末内にのみ保存されます。
-  外部に送信されることはありません。
-</div>
-
-<h2>リンク</h2>
-<ul>
-  <li><a href="privacy-policy.html">プライバシーポリシー</a></li>
-  <li>お問い合わせ：<a href="mailto:tatlink002@gmail.com">tatlink002@gmail.com</a></li>
-</ul>
-
 <footer>
-© 2026 献立メーカー
+© 2026 tatsu456
 </footer>
+
+<script>
+document.querySelectorAll('.copy').forEach(function (button) {
+  button.addEventListener('click', function () {
+    navigator.clipboard.writeText(button.dataset.url).then(function () {
+      var original = button.textContent;
+      button.textContent = 'コピーしました';
+      button.classList.add('done');
+      setTimeout(function () {
+        button.textContent = original;
+        button.classList.remove('done');
+      }, 1400);
+    });
+  });
+});
+</script>
 
 </body>
 </html>
