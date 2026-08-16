@@ -3,101 +3,93 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>アプリ一覧｜tatsu456</title>
+<title>tatsu456｜個人で作っているiPhoneアプリ</title>
+<meta name="description" content="竹本隆行（tatsu456）が個人で開発しているiPhoneアプリの紹介ページです。数える、割り勘を出す、献立を決める、ぬか床を記録する。ひとつのことだけを引き受けるアプリを作っています。">
 <link rel="stylesheet" href="assets/style.css">
+<style>
+  .lead { font-size: 1.03rem; }
+  .app-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem .9rem;
+    margin: .9rem 0 0;
+    padding-top: .8rem;
+    border-top: 1px solid var(--line);
+    font-size: .87rem;
+  }
+  .app-links .sep { color: var(--muted); }
+  .app-body { margin: .9rem 0 0; font-size: .95rem; }
+  .app-body p { margin: .55rem 0; }
+</style>
 </head>
 <body>
 
-<h1>アプリ</h1>
-<p class="tagline">公開している 6 本のアプリと、各ストアに登録している URL の一覧です。</p>
+<h1>tatsu456</h1>
+<p class="tagline">個人で作っている iPhone アプリと、その考え方。</p>
 
-<!-- ───────────── 冷凍図鑑 ───────────── -->
-<section class="app">
-  <div class="app-head">
-    <img src="assets/icon-reitou.png" alt="冷凍図鑑 のアイコン">
-    <div>
-      <p class="app-name">冷凍図鑑 <span class="status">iOS 1.0</span></p>
-      <p class="app-sub">180品目の「どう切って、どう凍らせて、どう解凍するか」を引ける図鑑。手順は1つずつイラストつき。</p>
-    </div>
-  </div>
-  <ul class="urls">
-    <li>
-      <span class="label">サポート URL</span>
-      <span class="value"><a href="reitou/">https://tatsu456.github.io/reitou/</a></span>
-      <button class="copy" data-url="https://tatsu456.github.io/reitou/">コピー</button>
-    </li>
-    <li>
-      <span class="label">マーケティング URL</span>
-      <span class="value"><a href="reitou/">https://tatsu456.github.io/reitou/</a></span>
-      <button class="copy" data-url="https://tatsu456.github.io/reitou/">コピー</button>
-    </li>
-    <li>
-      <span class="label">プライバシーポリシー</span>
-      <span class="value"><a href="reitou/privacy.html">https://tatsu456.github.io/reitou/privacy.html</a></span>
-      <button class="copy" data-url="https://tatsu456.github.io/reitou/privacy.html">コピー</button>
-    </li>
-    <li>
-      <span class="label">利用規約（EULA）</span>
-      <span class="value"><a href="reitou/terms.html">https://tatsu456.github.io/reitou/terms.html</a></span>
-      <button class="copy" data-url="https://tatsu456.github.io/reitou/terms.html">コピー</button>
-    </li>
-  </ul>
-</section>
+<p class="lead">
+竹本隆行と申します。会社に属さず、ひとりで iPhone のアプリを作っています。
+ここは、公開しているアプリの説明と、それぞれのプライバシーポリシーや
+問い合わせ先をまとめた場所です。
+</p>
 
-<!-- ───────────── 山じたく ───────────── -->
-<section class="app">
-  <div class="app-head">
-    <img src="assets/icon-yamajitaku.png" alt="山じたく のアイコン">
-    <div>
-      <p class="app-name">山じたく 登山の持ち物チェックリスト <span class="status">iOS 1.0</span></p>
-      <p class="app-sub">標高と季節から持ち物を組み立て、残雪期や秋から冬の変わり目を警告します。</p>
-    </div>
-  </div>
-  <ul class="urls">
-    <li>
-      <span class="label">サポート URL</span>
-      <span class="value"><a href="yamajitaku/">https://tatsu456.github.io/yamajitaku/</a></span>
-      <button class="copy" data-url="https://tatsu456.github.io/yamajitaku/">コピー</button>
-    </li>
-    <li>
-      <span class="label">マーケティング URL</span>
-      <span class="value"><a href="yamajitaku/">https://tatsu456.github.io/yamajitaku/</a></span>
-      <button class="copy" data-url="https://tatsu456.github.io/yamajitaku/">コピー</button>
-    </li>
-    <li>
-      <span class="label">プライバシーポリシー</span>
-      <span class="value"><a href="yamajitaku/privacy.html">https://tatsu456.github.io/yamajitaku/privacy.html</a></span>
-      <button class="copy" data-url="https://tatsu456.github.io/yamajitaku/privacy.html">コピー</button>
-    </li>
-  </ul>
-</section>
+<p>
+作っているものに派手さはありません。数を数える、割り勘の金額を出す、
+今日の晩ごはんを決める、ぬか床をかき混ぜた日を記録する。
+どれも「それ専用の道具があると助かるが、わざわざ探すほどでもない」
+くらいの、生活の細かい部分を引き受けるアプリです。
+</p>
+
+<h2>作るときに決めていること</h2>
+
+<p>
+数を増やすより、次の3つを守るほうを優先しています。
+アプリの説明を読む前に、ここを知っておいてもらえると早いと思います。
+</p>
+
+<div class="card">
+<p><strong>ひとつのことだけをする。</strong>
+機能を足すと、たいてい起動してから目的にたどり着くまでが遅くなります。
+「これができない」と言われても、それが主目的でなければ足さないことがあります。</p>
+
+<p><strong>入力したものは、できるかぎり端末から出さない。</strong>
+記録・メモ・写真は、原則としてお使いの端末の中だけに保存しています。
+アカウント登録を求めるアプリもありません。
+外部と通信する場合は、何をどこへ送るのかを各アプリのプライバシーポリシーに書いています。</p>
+
+<p><strong>使えなくなる日を作らない。</strong>
+サーバーに依存する作りをできるだけ避けているので、こちらの都合でサービスが止まって
+記録が読めなくなる、ということが起きにくいようにしています。
+飛行機の中でも山の上でも動きます。</p>
+</div>
+
+<h2>アプリ</h2>
 
 <!-- ───────────── Counter1234 ───────────── -->
 <section class="app">
   <div class="app-head">
     <img src="assets/icon-counter1234.png" alt="Counter1234 のアイコン">
     <div>
-      <p class="app-name">Counter1234 <span class="status">iOS 2.5.2</span></p>
-      <p class="app-sub">数えることだけに徹したカウンター。音量ボタンでも数えられます。</p>
+      <p class="app-name">Counter1234 <span class="status">配信中</span></p>
+      <p class="app-sub">画面を見ずに数えられるカウンター</p>
     </div>
   </div>
-  <ul class="urls">
-    <li>
-      <span class="label">サポート URL</span>
-      <span class="value"><a href="counter1234/">https://tatsu456.github.io/counter1234/</a></span>
-      <button class="copy" data-url="https://tatsu456.github.io/counter1234/">コピー</button>
-    </li>
-    <li>
-      <span class="label">マーケティング URL</span>
-      <span class="value"><a href="counter1234/">https://tatsu456.github.io/counter1234/</a></span>
-      <button class="copy" data-url="https://tatsu456.github.io/counter1234/">コピー</button>
-    </li>
-    <li>
-      <span class="label">プライバシーポリシー</span>
-      <span class="value"><a href="https://sites.google.com/view/counter-privacy-2026/" target="_blank" rel="noopener">https://sites.google.com/view/counter-privacy-2026/</a></span>
-      <button class="copy" data-url="https://sites.google.com/view/counter-privacy-2026/">コピー</button>
-    </li>
-  </ul>
+  <div class="app-body">
+    <p>
+    在庫を数える、通行量を数える、往復の回数を数える。
+    こういうとき、いちばん困るのは「画面を見ないと押せない」ことです。
+    Counter1234 は音量ボタンで数えられるので、
+    手元を見たまま、あるいはポケットの中でも進められます。
+    </p>
+    <p>
+    数え場所は名前を付けて保存でき、記録は CSV で書き出せます。
+    数字だけを大きく映す全画面表示にも切り替えられます。
+    </p>
+  </div>
+  <p class="app-links">
+    <a href="counter1234/">Counter1234について</a><span class="sep">·</span>
+    <a href="counter1234/privacy.html">プライバシーポリシー</a>
+  </p>
 </section>
 
 <!-- ───────────── 献立メーカー_EX ───────────── -->
@@ -105,27 +97,27 @@
   <div class="app-head">
     <img src="assets/icon-kondate.png" alt="献立メーカー_EX のアイコン">
     <div>
-      <p class="app-name">献立メーカー_EX 晩ごはんの献立 <span class="status">iOS 1.0.1</span></p>
-      <p class="app-sub">一汁三菜の形を選ぶだけ。旬と原価を考えた献立を組み立てます。</p>
+      <p class="app-name">献立メーカー_EX 晩ごはんの献立 <span class="status">配信中</span></p>
+      <p class="app-sub">一汁三菜の形を選ぶと、旬と原価から献立が組み上がる</p>
     </div>
   </div>
-  <ul class="urls">
-    <li>
-      <span class="label">サポート URL</span>
-      <span class="value"><a href="kondate/">https://tatsu456.github.io/kondate/</a></span>
-      <button class="copy" data-url="https://tatsu456.github.io/kondate/">コピー</button>
-    </li>
-    <li>
-      <span class="label">マーケティング URL</span>
-      <span class="value"><a href="kondate/">https://tatsu456.github.io/kondate/</a></span>
-      <button class="copy" data-url="https://tatsu456.github.io/kondate/">コピー</button>
-    </li>
-    <li>
-      <span class="label">プライバシーポリシー</span>
-      <span class="value"><a href="privacy-policy.html">https://tatsu456.github.io/privacy-policy.html</a></span>
-      <button class="copy" data-url="https://tatsu456.github.io/privacy-policy.html">コピー</button>
-    </li>
-  </ul>
+  <div class="app-body">
+    <p>
+    献立が決まらないのは、選択肢が多すぎるからだと思っています。
+    このアプリでは、まず一汁三菜・一汁二菜といった「形」を決めます。
+    形が決まれば、あとは埋めるだけになります。
+    </p>
+    <p>
+    気に入った一品は残したまま、それ以外だけを引き直せます。
+    何日分かまとめて計画すると買い物リストが同時にでき、
+    材料費と原価率の目安も出ます。1,000品以上のレシピを内蔵していて、
+    オフラインでも動きます。
+    </p>
+  </div>
+  <p class="app-links">
+    <a href="kondate/">献立メーカー_EXについて</a><span class="sep">·</span>
+    <a href="privacy-policy.html">プライバシーポリシー</a>
+  </p>
 </section>
 
 <!-- ───────────── SplitBill_EX ───────────── -->
@@ -133,82 +125,130 @@
   <div class="app-head">
     <img src="assets/icon-splitbill.png" alt="SplitBill_EX のアイコン">
     <div>
-      <p class="app-name">SplitBill_EX 多通貨の割り勘 <span class="status">iOS 1.0.1</span></p>
-      <p class="app-sub">手数料・外税・チップまで含めて、誰が誰にいくら払うかだけを出します。</p>
+      <p class="app-name">SplitBill_EX 多通貨の割り勘 <span class="status">配信中</span></p>
+      <p class="app-sub">手数料・外税・チップまで入れて、誰が誰にいくら払うかだけを出す</p>
     </div>
   </div>
-  <ul class="urls">
-    <li>
-      <span class="label">サポート URL</span>
-      <span class="value"><a href="splitbill/">https://tatsu456.github.io/splitbill/</a></span>
-      <button class="copy" data-url="https://tatsu456.github.io/splitbill/">コピー</button>
-    </li>
-    <li>
-      <span class="label">マーケティング URL</span>
-      <span class="value"><a href="splitbill/">https://tatsu456.github.io/splitbill/</a></span>
-      <button class="copy" data-url="https://tatsu456.github.io/splitbill/">コピー</button>
-    </li>
-    <li>
-      <span class="label">プライバシーポリシー</span>
-      <span class="value"><a href="https://sites.google.com/view/splitbillex/" target="_blank" rel="noopener">https://sites.google.com/view/splitbillex/</a></span>
-      <button class="copy" data-url="https://sites.google.com/view/splitbillex/">コピー</button>
-    </li>
-  </ul>
+  <div class="app-body">
+    <p>
+    海外旅行やグループ旅行の割り勘が面倒なのは、金額が単純な割り算にならないからです。
+    通貨が違う、カードの手数料が乗る、外税とチップが別、
+    しかも誰かが立て替えている。
+    </p>
+    <p>
+    SplitBill_EX は、外税・チップ・カード手数料を、
+    カード会社が実際に請求する順序で計算します。
+    ルームIDを共有すれば、旅行中の会計を全員でリアルタイムに共有できます。
+    最後に出るのは「誰が誰にいくら払うか」の一覧だけです。
+    </p>
+  </div>
+  <p class="app-links">
+    <a href="splitbill/">SplitBill_EXについて</a><span class="sep">·</span>
+    <a href="splitbill/privacy.html">プライバシーポリシー</a>
+  </p>
 </section>
 
-<!-- ───────────── Nuka Diary ───────────── -->
+<!-- ───────────── ぬか床日記 ───────────── -->
 <section class="app">
   <div class="app-head">
-    <img src="assets/icon-nukadoko.png" alt="ぬか床日記のアイコン">
+    <img src="assets/icon-nukadoko.png" alt="ぬか床日記 のアイコン">
     <div>
-      <p class="app-name">ぬか床日記 / Nuka Diary <span class="status">iOS 1.0</span></p>
-      <p class="app-sub">毎日のかき混ぜをワンタップで記録。困ったら症状から診断できます。</p>
+      <p class="app-name">ぬか床日記 / Nuka Diary <span class="status">公開準備中</span></p>
+      <p class="app-sub">混ぜたかどうかを、覚えておかなくていい</p>
     </div>
   </div>
-  <ul class="urls">
-    <li>
-      <span class="label">サポート URL</span>
-      <span class="value"><a href="nukadoko-diary/">https://tatsu456.github.io/nukadoko-diary/</a></span>
-      <button class="copy" data-url="https://tatsu456.github.io/nukadoko-diary/">コピー</button>
-    </li>
-    <li>
-      <span class="label">マーケティング URL</span>
-      <span class="value"><a href="nukadoko-diary/">https://tatsu456.github.io/nukadoko-diary/</a></span>
-      <button class="copy" data-url="https://tatsu456.github.io/nukadoko-diary/">コピー</button>
-    </li>
-    <li>
-      <span class="label">プライバシーポリシー</span>
-      <span class="value"><a href="nukadoko-diary/privacy.html">https://tatsu456.github.io/nukadoko-diary/privacy.html</a></span>
-      <button class="copy" data-url="https://tatsu456.github.io/nukadoko-diary/privacy.html">コピー</button>
-    </li>
-  </ul>
+  <div class="app-body">
+    <p>
+    ぬか床は手をかけた分だけ返してくれますが、
+    難しいのはかき混ぜること自体ではなく、
+    今日もう混ぜたかどうかを思い出すことのほうです。
+    ぬか床日記は、その「覚えておく」仕事を引き受けます。開いて、一回叩いて、終わりです。
+    </p>
+    <p>
+    「シンナーのような匂いがする」「白い膜が張っている」「酸っぱくなりすぎた」。
+    症状を選べば、原因と手当てが番号付きの手順で出ます。
+    漬け上がりの目安は、その日の気候と保管場所に合わせて変わります。
+    </p>
+  </div>
+  <p class="app-links">
+    <a href="nukadoko-diary/">ぬか床日記について</a><span class="sep">·</span>
+    <a href="nukadoko-diary/privacy.html">プライバシーポリシー</a>
+  </p>
+</section>
+
+<!-- ───────────── 山じたく ───────────── -->
+<section class="app">
+  <div class="app-head">
+    <img src="assets/icon-yamajitaku.png" alt="山じたく のアイコン">
+    <div>
+      <p class="app-name">山じたく 登山の持ち物チェックリスト <span class="status">審査中</span></p>
+      <p class="app-sub">標高と季節から、その山に要るものを組み立てる</p>
+    </div>
+  </div>
+  <div class="app-body">
+    <p>
+    持ち物リストは、同じものを毎回使い回すと危険な場面があります。
+    同じ山でも、6月の残雪期と10月の初冠雪の前後では持つべきものが変わります。
+    山じたくは標高と時期からリストを組み立て、
+    季節の変わり目にあたるときは警告を出します。
+    </p>
+    <p>
+    天気予報も同じ画面で確認できます。
+    位置情報（GPS）は使わず、山の座標はアプリ内蔵のデータか手入力です。
+    </p>
+  </div>
+  <p class="app-links">
+    <a href="yamajitaku/">山じたくについて</a><span class="sep">·</span>
+    <a href="yamajitaku/privacy.html">プライバシーポリシー</a>
+  </p>
+</section>
+
+<!-- ───────────── 冷凍図鑑 ───────────── -->
+<section class="app">
+  <div class="app-head">
+    <img src="assets/icon-reitou.png" alt="冷凍図鑑 のアイコン">
+    <div>
+      <p class="app-name">冷凍図鑑 <span class="status">公開準備中</span></p>
+      <p class="app-sub">食材を「どう切って、どう凍らせて、どう戻すか」の図鑑</p>
+    </div>
+  </div>
+  <div class="app-body">
+    <p>
+    まとめ買いした食材を前にして、これは冷凍していいのか、
+    生のままか茹でてからか、解凍は冷蔵庫かそのまま加熱か。
+    毎回ばらばらに検索していたことを、180品目ぶん引けるようにしました。
+    </p>
+    <p>
+    手順はひとつずつイラストが付いています。
+    冷凍に向かない食材には、なぜ向かないのかも書いてあります。
+    </p>
+  </div>
+  <p class="app-links">
+    <a href="reitou/">冷凍図鑑について</a><span class="sep">·</span>
+    <a href="reitou/privacy.html">プライバシーポリシー</a><span class="sep">·</span>
+    <a href="reitou/terms.html">利用規約</a>
+  </p>
 </section>
 
 <h2>お問い合わせ</h2>
 <p>
-すべてのアプリについて、こちらで承ります：
+アプリの不具合、うまく動かないとき、こうしてほしいという要望、
+どれでもこちらで承ります。個人で運営しているため返信までお時間をいただくことがありますが、
+すべて目を通しています。
+</p>
+<p>
 <a href="mailto:tatlink002@gmail.com">tatlink002@gmail.com</a>
+</p>
+
+<h2>運営者</h2>
+<p>
+竹本隆行（Takayuki Takemoto）／埼玉県<br>
+連絡先：<a href="mailto:tatlink002@gmail.com">tatlink002@gmail.com</a>
 </p>
 
 <footer>
 © 2026 tatsu456
 </footer>
-
-<script>
-document.querySelectorAll('.copy').forEach(function (button) {
-  button.addEventListener('click', function () {
-    navigator.clipboard.writeText(button.dataset.url).then(function () {
-      var original = button.textContent;
-      button.textContent = 'コピーしました';
-      button.classList.add('done');
-      setTimeout(function () {
-        button.textContent = original;
-        button.classList.remove('done');
-      }, 1400);
-    });
-  });
-});
-</script>
 
 </body>
 </html>
