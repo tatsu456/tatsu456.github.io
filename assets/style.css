@@ -152,12 +152,6 @@ footer {
 .copy:hover { color: var(--accent); border-color: var(--accent); }
 .copy.done { color: var(--accent); border-color: var(--accent); }
 
-.note {
-  font-size: .85rem;
-  color: var(--muted);
-  margin: .9rem 0 0;
-}
-
 @media (max-width: 30rem) {
   .urls li { grid-template-columns: 1fr auto; }
   .urls .label { grid-column: 1 / -1; }

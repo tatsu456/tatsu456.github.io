@@ -1,0 +1,4 @@
+# このリポジトリは公開。人に見せないものは push しない。
+NOTES.local.md
+*.local.md
+.DS_Store
