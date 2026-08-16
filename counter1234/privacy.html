@@ -4,11 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>プライバシーポリシー｜Counter1234</title>
-<meta name="description" content="Counter1234（iOS）のプライバシーポリシー。アカウント登録はなく、数えた値と設定は端末内にのみ保存されます。広告配信について何が取得されるかを説明しています。">
+<meta name="description" content="Counter1234（iOS）のプライバシーポリシー。数えた値は端末内にのみ保存されます。広告表示のためにGoogle AdMobのSDKが収集する6種類のデータと、その拒否方法を説明しています。">
 <link rel="stylesheet" href="../assets/style.css">
 <style>
   :root { --accent: #2f5d8a; }
   @media (prefers-color-scheme: dark) { :root { --accent: #7fb0dd; } }
+  table { border-collapse: collapse; width: 100%; font-size: .88rem; margin: 1rem 0; }
+  th, td { border: 1px solid var(--line); padding: .5rem .6rem; text-align: left; vertical-align: top; }
+  th { background: var(--card); font-weight: 600; }
 </style>
 </head>
 <body>
@@ -21,34 +24,61 @@
 <div class="card">
 <strong>要点</strong><br>
 アカウント登録はありません。数えた値・保存した数え場所の名前・設定は、
-すべてお使いの端末の中にのみ保存され、開発者が見ることはできません。<br>
-ただし本アプリは、無料で提供するために<strong>広告を表示します</strong>。
-広告の配信にあたって Google が取得する情報について、第2節で説明します。
+すべてお使いの端末の中にのみ保存され、開発者に送られることはありません。<br>
+一方で本アプリは、無料で提供するために <strong>Google AdMob の広告を表示します</strong>。
+この広告SDKが、広告の配信・測定・診断のためにいくつかのデータを収集します。
+開発者はその内容を受け取りませんが、アプリが収集していることに変わりはないため、
+第2節に具体的に記載します。
 </div>
 
-<h2>1. 開発者が集めている情報</h2>
+<h2>1. 開発者が受け取る情報</h2>
 <p>
 <strong>ありません。</strong>数えた値、数え場所に付けた名前、加算・減算の幅、
 表示や物理ボタンの設定は、すべてお使いの端末の中に保存されます。
-開発者はこれらを取得・保存・閲覧する手段を持っていません。
+開発者は利用者のデータを預かるサーバーを持っておらず、
+これらを取得・保存・閲覧する手段がありません。
 </p>
 <p>
 記録を CSV で書き出して共有する機能がありますが、
 書き出し先を選ぶのは利用者であり、開発者に送られることはありません。
 </p>
 
-<h2>2. 広告について</h2>
+<h2>2. 広告SDKが収集する情報</h2>
 <p>
-本アプリは Google の広告サービス「Google AdMob」の広告を表示します。
-広告の配信と測定のため、AdMob は広告識別子・端末情報・
-おおよその位置・アプリの利用状況などを取得します。
-これを行うのは開発者ではなく Google です。
+本アプリには Google の広告サービス「Google AdMob」の SDK
+（Google Mobile Ads SDK）が組み込まれています。
+この SDK は、広告の配信・効果測定・不具合の診断のために、
+次のデータを収集する場合があります。
+収集・利用するのは開発者ではなく Google です。
+</p>
+
+<table>
+<thead>
+<tr><th>データ</th><th>利用目的</th><th>トラッキング</th></tr>
+</thead>
+<tbody>
+<tr><td>おおよその場所</td><td>サードパーティ広告、アナリティクス</td><td>あり</td></tr>
+<tr><td>デバイスID</td><td>サードパーティ広告</td><td>あり</td></tr>
+<tr><td>製品の操作</td><td>サードパーティ広告、アナリティクス</td><td>あり</td></tr>
+<tr><td>広告データ</td><td>アナリティクス、サードパーティ広告</td><td>あり</td></tr>
+<tr><td>クラッシュデータ</td><td>アナリティクス</td><td>なし</td></tr>
+<tr><td>パフォーマンスデータ</td><td>アナリティクス</td><td>なし</td></tr>
+</tbody>
+</table>
+
+<p>
+「おおよその場所」は、通信時の IP アドレスから推定される大まかな地域です。
+端末の GPS にはアクセスしていません。
+「クラッシュデータ」「パフォーマンスデータ」は、SDK の不具合の診断や
+起動時間などの計測に使われるもので、開発者向けの解析ツール
+（Firebase Analytics、Crashlytics など）は<strong>組み込んでいません</strong>。
 </p>
 <p>
-開発者が見られるのは「広告が何回表示されたか」といった合計値のみで、
-個々の利用者を識別することはできません。
-Google による取り扱いの詳細と選択肢は
-<a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">Google のポリシー</a>
+これらは App Store の製品ページに表示されるプライバシー情報と同じ内容です。
+Google による取り扱いの詳細は
+<a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">Google のポリシー</a>、
+SDK の収集内容については
+<a href="https://developers.google.com/admob/ios/privacy/data-disclosure" target="_blank" rel="noopener">Google の公式ドキュメント</a>
 をご確認ください。
 </p>
 
@@ -73,9 +103,10 @@ Google による取り扱いの詳細と選択肢は
 <h2>4. 利用していないもの</h2>
 <ul>
   <li>アカウント登録・サインイン</li>
+  <li>開発者向けの解析ツール（Firebase Analytics、Crashlytics 等）</li>
   <li>連絡先・カレンダー・ヘルスケア・写真ライブラリへのアクセス</li>
   <li>端末の GPS による位置情報の取得</li>
-  <li>利用者情報の第三者への販売・提供</li>
+  <li>開発者による利用者情報の第三者への販売・提供</li>
 </ul>
 
 <h2>5. データの保存と削除</h2>
