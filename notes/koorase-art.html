@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>イラストを1枚も用意せずに図鑑を作る｜tatsu456</title>
+<meta name="description" content="181品目の食材のイラストを画像ファイルではなくコードで描いています。絵を「描画命令の配列」にして指紋を取り、別の食材に同じ絵が割り当たる事故を機械で見つける方法と、その限界の話。">
+<link rel="stylesheet" href="/assets/style.css?v=20260829c">
+</head>
+<body>
+
+<header class="masthead">
+<div class="masthead-inner">
+  <a class="brand" href="/">tatsu456</a>
+  <nav class="mainnav" aria-label="サイト内メニュー">
+    <a href="/">ホーム</a>
+    <details class="menu">
+      <summary>アプリ</summary>
+      <div class="menu-panel">
+      <a href="/counter1234/">Counter1234<small>カウンターと記録</small></a>
+      <a href="/kondate/">献立メーカー_EX<small>晩ごはんの献立</small></a>
+      <a href="/splitbill/">SplitBill_EX<small>多通貨の割り勘</small></a>
+      <a href="/nukadoko-diary/">ぬか床日記<small>混ぜたか覚えておかなくていい</small></a>
+      <a href="/yamajitaku/">山じたく<small>登山の持ち物チェックリスト</small></a>
+      <a href="/reitou/">冷凍図鑑<small>切り方から解凍まで</small></a>
+      </div>
+    </details>
+    <details class="menu">
+      <summary>暮らしの手引き</summary>
+      <div class="menu-panel">
+        <a href="/guides/">記事の一覧</a>
+        <hr>
+      <a href="/guides/freezing-basics.html">冷凍に向く食材・向かない食材の分かれ目</a>
+      <a href="/guides/freezing-vegetables.html">野菜の冷凍・解凍 早見表</a>
+      <a href="/guides/nukadoko-troubleshooting.html">ぬか床の症状別・原因と手当て</a>
+      <a href="/guides/hiking-gear-by-altitude.html">標高と季節で変わる登山の持ち物</a>
+      </div>
+    </details>
+    <details class="menu" data-current>
+      <summary>制作ノート</summary>
+      <div class="menu-panel">
+        <a href="/notes/">記事の一覧</a>
+        <hr>
+      <a href="/notes/koorase-art.html" aria-current="page">イラストを1枚も用意せずに図鑑を作る</a>
+      <a href="/notes/yamajitaku-season.html">標高が上がると、山の季節は前にずれる</a>
+      <a href="/notes/wasurena-srs.html">SM-2とFSRSを両方積んでみて分かった差</a>
+      </div>
+    </details>
+    <details class="menu">
+      <summary>サポート</summary>
+      <div class="menu-panel">
+        <a href="/#contact">お問い合わせ</a>
+        <hr>
+        <p class="grp">プライバシーポリシー</p>
+      <a href="/privacy-policy.html">献立メーカー_EX</a>
+      <a href="/counter1234/privacy.html">Counter1234</a>
+      <a href="/splitbill/privacy.html">SplitBill_EX</a>
+      <a href="/nukadoko-diary/privacy.html">ぬか床日記</a>
+      <a href="/yamajitaku/privacy.html">山じたく</a>
+      <a href="/reitou/privacy.html">冷凍図鑑</a>
+        <hr>
+        <a href="/reitou/terms.html">利用規約（冷凍図鑑）</a>
+      </div>
+    </details>
+  </nav>
+</div>
+</header>
+
+<nav class="crumbs" aria-label="現在の位置">
+  <a href="/">ホーム</a>
+  <span class="sep">›</span>
+  <a href="/notes/">制作ノート</a>
+  <span class="sep">›</span>
+  <span aria-current="page">イラストを1枚も用意せずに図鑑を作る</span>
+</nav>
+
+<h1>イラストを1枚も用意せずに図鑑を作る</h1>
+<p class="meta">最終更新 2026年8月29日</p>
+
+<p>冷凍保存の図鑑アプリ「こおらせ図鑑」には、181品目ぶんの食材のイラストが載っています。ところがアプリの中に入っている画像ファイルは、アプリアイコンの <code>icon-1024.png</code> 1枚だけです。食材の絵は1枚も画像として持っておらず、すべて表示のたびにコードで描いています。この記事は、そうすると何が楽になって、どこで足をすくわれるか、という話です。</p>
+
+<div class="toc">
+  <p>目次</p>
+  <ul>
+    <li><a href="#why">絵は要るが、1枚ずつは用意できない</a></li>
+    <li><a href="#same">コードで描くと「同じ絵」が生まれる</a></li>
+    <li><a href="#sketch">絵を、検査できる値にする</a></li>
+    <li><a href="#print">指紋で突き合わせる</a></li>
+    <li><a href="#ground">白い食材が地色に沈む</a></li>
+    <li><a href="#limit">指紋で拾えるもの、拾えないもの</a></li>
+    <li><a href="#split">4つの形を20品目で使い回していた</a></li>
+  </ul>
+</div>
+
+<h2 id="why">絵は要るが、1枚ずつは用意できない</h2>
+
+<p>図鑑は「この食材はどう切って、どう凍らせて、どう解かすか」を引くためのものです。文字だけでも書けますが、一覧を指でなぞって探すとき、絵があるかないかで速さがまるで違います。</p>
+
+<p>ただし必要な絵は食材181枚では済みません。切り方の絵が延べ342枚あり、さらに手順アイコンは「器や道具の絵にその食材の絵を縮小して埋め込む」合成なので、同じ「洗う」でもほうれん草とにんじんでは別の絵になります。種類ごとに数えると、食材181・切り方255・手順アイコン1,078・種類別の早見14・コラムの図63。種類をまたぐ重複を除くと、画面に出てくる見た目の異なる絵は1,494通りでした。これを1枚ずつ用意するのは現実的ではありません。</p>
+
+<p>そこで、絵を描く代わりに絵の指定をデータにしました。<code>ArtSpec</code> という値型が「かたち×色3つ×模様×乱数の種」の6つの値を持ち、これがイラストの全情報です。かたち <code>ArtShape</code> は153ケース、模様 <code>ArtDetail</code> は11ケース、名前つきの色は62色。かたちは「輪郭が違うものだけ」をケースにして、ピーマンとパプリカのような違いは色で吸収します。食材データ側の <code>art</code> は省略できない指定なので、絵の無い食材を足すとコンパイルが通りません。</p>
+
+<h2 id="same">コードで描くと「同じ絵」が生まれる</h2>
+
+<p>ここで素朴に進めると、必ず起きることがあります。似た食材は似た指定になり、指定は書き写して作るので、別の食材に同じ絵が割り当てられるのです。実際、キャベツ・レタス・白菜が3品目とも同じ絵になっていた時期があり、パクチーと大葉は「色違いの同じ葉」で並べても見分けがつきませんでした。</p>
+
+<p>厄介なのは、これが画面に並ぶまで分からないことです。1品目ずつ見ている限り、どの絵もそれらしく見えます。</p>
+
+<h2 id="sketch">絵を、検査できる値にする</h2>
+
+<p>対策として、イラストを画面部品ではなく「描画命令の配列」として作る形にしました。<code>Sketch</code> が持つ命令 <code>Op</code> は <code>fill</code>（塗る）と <code>stroke</code>（線を引く）の2種類だけで、実際に画面に描くのはその配列を受け取る <code>SketchView</code> 1つです。絵はすべて100×100の座標系で組み立て、表示のときに拡大するので、一覧の小さなマスと詳細画面の大きな絵が同じコードで描けます。</p>
+
+<p>命令の配列になっている、ということは、絵を人の目に見せる前に機械で読めるということです。</p>
+
+<h2 id="print">指紋で突き合わせる</h2>
+
+<p>そこで <code>Sketch</code> に指紋（fingerprint）を持たせました。命令ごとに「塗りか線か・色・外接矩形・線幅」を並べた文字列です。たとえばキャベツの指紋は9命令ぶんの文字列で、<code>f8172354|0,46,47,31;…</code> のように始まります。</p>
+
+<p>突き合わせは2段構えです。1段目は、全181品目の指紋を辞書に入れて完全一致が出たら失敗にする、というだけの素朴な検査。落ちたときは「◯◯ と △△ の絵が完全に同じです」と両方の食材名が出ます。2段目は、色を除いた指紋が同じ組について、3色ぶんの色の差の合計が60を超えることを求めます。形が同じでも中身の色が違えば見分けられる、という考え方です。</p>
+
+<p>いま走らせると、181品目の指紋は181通りすべて相異なります。形が同じまま残っているのは6組・15品目で、そのうちいちばん色が近い組でも色差は225ありました。</p>
+
+<table class="data">
+  <caption>形が同じで、色で見分けている6組</caption>
+  <tr><th>かたち</th><th>品目</th><th>色差（最小）</th></tr>
+  <tr><td>potStew</td><td>ハヤシライス／シチュー</td><td>945</td></tr>
+  <tr><td>blockPaste</td><td>酒粕／あんこ／クッキー生地</td><td>572</td></tr>
+  <tr><td>clam</td><td>はまぐり／ほたて</td><td>411</td></tr>
+  <tr><td>bellPepper</td><td>ピーマン／パプリカ</td><td>331</td></tr>
+  <tr><td>fishFillet</td><td>さけ／さば／ぶり／たら</td><td>310</td></tr>
+  <tr><td>meatSlices</td><td>豚こま切れ・薄切り肉／牛薄切り肉</td><td>225</td></tr>
+</table>
+
+<p class="meta">品目の区切りは「／」です。meatSlices は「豚こま切れ・薄切り肉」と「牛薄切り肉」の2品目にあたります。この表は同じ<strong>かたち</strong>ではなく同じ<strong>形の指紋</strong>で括っているので、かたちが同じでも模様や種が違えば入りません。肉じゃがは potStew ですがこの理由で外れており、キャベツ・レタス・白菜も同じ <code>leafHead</code> ながら模様の指定で描画関数が3つに分かれるため入っていません。</p>
+
+<h2 id="ground">白い食材が地色に沈む</h2>
+
+<p>絵が命令の列になっていると、重複以外も検査できます。図鑑の背景は霜をイメージした薄い水色で、にんにく・みょうが・豆腐のような白い食材はそのままだと背景に溶けます。これは <code>readable()</code> が自動で直します。地色との明るさの差が0.12つくまで、最大6回だけ10%ずつ暗くする、という処理です。切り方の絵では外側の色と中身の色の両方に掛けていて、どちらかが実際に暗くなる食材は181品目のうち116品目。外側の色が動くのはそのうち45品目でした。</p>
+
+<p>そのうえで、延べ342枚ある切り方の絵すべてについて「地色と十分に明るさが離れた色の命令が最低1つある」ことをテストで確かめています。いま最も余裕がないのは、とうもろこしの「粒」で0.142でした。なお「丸ごと」と「殻つき」はこの補正を通らず食材そのものの絵をそのまま出すため、しらすは輪郭と1尾ずつの目を差し色で描いて自力で対処しています。結果、しらすは181品目でいちばん命令数の多い絵（82命令）になりました。</p>
+
+<h2 id="limit">指紋で拾えるもの、拾えないもの</h2>
+
+<p>この指紋は、パスの形そのものを一切見ていません。見ているのは外接矩形と色、それに0.1刻みに丸めた線幅だけです。ですから同じ枠に収まる円と正方形は同じ指紋になりますし、座標は整数に切り捨てるので1未満のずれは消えることがあり、線幅2.00と2.04も区別されません。乱数の種を変えるだけで指紋が変わる形も153種のうち61種あります（いまのデータに、種だけ違う品目の組はありません）。</p>
+
+<p>この割り切りの代償ははっきり出ました。あるとき、テストを1件も落とさないまま4つの絵が壊れていたことがあります。バナナが弓に見える、みかんとオレンジが同じ絵に見える、パイナップルの鱗が実からはみ出す、ささみがむね肉と双子。別の回には「絵はあるが中身と食い違う」形で出て、卵白の絵に黄身が描かれていました。形はあり、枠に収まり、色差も基準を満たすので、機械では引っかかりません。だから、シミュレータに並べて目で見る工程は残してあります。</p>
+
+<p>逆もあります。梨・オレンジなど6品目が <code>FruitData</code> と <code>MoreData</code> に二重登録されていた件は、1品目ずつ絵を見ているかぎり、どこにもおかしなところがありません。落としたのは指紋ではなく、IDの重複を見るテストでした。人が見るべきものと機械に見せるべきものは、はっきり別物だと分かりました。</p>
+
+<h2 id="split">4つの形を20品目で使い回していた</h2>
+
+<p>描き直すときは、候補を5案SVGに書き出して並べて選ぶやり方をとっています。<code>tools/artcandidates</code> は19品目それぞれにA〜Eの5案と現行版を出力し、合計114ファイルになります。「3本ならべ」「1本を大写し」「2本を交差」といった案の意図はコードの中にラベルとして持っているだけで、ファイル名のほうは <code>ingen-A.svg</code>〜<code>ingen-E.svg</code> と現行版の <code>ingen-now.svg</code> という形です。アプリと同じコードからSVGを出せるのは、絵をコードで持っていることの副産物です。</p>
+
+<p>このとき手を入れた対象は、4つのかたちを5品目ずつで使い回していた20品目です。さや・柑橘・丼・小鉢がそれぞれ5品目。さやはオクラが <code>pod</code> をそのまま引き継いだので、専用のかたちを新しく与えたのは19品目でした。これを1コミットで割り、<code>ArtShape</code> のケースは19増えて1減り、134から152になりました（そのあとたけのこを足して153になっています）。同じ趣旨の「描き分ける」コミットは5本あり、合わせて50品目の絵を描き直しています。</p>
+
+<p>いまイラストのコードはアプリ全体21,206行のうち5,010行、およそ24%を占めます。イラストのコードでいちばん大きい <code>ProduceArt.swift</code> は1,286行です（アプリ全体で最大なのは食材データの <code>DishData.swift</code> で2,052行）。正直に書いておくと、書き出しツールのほうは追随できておらず、<code>tools/exportsvg</code> と <code>tools/artcandidates</code> はどちらも削除済みのかたち <code>citrus</code> を参照したままでコンパイルが通りません。絵を検査できる値にした恩恵は本体に効いていますが、その恩恵を取り出す道具のほうは、まだ手入れが要る状態です。</p>
+
+<div class="related">
+  <p>関連</p>
+  <ul>
+    <li><a href="/reitou/">こおらせ図鑑</a></li>
+    <li><a href="/notes/">制作ノート一覧</a></li>
+    <li><a href="/guides/">手引き一覧</a></li>
+    <li><a href="/">トップ</a></li>
+  </ul>
+</div>
+
+<nav class="postnav" aria-label="前後の記事">
+  <span></span>
+  <a class="next" href="/notes/yamajitaku-season.html"><span class="lbl">次の記事</span>標高が上がると、山の季節は前にずれる</a>
+</nav>
+
+<footer class="sitefooter">
+<div class="sitefooter-inner">
+  <div>
+    <h2>アプリ</h2>
+    <ul>
+      <li><a href="/counter1234/">Counter1234</a></li>
+      <li><a href="/kondate/">献立メーカー_EX</a></li>
+      <li><a href="/splitbill/">SplitBill_EX</a></li>
+      <li><a href="/nukadoko-diary/">ぬか床日記</a></li>
+      <li><a href="/yamajitaku/">山じたく</a></li>
+      <li><a href="/reitou/">冷凍図鑑</a></li>
+    </ul>
+  </div>
+  <div>
+    <h2>暮らしの手引き</h2>
+    <ul>
+      <li><a href="/guides/">記事の一覧</a></li>
+      <li><a href="/guides/freezing-basics.html">冷凍に向く食材・向かない食材の分かれ目</a></li>
+      <li><a href="/guides/freezing-vegetables.html">野菜の冷凍・解凍 早見表</a></li>
+      <li><a href="/guides/nukadoko-troubleshooting.html">ぬか床の症状別・原因と手当て</a></li>
+      <li><a href="/guides/hiking-gear-by-altitude.html">標高と季節で変わる登山の持ち物</a></li>
+    </ul>
+  </div>
+  <div>
+    <h2>制作ノート</h2>
+    <ul>
+      <li><a href="/notes/">記事の一覧</a></li>
+      <li><a href="/notes/koorase-art.html">イラストを1枚も用意せずに図鑑を作る</a></li>
+      <li><a href="/notes/yamajitaku-season.html">標高が上がると、山の季節は前にずれる</a></li>
+      <li><a href="/notes/wasurena-srs.html">SM-2とFSRSを両方積んでみて分かった差</a></li>
+    </ul>
+  </div>
+  <div>
+    <h2>サポート</h2>
+    <ul>
+      <li><a href="/#contact">お問い合わせ</a></li>
+      <li><a href="/privacy-policy.html">プライバシーポリシー</a></li>
+      <li><a href="/reitou/terms.html">利用規約（冷凍図鑑）</a></li>
+    </ul>
+  </div>
+  <div class="copy">© 2026 tatsu456　個人でiOSアプリを作っています。</div>
+</div>
+</footer>
+
+<script>
+(function () {
+  var menus = Array.prototype.slice.call(document.querySelectorAll('.masthead .menu'));
+  menus.forEach(function (m) {
+    m.addEventListener('toggle', function () {
+      if (m.open) menus.forEach(function (o) { if (o !== m) o.open = false; });
+    });
+  });
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('.masthead .menu')) menus.forEach(function (m) { m.open = false; });
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') menus.forEach(function (m) { m.open = false; });
+  });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SM-2とFSRSを両方積んでみて分かった差｜tatsu456</title>
+<meta name="description" content="間隔反復のアルゴリズムを2種類実装して切り替えられるようにしました。どちらが優れているかではなく、初期間隔・ボタンの順序・間隔の散らしで何を仮定しているかが違うという話。">
+<link rel="stylesheet" href="/assets/style.css?v=20260829c">
+</head>
+<body>
+
+<header class="masthead">
+<div class="masthead-inner">
+  <a class="brand" href="/">tatsu456</a>
+  <nav class="mainnav" aria-label="サイト内メニュー">
+    <a href="/">ホーム</a>
+    <details class="menu">
+      <summary>アプリ</summary>
+      <div class="menu-panel">
+      <a href="/counter1234/">Counter1234<small>カウンターと記録</small></a>
+      <a href="/kondate/">献立メーカー_EX<small>晩ごはんの献立</small></a>
+      <a href="/splitbill/">SplitBill_EX<small>多通貨の割り勘</small></a>
+      <a href="/nukadoko-diary/">ぬか床日記<small>混ぜたか覚えておかなくていい</small></a>
+      <a href="/yamajitaku/">山じたく<small>登山の持ち物チェックリスト</small></a>
+      <a href="/reitou/">冷凍図鑑<small>切り方から解凍まで</small></a>
+      </div>
+    </details>
+    <details class="menu">
+      <summary>暮らしの手引き</summary>
+      <div class="menu-panel">
+        <a href="/guides/">記事の一覧</a>
+        <hr>
+      <a href="/guides/freezing-basics.html">冷凍に向く食材・向かない食材の分かれ目</a>
+      <a href="/guides/freezing-vegetables.html">野菜の冷凍・解凍 早見表</a>
+      <a href="/guides/nukadoko-troubleshooting.html">ぬか床の症状別・原因と手当て</a>
+      <a href="/guides/hiking-gear-by-altitude.html">標高と季節で変わる登山の持ち物</a>
+      </div>
+    </details>
+    <details class="menu" data-current>
+      <summary>制作ノート</summary>
+      <div class="menu-panel">
+        <a href="/notes/">記事の一覧</a>
+        <hr>
+      <a href="/notes/koorase-art.html">イラストを1枚も用意せずに図鑑を作る</a>
+      <a href="/notes/yamajitaku-season.html">標高が上がると、山の季節は前にずれる</a>
+      <a href="/notes/wasurena-srs.html" aria-current="page">SM-2とFSRSを両方積んでみて分かった差</a>
+      </div>
+    </details>
+    <details class="menu">
+      <summary>サポート</summary>
+      <div class="menu-panel">
+        <a href="/#contact">お問い合わせ</a>
+        <hr>
+        <p class="grp">プライバシーポリシー</p>
+      <a href="/privacy-policy.html">献立メーカー_EX</a>
+      <a href="/counter1234/privacy.html">Counter1234</a>
+      <a href="/splitbill/privacy.html">SplitBill_EX</a>
+      <a href="/nukadoko-diary/privacy.html">ぬか床日記</a>
+      <a href="/yamajitaku/privacy.html">山じたく</a>
+      <a href="/reitou/privacy.html">冷凍図鑑</a>
+        <hr>
+        <a href="/reitou/terms.html">利用規約（冷凍図鑑）</a>
+      </div>
+    </details>
+  </nav>
+</div>
+</header>
+
+<nav class="crumbs" aria-label="現在の位置">
+  <a href="/">ホーム</a>
+  <span class="sep">›</span>
+  <a href="/notes/">制作ノート</a>
+  <span class="sep">›</span>
+  <span aria-current="page">SM-2とFSRSを両方積んでみて分かった差</span>
+</nav>
+
+<h1>SM-2とFSRSを両方積んでみて分かった差</h1>
+<p class="meta">最終更新 2026年8月29日</p>
+
+<p>暗記カードのアプリで本体にあたるのは、カードの中身ではなく「次にいつ出すか」を決めるところです。ここを受け持つ計算をスケジューラと呼びます。わすれなカード(Wasurena)には、この決め方が二種類入っています。古くからある SM-2 と、記憶の残り具合をモデルにした FSRS です。片方を選んで作るのではなく、両方を同じアプリに入れて並走させてみたところ、どこが共通で、どこが別物になるのかがはっきり見えてきました。この記事は「どちらが優れているか」ではなく、その境目の話です。</p>
+
+<div class="toc">
+  <ul>
+    <li><a href="#both">二つの決め方を同じアプリに入れた</a></li>
+    <li><a href="#common">共通なのは「分の刻み」まで</a></li>
+    <li><a href="#gap">同じ操作が1日と3日になる</a></li>
+    <li><a href="#asym">保証と散らしが非対称になった</a></li>
+    <li><a href="#knobs">つまみ5つが消え、重み19個が来る</a></li>
+    <li><a href="#bridge">乗り換えの橋渡しと、最適化の落とし穴</a></li>
+    <li><a href="#result">並走させて分かったこと</a></li>
+  </ul>
+</div>
+
+<h2 id="both">二つの決め方を同じアプリに入れた</h2>
+
+<p>切り替えは、スケジューラ冒頭の1行の分岐です。<code>Scheduler.swift</code> の34行目に <code>if preset.useFSRS { return answerWithFSRS(card, rating: rating, now: now) }</code> と書いてあり、ここから先で日単位の間隔の計算だけが別ファイル(<code>FSRS.swift</code>、336行)の式に移ります。刻みの踏み方や leech の判定は <code>Scheduler.swift</code> の側に複製されていて、全367行のうち約100行が FSRS 用の経路です。</p>
+
+<p><code>useFSRS</code> はデッキ設定(プリセット)のプロパティなので、アプリ全体の設定ではありません。同じコレクションの中で、あるデッキは SM-2、別のデッキは FSRS、という状態があり得ます。</p>
+
+<h2 id="common">共通なのは「分の刻み」まで</h2>
+
+<p>新しいカードは、「もう一度」から「正解」で進むかぎり、いきなり日単位の間隔にはなりません。まず1分後、10分後と短い刻みを踏み、それを抜けてから日単位に移ります。例外は「簡単」で、これを押すと刻みを飛ばしてその場で日単位へ卒業します。この刻み(既定で習得中は1分と10分、再習得中は10分)は、両方の決め方で共通です。FSRS 側にも同じ分岐構造がそっくり複製されていて、入れ替わるのは日単位の間隔の計算だけでした。</p>
+
+<p>一方、カードが持つ状態量は違います。SM-2 は易しさ係数が1本、FSRS は安定性と難しさの2本です。これを同じ <code>Card</code> 構造体に同居させ、FSRS の2つだけを省略可能にしてあります。両方そろっているときだけ意味を持つ値なので、片方でも欠けていれば記憶状態としては無いものとして扱われます。</p>
+
+<h2 id="gap">同じ操作が1日と3日になる</h2>
+
+<p>並走させてまず目に見えるのは、初期間隔の出どころが根本的に違うことです。SM-2 の卒業時の間隔は設定値の定数で、既定は1日。FSRS ではボタンに対応する重みがそのまま安定性になり、既定の重みなら初回に「正解」を押したときの安定性は3.173日です。分かりやすいのは新規カードに「簡単」を押した場合で、SM-2 は設定どおり4日、FSRS は約16日と開きます。</p>
+
+<table class="data">
+  <tr><th>比べたところ</th><th>SM-2</th><th>FSRS</th></tr>
+  <tr><td>カードが持つ状態</td><td>易しさ係数1本(既定2.5、1.3〜5.0)</td><td>安定性と難しさの2本(難しさは1〜10)</td></tr>
+  <tr><td>最後の刻みで「正解」</td><td>1日(設定値)</td><td>約3日(重み3.173がそのまま安定性)</td></tr>
+  <tr><td>新規カードに「簡単」</td><td>4日(設定値)</td><td>約16日(重み15.69がそのまま安定性)</td></tr>
+  <tr><td>期日に遅れたとき</td><td>遅れ日数の一部を間隔に足す</td><td>伸びが自動的に大きくなる</td></tr>
+</table>
+
+<h3>「思い出せる確率」があるかどうか</h3>
+
+<p>SM-2 側には、そもそも「いま思い出せる確率」という概念がありません。SM-2 の経路のどこにも、それに相当する関数はありませんでした。FSRS はべき乗の忘却曲線を持ち、安定性10日のカードなら10日後にちょうど90%、30日後で0.766、365日後でも0.32ほど、という下がり方をテストで押さえています。</p>
+
+<p>間隔は、この曲線の逆関数として出ます。ですから「望む正答率」がそのまま間隔の倍率になります。設定画面のスライダーは70%から98%まで動きますが、安定性1あたりの日数にすると4.4372日から0.1758日、つまり25.2倍の幅があります。90%のとき間隔と安定性がちょうど一致する、という性質もテストで確認しています。</p>
+
+<h3>遅れて答えたときの報い方</h3>
+
+<p>期日を過ぎてから答えたときの扱いは、作りとして正反対でした。SM-2 は遅れ日数の一部を間隔に足し込む後付けの補正で、間隔10日のカードに10日遅れて「正解」を押すと (10 + 10/4) × 2.5 = 31日になります。FSRS には遅れ専用の補正がありません。遅れた結果として思い出せる確率が下がり、その低さがそのまま安定性の伸びを大きくします。安定性10日のカードなら、2日後に答えるより20日後に答えたほうが伸びる、とテストが押さえています。</p>
+
+<h2 id="asym">保証と散らしが非対称になった</h2>
+
+<p>ボタンは「もう一度・難しい・正解・簡単」の4つですが、順序を強制しているのは「難しい&lt;正解&lt;簡単」の3つです（「もう一度」は別経路に落ちます）。SM-2 側はこれを <code>max(value, previous + 1)</code> で強制していて、テストも間隔1・2・3・5日の4通りで厳密な不等号を要求します。ところが FSRS 側には同じ強制がなく、テストも隣り合うボタンが同じ日数になることを許しています。式に任せると、必ずしも1日ぶんの差が出ないためです。</p>
+
+<p>間隔の散らし(fuzz)にも非対称があります。SM-2 の卒業時は意図的に散らしを止めてあります。実装側のコメントは「設定した日数どおりに出る方が分かりやすい」とだけで、「明日出ますと言っておいて3日後になると約束と違って見える」という理由はテスト側のコメントに残っています。そのテストは本物の乱数で20回まわして毎回1日を要求します。復習で「もう一度」を押したときの新しい間隔も、倍率を掛けて丸めるだけで散らしを通りません。対して FSRS が日単位へ移る経路は共通の処理にまとめてあるので、必ず散らしの関数を通ります。</p>
+
+<h2 id="knobs">つまみ5つが消え、重み19個が来る</h2>
+
+<p>FSRS を有効にすると、SM-2 のつまみが計算からも設定画面からも消えます。易しさの初期値、「簡単」の追加倍率、全体の倍率、「難しい」の倍率、忘れたときに残す割合の5つが、設定画面の「詳細」からまとめて非表示になります。この節に残るのは「最長の間隔(日)」だけでした。既定は36500日、つまり100年です。FSRS 側の安定性の上限も同じ36500に揃えてあります。</p>
+
+<p>消えるのは、その「詳細」の節だけです。習得の刻み、やり直しの刻み、最短の間隔、leech とみなす回数は FSRS でも実際に読まれるので、そのまま出しています。一方で「卒業時の間隔」と「簡単で卒業したときの間隔」は FSRS では一度も読まれないのに画面には並んだままで、ここは揃えきれていません。</p>
+
+<p>代わりに来るのが19個の重みですが、手で回せる形では並べていません。たたんだ見出しの中に19個の値を小数4桁で表示しているだけで、書き換える行はありません。数が多すぎて手で回すものではないからです。触れるのは「望む正答率」のスライダーと、「自分の記録から最適化」「記憶状態を記録から計算し直す」、それに既定から動いたときだけ出る「パラメータを既定に戻す」のボタンです。パラメータの数の違いが、そのまま「つまみを見せる」か「つまみを隠して自動で合わせる」かという UI の差になりました。</p>
+
+<h2 id="bridge">乗り換えの橋渡しと、最適化の落とし穴</h2>
+
+<p>途中で切り替えたとき、カードの記憶状態をどう用意するかが問題になります。素朴に「新しい状態はゼロから」とすると、何年も育てたカードが振り出しに戻ってしまいます。そこで二段構えにしました。回答の記録があれば履歴を最初から再生して安定性と難しさを組み立て直し、記録が無ければ SM-2 の間隔と易しさから見立てます。見立ては復習段階のカードだけに限り、新規カードは最初の回答で決めさせます。</p>
+
+<p>見立ての式は、間隔をおおよそ「90%思い出せる日数」とみなしてそのまま安定性に使い、難しさは <code>5.28 + (2.5 - ease) * 3</code> としています。この中心値5.28は、既定の重みから計算される「初回に正解を押したときの難しさ」5.2824 とほぼ同じ数字でした。</p>
+
+<p>逆方向、FSRS から SM-2 へ戻すほうも動きます。FSRS 経路は易しさ係数を一度も書き換えないので、値が温存されているためです。安定性10日で易しさ2.5のカードを SM-2 で採点すると25日になる、というテストがそれを確かめています。なお Anki の <code>.apkg</code> を取り込んでも運ばれないのは記憶状態（安定性と難しさ）だけで、易しさ係数・間隔・期日・回答回数はそのまま入ります。FSRS 側はその履歴を再生して記憶状態を組み立て直すことになります。</p>
+
+<h3>範囲の広さに比例させると壊れる</h3>
+
+<p>19個の重みを記録から合わせ込む最適化器は自前で書きました。「思い出せたかどうか」の交差エントロピーを損失にして、傾きは数値微分で出し、刻みは改善したら1.15倍、悪化したら半分にします。記録が20予測に満たなければ何もしません。</p>
+
+<p>ここで踏んだ落とし穴が、重みの動かし幅の決め方でした。各重みには許される範囲が決まっているので、最初はその範囲の幅に比例させて動かしました。ところが範囲の広さは重みごとに揃っていません。最初の4つは上限が100なのに、上限0.75や0.25の重みもあり、いちばん広いものと狭いもので400倍の開きがあります。範囲に比例させると、範囲の広い重みだけが一度に何倍も飛んでしまい、合わせ込みが壊れました。最終的に「その重み自身の大きさ」に比例させる形に直し、理由をコメントとして残しています。</p>
+
+<p>結果は損失が下がったときだけ書き戻し、書き戻したらそのプリセットを使う全デッキのカードの記憶状態を記録から計算し直します。画面の言い方も3通りに分けました。予測が20件に満たなければ件数を伝え、改善がごくわずかなら「いまのパラメータで十分でした」と言い、400件に満たなければ「増えたらまた試してください」と付け足します。ただしテストが見ているのは損失が下がることと重みが範囲内に収まることだけで、元の重みをどれだけ言い当てられたかは検査していません。</p>
+
+<h2 id="result">並走させて分かったこと</h2>
+
+<p>両方を積んで分かったのは、二つの決め方の差が思ったより狭いところに集中している、ということでした。共有されるのは刻みの値、leech の閾値、最長の間隔、散らしの関数で、入れ替わるのは日単位の間隔の計算だけです。ただし刻みを踏む手順と leech の判定はコードとしては複製されていて、分岐そのものは1行でも、その先に約100行の写しがあります。</p>
+
+<p>一方で、共有できなかったところには理由がありました。SM-2 は「難しい&lt;正解&lt;簡単」を自力では保証できないので強制が要り、FSRS は式が保証を持たないぶんテストが等号を許す。SM-2 には想起率の概念が無いので遅れを足し算で補い、FSRS はモデルの側で遅れが吸収される。つまみの数の差は、そのまま設定画面の作りの差になりました。スケジューラまわりのテストは SM-2 側が31本、FSRS 側が24本で、後から足した FSRS より SM-2 のほうが多いのも、刻みから予告表示まで全部を抱えているからだと分かりました。</p>
+
+<p>どちらが実際の学習に効くかは、このアプリの中には計測データがありません。ここで書けるのは、同じ操作に対して両者がどれだけ違う数字を返すか、という設計上の差までです。</p>
+
+<div class="related">
+  <p>関連</p>
+  <ul>
+    <li><a href="/">トップ</a></li>
+    <li><a href="/notes/">制作ノート一覧</a></li>
+    <li><a href="/guides/">手引き一覧</a></li>
+  </ul>
+</div>
+
+<nav class="postnav" aria-label="前後の記事">
+  <a class="prev" href="/notes/yamajitaku-season.html"><span class="lbl">前の記事</span>標高が上がると、山の季節は前にずれる</a>
+  <span></span>
+</nav>
+
+<footer class="sitefooter">
+<div class="sitefooter-inner">
+  <div>
+    <h2>アプリ</h2>
+    <ul>
+      <li><a href="/counter1234/">Counter1234</a></li>
+      <li><a href="/kondate/">献立メーカー_EX</a></li>
+      <li><a href="/splitbill/">SplitBill_EX</a></li>
+      <li><a href="/nukadoko-diary/">ぬか床日記</a></li>
+      <li><a href="/yamajitaku/">山じたく</a></li>
+      <li><a href="/reitou/">冷凍図鑑</a></li>
+    </ul>
+  </div>
+  <div>
+    <h2>暮らしの手引き</h2>
+    <ul>
+      <li><a href="/guides/">記事の一覧</a></li>
+      <li><a href="/guides/freezing-basics.html">冷凍に向く食材・向かない食材の分かれ目</a></li>
+      <li><a href="/guides/freezing-vegetables.html">野菜の冷凍・解凍 早見表</a></li>
+      <li><a href="/guides/nukadoko-troubleshooting.html">ぬか床の症状別・原因と手当て</a></li>
+      <li><a href="/guides/hiking-gear-by-altitude.html">標高と季節で変わる登山の持ち物</a></li>
+    </ul>
+  </div>
+  <div>
+    <h2>制作ノート</h2>
+    <ul>
+      <li><a href="/notes/">記事の一覧</a></li>
+      <li><a href="/notes/koorase-art.html">イラストを1枚も用意せずに図鑑を作る</a></li>
+      <li><a href="/notes/yamajitaku-season.html">標高が上がると、山の季節は前にずれる</a></li>
+      <li><a href="/notes/wasurena-srs.html">SM-2とFSRSを両方積んでみて分かった差</a></li>
+    </ul>
+  </div>
+  <div>
+    <h2>サポート</h2>
+    <ul>
+      <li><a href="/#contact">お問い合わせ</a></li>
+      <li><a href="/privacy-policy.html">プライバシーポリシー</a></li>
+      <li><a href="/reitou/terms.html">利用規約（冷凍図鑑）</a></li>
+    </ul>
+  </div>
+  <div class="copy">© 2026 tatsu456　個人でiOSアプリを作っています。</div>
+</div>
+</footer>
+
+<script>
+(function () {
+  var menus = Array.prototype.slice.call(document.querySelectorAll('.masthead .menu'));
+  menus.forEach(function (m) {
+    m.addEventListener('toggle', function () {
+      if (m.open) menus.forEach(function (o) { if (o !== m) o.open = false; });
+    });
+  });
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('.masthead .menu')) menus.forEach(function (m) { m.open = false; });
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') menus.forEach(function (m) { m.open = false; });
+  });
+})();
+</script>
+
+</body>
+</html>
