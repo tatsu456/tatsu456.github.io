@@ -11,7 +11,7 @@ PAGE = '''<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{title}｜tat_u456</title>
+<title>{title}｜tatsu456</title>
 <meta name="description" content="{desc}">
 <link rel="stylesheet" href="/assets/style.css?v={ver}">
 </head>
