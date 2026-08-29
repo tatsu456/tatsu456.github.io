@@ -2,3 +2,7 @@
 NOTES.local.md
 *.local.md
 .DS_Store
+
+# 生成スクリプトの副産物
+__pycache__/
+*.pyc

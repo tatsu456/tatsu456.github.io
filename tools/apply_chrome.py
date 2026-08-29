@@ -27,7 +27,6 @@ GUIDES = [
 NOTES = [
     ('/notes/koorase-art.html',      'イラストを1枚も用意せずに図鑑を作る'),
     ('/notes/yamajitaku-season.html', '標高が上がると、山の季節は前にずれる'),
-    ('/notes/wasurena-srs.html',     'SM-2とFSRSを両方積んでみて分かった差'),
 ]
 
 POLICIES = [
