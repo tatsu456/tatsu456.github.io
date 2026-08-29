@@ -3,25 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Counter1234</title>
+<title>制作ノート｜tatsu456</title>
+<meta name="description" content="アプリを作るときに悩んだ設計と、素朴にやって失敗した部分の記録。使い方の説明ではなく、なぜその作りにしたかを書いています。">
 <link rel="stylesheet" href="/assets/style.css?v=20260829c">
-<style>
-  :root { --accent: #2f5d8a; }
-  @media (prefers-color-scheme: dark) { :root { --accent: #7fb0dd; } }
-</style>
 </head>
 <body>
-
 
 <header class="masthead">
 <div class="masthead-inner">
   <a class="brand" href="/">tatsu456</a>
   <nav class="mainnav" aria-label="サイト内メニュー">
     <a href="/">ホーム</a>
-    <details class="menu" data-current>
+    <details class="menu">
       <summary>アプリ</summary>
       <div class="menu-panel">
-      <a href="/counter1234/" aria-current="page">Counter1234<small>カウンターと記録</small></a>
+      <a href="/counter1234/">Counter1234<small>カウンターと記録</small></a>
       <a href="/kondate/">献立メーカー_EX<small>晩ごはんの献立</small></a>
       <a href="/splitbill/">SplitBill_EX<small>多通貨の割り勘</small></a>
       <a href="/nukadoko-diary/">ぬか床日記<small>混ぜたか覚えておかなくていい</small></a>
@@ -40,10 +36,10 @@
       <a href="/guides/hiking-gear-by-altitude.html">標高と季節で変わる登山の持ち物</a>
       </div>
     </details>
-    <details class="menu">
+    <details class="menu" data-current>
       <summary>制作ノート</summary>
       <div class="menu-panel">
-        <a href="/notes/">記事の一覧</a>
+        <a href="/notes/" aria-current="page">記事の一覧</a>
         <hr>
       <a href="/notes/koorase-art.html">イラストを1枚も用意せずに図鑑を作る</a>
       <a href="/notes/yamajitaku-season.html">標高が上がると、山の季節は前にずれる</a>
@@ -73,62 +69,44 @@
 <nav class="crumbs" aria-label="現在の位置">
   <a href="/">ホーム</a>
   <span class="sep">›</span>
-  <span aria-current="page">Counter1234</span>
+  <span aria-current="page">制作ノート</span>
 </nav>
 
-<h1>Counter1234</h1>
-<p class="tagline">数える、ただそれだけを、きちんと。</p>
+<h1>制作ノート</h1>
+<p class="tagline">作るときに悩んだところの記録。</p>
 
 <p>
-在庫を数える、参加者を数える、往復の回数を数える。
-そういうときに手元で確実に動く、それだけのカウンターです。
-画面を見なくても数えられるように作ってあります。
+アプリの使い方ではなく、<strong>なぜその作りにしたか</strong>を書いています。
+どれも実際に手を動かして、途中で一度失敗してから直したものです。
+うまくいった話より、素朴にやると何が壊れるかのほうを厚く書いています。
 </p>
 
-<h2>できること</h2>
-<ul>
-  <li>+1 だけでなく、加算・減算の幅を自分で決められます</li>
-  <li>音量ボタンで数えられます。画面を見ずに、手の中だけで進められます</li>
-  <li>数え場所を複数保存できます。名前を付けて、あとから呼び戻せます</li>
-  <li>数えるたびに手ごたえ（触覚フィードバック）を返します</li>
-  <li>数えている間は画面が消えません</li>
-  <li>数字だけを大きく映す全画面表示に切り替えられます</li>
-  <li>記録は CSV で書き出して共有できます</li>
-  <li>ライト／ダークの見た目を選べます</li>
-  <li>日本語・英語ほか 10 言語に対応しています</li>
-</ul>
-
-<div class="card">
-  数えた値と設定は、すべてお使いの端末内にのみ保存されます。
-  アカウント登録はありません。
+<div class="postcard">
+  <span class="tag">冷凍図鑑</span>
+  <h3><a href="/notes/koorase-art.html">イラストを1枚も用意せずに図鑑を作る</a></h3>
+  <p>
+  食材の絵をすべてコードで描いています。画像を持たない代わりに、
+  別の食材に同じ絵が割り当たる事故が起きるようになりました。その見つけ方の話。
+  </p>
 </div>
 
-<h2>よくある質問</h2>
+<div class="postcard">
+  <span class="tag">山じたく</span>
+  <h3><a href="/notes/yamajitaku-season.html">標高が上がると、山の季節は前にずれる</a></h3>
+  <p>
+  暦の季節で装備を決めると、6月の高山で雪を踏みます。
+  標高帯ごとに季節をずらして持つという設計にした理由と、その副作用。
+  </p>
+</div>
 
-<h3>数え間違えたときは？</h3>
-<p>
-直前の操作は取り消せます。値そのものを直したいときは、数字を長押しすると
-入力し直せます。
-</p>
-
-<h3>音量ボタンで数えられません</h3>
-<p>
-設定画面の「物理ボタン」で、音量アップ／ダウンにそれぞれ何を割り当てるかを
-決めてください。どちらも「なし」のままだと反応しません。
-</p>
-
-<h3>広告を消したい</h3>
-<p>
-設定画面から購入できます。機種変更などで消えてしまった場合は、同じ画面の
-「購入を復元」をお試しください。
-</p>
-
-<h2>リンク</h2>
-<ul>
-  <li><a href="https://sites.google.com/view/counter-privacy-2026/" target="_blank" rel="noopener">プライバシーポリシー</a></li>
-  <li>お問い合わせ：<a href="mailto:tatlink002@gmail.com">tatlink002@gmail.com</a></li>
-</ul>
-
+<div class="postcard">
+  <span class="tag">わすれなカード</span>
+  <h3><a href="/notes/wasurena-srs.html">SM-2とFSRSを両方積んでみて分かった差</a></h3>
+  <p>
+  間隔反復のアルゴリズムを2種類実装して切り替えられるようにしました。
+  どちらが優れているかではなく、何を仮定しているかが違うという話。
+  </p>
+</div>
 
 <footer class="sitefooter">
 <div class="sitefooter-inner">
