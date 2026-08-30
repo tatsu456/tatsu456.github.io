@@ -17,12 +17,28 @@ APPS = [
     ('/reitou/',         '冷凍図鑑',             '切り方から解凍まで'),
 ]
 
-GUIDES = [
-    ('/guides/freezing-basics.html',        '冷凍に向く食材・向かない食材の分かれ目'),
-    ('/guides/freezing-vegetables.html',    '野菜の冷凍・解凍 早見表'),
-    ('/guides/nukadoko-troubleshooting.html', 'ぬか床の症状別・原因と手当て'),
-    ('/guides/hiking-gear-by-altitude.html', '標高と季節で変わる登山の持ち物'),
+# 手引きは分野ごとにまとめる。本数が増えるとプルダウンが読めなくなるため。
+GUIDE_GROUPS = [
+    ('冷凍保存', [
+        ('/guides/freezing-basics.html',     '冷凍に向く食材・向かない食材の分かれ目'),
+        ('/guides/freezing-vegetables.html', '野菜の冷凍・解凍 早見表'),
+        ('/guides/freezing-meat.html',       '肉の冷凍と解凍'),
+        ('/guides/freezing-seafood.html',    '魚介の冷凍と解凍'),
+        ('/guides/freezing-staples.html',    'ごはん・パン・麺の冷凍'),
+        ('/guides/freezing-dishes.html',     '作りおきと料理の冷凍'),
+        ('/guides/freezer-care.html',        '冷凍焼けを防ぐ、冷凍庫の使い方'),
+    ]),
+    ('ぬか床', [
+        ('/guides/nukadoko-troubleshooting.html', 'ぬか床の症状別・原因と手当て'),
+    ]),
+    ('登山', [
+        ('/guides/hiking-gear-by-altitude.html', '標高と季節で変わる登山の持ち物'),
+        ('/guides/pack-weight.html',             'ザックの重さは体重の何％まで'),
+    ]),
 ]
+
+# 平坦なリスト（フッターやページ定義で使う）
+GUIDES = [row for _, rows in GUIDE_GROUPS for row in rows]
 
 NOTES = [
     ('/notes/koorase-art.html',      'イラストを1枚も用意せずに図鑑を作る'),
@@ -56,6 +72,14 @@ def masthead(page, section):
     def openattr(sec):
         return ' data-current' if section == sec else ''
 
+    def grouped_guides(page):
+        out = []
+        for label, rows in GUIDE_GROUPS:
+            out.append(f'        <p class="grp">{label}</p>')
+            for href, name in rows:
+                out.append(f'      <a href="{href}"{cur(href, page)}>{name}</a>')
+        return '\n'.join(out)
+
     return f'''<header class="masthead">
 <div class="masthead-inner">
   <a class="brand" href="/">tatsu456</a>
@@ -71,8 +95,7 @@ def masthead(page, section):
       <summary>暮らしの手引き</summary>
       <div class="menu-panel">
         <a href="/guides/"{cur('/guides/', page)}>記事の一覧</a>
-        <hr>
-{items(GUIDES)}
+{grouped_guides(page)}
       </div>
     </details>
     <details class="menu"{openattr('notes')}>
@@ -183,6 +206,18 @@ PAGES = {
         [('/guides/', '暮らしの手引き'), (None, 'ぬか床の症状別・原因と手当て')]),
     'guides/hiking-gear-by-altitude.html': ('/guides/hiking-gear-by-altitude.html', 'guides',
         [('/guides/', '暮らしの手引き'), (None, '標高と季節で変わる登山の持ち物')]),
+    'guides/freezing-meat.html': ('/guides/freezing-meat.html', 'guides',
+        [('/guides/', '暮らしの手引き'), (None, '肉の冷凍と解凍')]),
+    'guides/freezing-seafood.html': ('/guides/freezing-seafood.html', 'guides',
+        [('/guides/', '暮らしの手引き'), (None, '魚介の冷凍と解凍')]),
+    'guides/freezing-staples.html': ('/guides/freezing-staples.html', 'guides',
+        [('/guides/', '暮らしの手引き'), (None, 'ごはん・パン・麺の冷凍')]),
+    'guides/freezing-dishes.html': ('/guides/freezing-dishes.html', 'guides',
+        [('/guides/', '暮らしの手引き'), (None, '作りおきと料理の冷凍')]),
+    'guides/freezer-care.html': ('/guides/freezer-care.html', 'guides',
+        [('/guides/', '暮らしの手引き'), (None, '冷凍焼けを防ぐ、冷凍庫の使い方')]),
+    'guides/pack-weight.html': ('/guides/pack-weight.html', 'guides',
+        [('/guides/', '暮らしの手引き'), (None, 'ザックの重さは体重の何％まで')]),
 
     'counter1234/index.html': ('/counter1234/', 'apps', [(None, 'Counter1234')]),
     'counter1234/privacy.html': ('/counter1234/privacy.html', 'support',
@@ -214,14 +249,14 @@ def apply(rel, page, section, trail):
     if c:
         block += '\n\n' + c
 
-    # 旧 sitenav（＋アプリページの「← アプリ一覧」）を新ヘッダーで置き換える
+    # 既存のヘッダーとパンくずを「すべて」取り除いてから入れ直す。
+    # 属性違い（aria-label など）で取り逃すと、再実行のたびに二重に積まれるため、
+    # 置換ではなく全削除＋挿入にして冪等にしている。
     if 'class="sitenav"' in s:
-        s = re.sub(r'<nav class="sitenav">.*?</nav>', block, s, count=1, flags=re.S)
-    elif 'class="masthead"' in s:
-        s = re.sub(r'<header class="masthead">.*?</header>(\s*<nav class="crumbs">.*?</nav>)?',
-                   block, s, count=1, flags=re.S)
-    else:
-        s = s.replace('<body>', '<body>\n\n' + block, 1)
+        s = re.sub(r'<nav class="sitenav">.*?</nav>', '', s, flags=re.S)
+    s = re.sub(r'<header class="masthead">.*?</header>', '', s, flags=re.S)
+    s = re.sub(r'<nav class="crumbs"[^>]*>.*?</nav>', '', s, flags=re.S)
+    s = s.replace('<body>', '<body>\n\n' + block, 1)
 
     # パンくずと重複する戻りリンクを外す
     s = re.sub(r'\n?<p class="note"><a href="\.\./">← アプリ一覧</a></p>\n?', '\n', s)

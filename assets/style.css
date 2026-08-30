@@ -273,6 +273,10 @@ body > h1 { margin-top: 2.2rem; }
   display: flex;
   flex-direction: column;
   z-index: 200;
+  /* 項目が増えても画面からはみ出さない。あふれたらパネル内で送る */
+  max-height: calc(100vh - 4.5rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .menu:last-child .menu-panel { left: auto; right: 0; }

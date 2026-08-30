@@ -2,102 +2,132 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://tatsu456.github.io/counter1234/</loc>
-    <lastmod>2026-08-29</lastmod>
+    <lastmod>2026-08-30</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://tatsu456.github.io/counter1234/privacy.html</loc>
-    <lastmod>2026-08-29</lastmod>
+    <lastmod>2026-08-30</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tatsu456.github.io/guides/freezer-care.html</loc>
+    <lastmod>2026-08-30</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tatsu456.github.io/guides/freezing-basics.html</loc>
-    <lastmod>2026-08-29</lastmod>
+    <lastmod>2026-08-30</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tatsu456.github.io/guides/freezing-dishes.html</loc>
+    <lastmod>2026-08-30</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tatsu456.github.io/guides/freezing-meat.html</loc>
+    <lastmod>2026-08-30</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tatsu456.github.io/guides/freezing-seafood.html</loc>
+    <lastmod>2026-08-30</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tatsu456.github.io/guides/freezing-staples.html</loc>
+    <lastmod>2026-08-30</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tatsu456.github.io/guides/freezing-vegetables.html</loc>
-    <lastmod>2026-08-29</lastmod>
+    <lastmod>2026-08-30</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tatsu456.github.io/guides/hiking-gear-by-altitude.html</loc>
-    <lastmod>2026-08-29</lastmod>
+    <lastmod>2026-08-30</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tatsu456.github.io/guides/</loc>
-    <lastmod>2026-08-29</lastmod>
+    <lastmod>2026-08-30</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://tatsu456.github.io/guides/nukadoko-troubleshooting.html</loc>
-    <lastmod>2026-08-29</lastmod>
+    <lastmod>2026-08-30</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tatsu456.github.io/guides/pack-weight.html</loc>
+    <lastmod>2026-08-30</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tatsu456.github.io/</loc>
-    <lastmod>2026-08-29</lastmod>
+    <lastmod>2026-08-30</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://tatsu456.github.io/kondate/</loc>
-    <lastmod>2026-08-29</lastmod>
+    <lastmod>2026-08-30</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://tatsu456.github.io/notes/</loc>
-    <lastmod>2026-08-29</lastmod>
+    <lastmod>2026-08-30</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://tatsu456.github.io/notes/koorase-art.html</loc>
-    <lastmod>2026-08-29</lastmod>
+    <lastmod>2026-08-30</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tatsu456.github.io/notes/yamajitaku-season.html</loc>
-    <lastmod>2026-08-29</lastmod>
+    <lastmod>2026-08-30</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tatsu456.github.io/privacy-policy.html</loc>
-    <lastmod>2026-08-29</lastmod>
+    <lastmod>2026-08-30</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tatsu456.github.io/reitou/</loc>
-    <lastmod>2026-08-29</lastmod>
+    <lastmod>2026-08-30</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://tatsu456.github.io/reitou/privacy.html</loc>
-    <lastmod>2026-08-29</lastmod>
+    <lastmod>2026-08-30</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tatsu456.github.io/reitou/terms.html</loc>
-    <lastmod>2026-08-29</lastmod>
+    <lastmod>2026-08-30</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tatsu456.github.io/splitbill/</loc>
-    <lastmod>2026-08-29</lastmod>
+    <lastmod>2026-08-30</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://tatsu456.github.io/splitbill/privacy.html</loc>
-    <lastmod>2026-08-29</lastmod>
+    <lastmod>2026-08-30</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tatsu456.github.io/yamajitaku/</loc>
-    <lastmod>2026-08-29</lastmod>
+    <lastmod>2026-08-30</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://tatsu456.github.io/yamajitaku/privacy.html</loc>
-    <lastmod>2026-08-29</lastmod>
+    <lastmod>2026-08-30</lastmod>
     <priority>0.6</priority>
   </url>
 </urlset>
