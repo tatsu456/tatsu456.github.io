@@ -40,11 +40,6 @@ GUIDE_GROUPS = [
 # 平坦なリスト（フッターやページ定義で使う）
 GUIDES = [row for _, rows in GUIDE_GROUPS for row in rows]
 
-NOTES = [
-    ('/notes/koorase-art.html',      'イラストを1枚も用意せずに図鑑を作る'),
-    ('/notes/yamajitaku-season.html', '標高が上がると、山の季節は前にずれる'),
-]
-
 POLICIES = [
     ('/privacy-policy.html',          '献立メーカー_EX'),
     ('/counter1234/privacy.html',     'Counter1234'),
@@ -98,14 +93,6 @@ def masthead(page, section):
 {grouped_guides(page)}
       </div>
     </details>
-    <details class="menu"{openattr('notes')}>
-      <summary>制作ノート</summary>
-      <div class="menu-panel">
-        <a href="/notes/"{cur('/notes/', page)}>記事の一覧</a>
-        <hr>
-{items(NOTES)}
-      </div>
-    </details>
     <details class="menu"{openattr('support')}>
       <summary>サポート</summary>
       <div class="menu-panel">
@@ -156,13 +143,6 @@ def footer():
     </ul>
   </div>
   <div>
-    <h2>制作ノート</h2>
-    <ul>
-      <li><a href="/notes/">記事の一覧</a></li>
-{lis(NOTES)}
-    </ul>
-  </div>
-  <div>
     <h2>サポート</h2>
     <ul>
       <li><a href="/#contact">お問い合わせ</a></li>
@@ -170,7 +150,7 @@ def footer():
       <li><a href="/reitou/terms.html">利用規約（冷凍図鑑）</a></li>
     </ul>
   </div>
-  <div class="copy">© 2026 tatsu456　個人でiOSアプリを作っています。</div>
+  <div class="copy">© 2026 tatsu456　iOSアプリを作っています。</div>
 </div>
 </footer>'''
 
