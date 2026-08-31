@@ -9,12 +9,12 @@ import os, re, sys
 ROOT = '/Users/taka/tatsu456.github.io'
 
 APPS = [
-    ('/counter1234/',    'Counter1234',        'カウンターと記録'),
-    ('/kondate/',        '献立メーカー_EX',      '晩ごはんの献立'),
-    ('/splitbill/',      'SplitBill_EX',       '多通貨の割り勘'),
-    ('/nukadoko-diary/', 'ぬか床日記',           '混ぜたか覚えておかなくていい'),
     ('/yamajitaku/',     '山じたく',             '登山の持ち物チェックリスト'),
+    ('/kondate/',        '献立メーカー_EX',      '晩ごはんの献立'),
     ('/reitou/',         '冷凍図鑑',             '切り方から解凍まで'),
+    ('/nukadoko-diary/', 'ぬか床日記',           '混ぜたか覚えておかなくていい'),
+    ('/splitbill/',      'SplitBill_EX',       '多通貨の割り勘'),
+    ('/counter1234/',    'Counter1234',        'カウンターと記録'),
 ]
 
 # 手引きは分野ごとにまとめる。本数が増えるとプルダウンが読めなくなるため。
@@ -46,13 +46,14 @@ GUIDE_GROUPS = [
 # 平坦なリスト（フッターやページ定義で使う）
 GUIDES = [row for _, rows in GUIDE_GROUPS for row in rows]
 
+# アプリの並びに合わせる
 POLICIES = [
-    ('/privacy-policy.html',          '献立メーカー_EX'),
-    ('/counter1234/privacy.html',     'Counter1234'),
-    ('/splitbill/privacy.html',       'SplitBill_EX'),
-    ('/nukadoko-diary/privacy.html',  'ぬか床日記'),
     ('/yamajitaku/privacy.html',      '山じたく'),
+    ('/privacy-policy.html',          '献立メーカー_EX'),
     ('/reitou/privacy.html',          '冷凍図鑑'),
+    ('/nukadoko-diary/privacy.html',  'ぬか床日記'),
+    ('/splitbill/privacy.html',       'SplitBill_EX'),
+    ('/counter1234/privacy.html',     'Counter1234'),
 ]
 
 
