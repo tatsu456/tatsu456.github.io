@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>献立の材料費は、何で決まるか｜tatsu456</title>
-<meta name="description" content="材料費は旬で変わります。旬の食材は0.75倍、季節を外すと1.35倍という倍率を軸に、原価率と外食との差をどう見るか。">
-<link rel="stylesheet" href="/assets/style.css?v=20260831m">
+<meta name="description" content="材料費は、使う重さ÷100×100gあたりの単価×季節の倍率。旬なら0.75倍、真裏の季節だけが1.35倍です。魚は旬で1.5倍前後動き、肉はほとんど動かないことを図と表で示します。">
+<link rel="stylesheet" href="/assets/style.css?v=20260831q">
 </head>
 <body>
 
@@ -113,31 +113,61 @@
 <h1>献立の材料費は、何で決まるか</h1>
 <p class="meta">最終更新 2026年8月31日</p>
 
-<p>レシピには分量と手順は書いてありますが、値段は書いてありません。「今日は魚が高い」「この時期のトマトは高い」という感覚はあっても、では一食あたりいくら違うのか、と聞かれると答えにくいものです。</p>
-
-<p>この記事は、献立を自動で組む仕組み（献立メーカー_EX）が材料費をはじく計算を、台所の言葉に置き直したものです。値段は全国のスーパーの平均的な相場をもとにした概算で、実際の店頭価格とは違います。それでも、<strong>どこを動かすと金額が動くのか</strong>という構造は、そのまま買い物の判断に使えます。</p>
-
-<div class="toc">
-  <p><a href="#formula">材料費は三つの掛け算で決まる</a></p>
-  <p><a href="#season">季節の区切りと、旬の倍率</a></p>
-  <p><a href="#what-moves">旬で動くのは野菜と魚で、肉はほとんど動かない</a></p>
-  <p><a href="#example">同じ料理が、季節でいくら動くか</a></p>
-  <p><a href="#rate">原価率は「外で買ったらいくらか」との比</a></p>
-  <p><a href="#chart">季節ごとに引ける単価表</a></p>
-</div>
+<p class="card">
+<strong>材料費は、使う重さ ÷ 100 × 100gあたりの単価 × 季節の倍率で決まります。</strong>
+旬なら0.75倍、旬の真裏の季節なら1.35倍。値段は全国のスーパーの平均的な相場をもとにした概算です。
+</p>
 
 <h2 id="formula">材料費は三つの掛け算で決まる</h2>
 
-<p>一つの材料の値段は、<strong>使う重さ ÷ 100 × 100gあたりの単価 × 季節の倍率</strong>で出ます。これを材料の数だけ足したものが、その料理の材料費です。人数を変えるときは、レシピが想定する人数との比を全体に掛けます。2人前のレシピを4人で作れば、材料費もちょうど2倍になります。</p>
+<figure class="fig">
+<svg viewBox="0 -4 400 328" role="img" aria-label="一つの材料の値段は、使う重さを100で割ったものに100gあたりの単価と季節の倍率を掛けて出す。それを材料の数だけ足すと料理の材料費になり、人数を変えるときは想定人数との比を掛ける。例外は二つで、重さの書かれていない材料はひとつまみ分として4円、単価の分からない食材は100gあたり120円に置く">
+<defs><marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="currentColor" opacity=".5"/></marker></defs>
+<text class="t t-b" x="0" y="12" text-anchor="start" >一つの材料の値段</text>
+<text class="t-sm t-b" x="400" y="12" text-anchor="end" >倍率は最後に掛かる</text>
+<rect class="panel" x="0" y="22" width="112" height="62" rx="12"/>
+<text class="t t-b" x="56" y="48" text-anchor="middle" >使う重さ</text>
+<text class="t-sm" x="56" y="70" text-anchor="middle" >÷ 100</text>
+<rect class="panel" x="144" y="22" width="112" height="62" rx="12"/>
+<text class="t t-b" x="200" y="48" text-anchor="middle" >単価</text>
+<text class="t-sm" x="200" y="70" text-anchor="middle" >100gあたり</text>
+<rect class="box-hi" x="288" y="22" width="112" height="62" rx="12"/>
+<text class="t t-b" x="344" y="48" text-anchor="middle" >季節の倍率</text>
+<text class="t-sm" x="344" y="70" text-anchor="middle" >0.75・1.0・1.35</text>
+<text class="t t-b" x="128" y="58" text-anchor="middle" >×</text>
+<text class="t t-b" x="272" y="58" text-anchor="middle" >×</text>
+<line x1="56" y1="84" x2="56" y2="92" stroke="currentColor" opacity=".35"/>
+<line x1="200" y1="84" x2="200" y2="92" stroke="currentColor" opacity=".35"/>
+<line x1="344" y1="84" x2="344" y2="92" stroke="currentColor" opacity=".35"/>
+<line x1="56" y1="92" x2="344" y2="92" stroke="currentColor" opacity=".35"/>
+<path class="arrow" d="M200 92 V104" marker-end="url(#arw)"/>
+<rect class="pill-hi" x="110" y="108" width="180" height="30" rx="15"/><text class="t-on" x="200" y="128" text-anchor="middle" font-size="14">その材料の値段</text>
+<path class="arrow" d="M200 141 V163" marker-end="url(#arw)"/>
+<text class="t-sm" x="212" y="156" text-anchor="start" >材料の数だけ足す</text>
+<rect class="panel-good" x="110" y="166" width="180" height="38" rx="12"/>
+<text class="t t-b t-hi" x="200" y="191" text-anchor="middle" >料理の材料費</text>
+<text class="t-sm" x="0" y="224" text-anchor="start" >人数を変えるときは、レシピの想定人数との比を全体に掛ける</text>
+<line x1="0" y1="244" x2="400" y2="244" stroke="currentColor" opacity=".15"/>
+<text class="t t-b" x="0" y="266" text-anchor="start" >二つの例外</text>
+<text class="t-sm" x="0" y="292" text-anchor="start" >「少々」など重さのない材料</text>
+<text class="t-sm t-b" x="400" y="292" text-anchor="end" >ひとつまみ分として4円</text>
+<text class="t-sm" x="0" y="316" text-anchor="start" >単価の分からない食材</text>
+<text class="t-sm t-b" x="400" y="316" text-anchor="end" >100gあたり120円に置く</text>
+</svg>
+<figcaption>同じ0.75倍でも、金額の差は「単価×重さ」が大きい材料ほど大きくなります。</figcaption>
+</figure>
 
-<p>例外が二つあります。ひとつは「少々」のように重さの書かれていない材料で、これはひとつまみ分として一律4円を計上します。収録1500品のうち665行がこれにあたり、そのうち631行が「少々」。重さの書かれていない665行全体で見ると、こしょう377行と塩106行が大半を占めます。ゼロにしないのは、味の要になる行が勘定から丸ごと消えてしまうからです。なお「適量」と書かれた行は114行ありますが、こちらは揚げ油のようにグラム数が添えてあるので、4円ではなく実額で計算されます。もうひとつは単価の分からない食材で、100gあたり120円に置きます。収録している299品目の中では安めの部類にあたる値です（単価の中央値は150円）。</p>
+<p>
+旬を選ぶ効き目は、その料理の主役が何かでほとんど決まります。
+</p>
 
-<p>ここで押さえておきたいのは、<strong>倍率は最後に掛かる</strong>ということです。同じ「25%引き」でも、金額の差は「単価 × 重さ」が大きい材料ほど大きくなります。旬を選ぶ効き目は、その料理の主役が何かでほとんど決まります。</p>
+<h2 id="season">旬は0.75倍、真裏の季節は1.35倍</h2>
 
-<h2 id="season">季節の区切りと、旬の倍率</h2>
+<p>
+季節は春が3〜5月、夏が6〜8月、秋が9〜11月、冬が12〜2月です。
+</p>
 
-<p>季節は、春が3〜5月、夏が6〜8月、秋が9〜11月、冬が12〜2月です。暦の上の区切り（立春から春）ではなく、春は3月から始まるという料理の慣習に合わせてあります。食材ごとに「旬の季節」が登録されていて、いま買う季節との関係で倍率が決まります。</p>
-
+<div class="tablewrap">
 <table class="data">
   <thead>
     <tr><th>食材の旬と、いま買う季節の関係</th><th>倍率</th><th>大根（冬が旬・25円/100g）の場合</th></tr>
@@ -149,21 +179,23 @@
     <tr><td>旬が設定されていない食材</td><td>1.00</td><td>玉ねぎ・鶏もも肉・卵などは通年で動かない</td></tr>
   </tbody>
 </table>
+</div>
 
-<p>「隣」は前後の季節、「反対」はその二つを除いた残りひとつです。反対どうしの組は春と秋、夏と冬の二組しかありません。したがって旬がひとつの食材の一年は、<strong>3か月が0.75、6か月が1.0、割高になるのは残りの3か月だけ</strong>という形になります。旬を外したから高い、のではなく、真裏の季節に買ったときだけ高い、というのが正確なところです。</p>
+<p>
+旬がひとつの食材の一年は、<strong>3か月が0.75、6か月が1.0、割高になるのは残りの3か月だけ</strong>。旬を外したから高いのではなく、真裏の季節だけが高いのです。
+</p>
 
-<p>旬が二つある食材は、さらに割高になりません。キャベツ（春・冬）、にんじん・れんこん・ごぼう・さば（秋・冬）、なす（夏・秋）、レタス（春・夏）など11品目は、旬でない季節がどちらかの旬の隣にあたるため、1.35が一度も出ません。半年が0.75、半年が1.0です。</p>
+<h2 id="what-moves">動くのは野菜と魚で、肉はほとんど動かない</h2>
 
-<p>0.75と1.35の比は1.8です。ひとつの食材でいちばん安い季節といちばん高い季節を比べると、最大で8割の開きが出る、という上限がここで決まります。</p>
+<p>
+旬があるのは299品目のうち113品目。野菜は94品目中76品目、魚介は42品目中33品目、肉は29品目のうち鴨肉の1品だけ。残る3品目はそうめん・餅・木の芽です。
+</p>
 
-<p>なお、旬であることと買いやすさは別です。299品目のうち17品目（そら豆、菜の花、みょうが、ゆず、さんま、桜えび、ふきのとう、たらの芽、こごみ、ホタルイカ、うど、すだち、モロヘイヤ、グリーンピース、ビーツ、鴨肉、木の芽）は「入手しにくい」として扱われます。旬の割引がかかっても、そもそも近所の店に無いことがあります。</p>
+<p>
+ところが金額の内訳は別で、1500品を四季ならしで足すと野菜29.9%、肉24.8%、魚介22.2%。<strong>金額の半分近くを肉と魚が持っていくのに、季節で動くのはほぼ魚だけ</strong>です。だから料理ごとの振れ幅は、主役の食材で決まります。
+</p>
 
-<h2 id="what-moves">旬で動くのは野菜と魚で、肉はほとんど動かない</h2>
-
-<p>旬が登録されているのは、299品目のうち113品目です。分類ごとに見ると、偏りははっきりしています。野菜は94品目中76品目、魚介は42品目中33品目に旬があります。一方、肉は29品目のうち鴨肉の1品だけ。卵・乳製品・大豆製品・乾物と缶詰は、ひとつもありません。残る3品目は、穀類のそうめん・餅と、調味料の木の芽です。</p>
-
-<p>ところが、材料費に占める割合は別の話です。収録1500品を四季ならしで足し合わせると、野菜が29.9%、肉が24.8%、魚介が22.2%を占めます。<strong>金額の半分近くは肉と魚が持っていくのに、季節で動くのはほぼ魚だけ</strong>、という構造です。だから料理ごとの振れ幅は、主役の食材で決まります。</p>
-
+<div class="tablewrap">
 <table class="data">
   <thead>
     <tr><th>主役の食材</th><th>収録数</th><th>いちばん安い季節といちばん高い季節の比（中央値）</th></tr>
@@ -179,11 +211,51 @@
     <tr><td>牛肉</td><td>72品</td><td>1.06倍</td></tr>
   </tbody>
 </table>
+</div>
 
-<p>1500品全体では1.21倍が中央値で、季節でまったく動かない料理も120品（8.0%）あります。旬を意識する価値があるのは魚と野菜の料理で、肉が主役の日は、いつ作っても同じ、と割り切ってかまいません。</p>
+<p>
+全体では1.21倍が中央値。季節でまったく動かない料理も120品（8.0%）あります。なお299品目のうち17品目は入手しにくい扱いで、旬の割引がかかっても近所の店に無いことがあります。
+</p>
 
 <h2 id="example">同じ料理が、季節でいくら動くか</h2>
 
+<figure class="fig">
+<svg viewBox="0 -4 400 308" role="img" aria-label="ぶり大根は春441円、夏581円、秋441円、冬341円で、惣菜や外食の目安は700円。冬と夏で240円ちがう。鶏の唐揚げは春夏秋冬とも261円で、惣菜や外食の目安は480円。四季で1円も動かない">
+<defs><marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="currentColor" opacity=".5"/></marker></defs>
+<text class="t t-b" x="0" y="12" text-anchor="start" >ぶり大根</text>
+<text class="t-sm" x="400" y="12" text-anchor="end" >ぶり・大根とも冬が旬</text>
+<text class="t-sm t-b" x="0" y="34" text-anchor="start" >春</text>
+<rect x="70" y="22" width="176.4" height="16" rx="4" fill="var(--cool)" opacity="1"/>
+<text class="t-sm" x="253.4" y="34" text-anchor="start" >441円</text>
+<text class="t-sm t-b" x="0" y="58" text-anchor="start" >夏</text>
+<rect x="70" y="46" width="232.4" height="16" rx="4" fill="var(--bad2)" opacity="1"/>
+<text class="t-sm bad-t t-b" x="309.4" y="58" text-anchor="start" >581円</text>
+<text class="t-sm t-b" x="0" y="82" text-anchor="start" >秋</text>
+<rect x="70" y="70" width="176.4" height="16" rx="4" fill="var(--cool)" opacity="1"/>
+<text class="t-sm" x="253.4" y="82" text-anchor="start" >441円</text>
+<text class="t-sm t-b" x="0" y="106" text-anchor="start" >冬</text>
+<rect x="70" y="94" width="136.4" height="16" rx="4" fill="var(--hi)" opacity="1"/>
+<text class="t-sm t-hi t-b" x="213.4" y="106" text-anchor="start" >341円</text>
+<text class="t-sm t-b" x="0" y="130" text-anchor="start" >惣菜・外食</text>
+<rect x="70" y="118" width="280.0" height="16" rx="4" fill="var(--sub)" opacity=".3"/>
+<text class="t-sm" x="357.0" y="130" text-anchor="start" >700円</text>
+<text class="t-sm t-b" x="0" y="158" text-anchor="start" >冬と夏で240円ちがう</text>
+<line x1="0" y1="178" x2="400" y2="178" stroke="currentColor" opacity=".15"/>
+<text class="t t-b" x="0" y="202" text-anchor="start" >鶏の唐揚げ</text>
+<text class="t-sm" x="400" y="202" text-anchor="end" >鶏もも肉は旬なし</text>
+<text class="t-sm t-b" x="0" y="224" text-anchor="start" >春夏秋冬</text>
+<rect x="70" y="212" width="104.4" height="16" rx="4" fill="var(--cool)" opacity="1"/>
+<text class="t-sm" x="181.4" y="224" text-anchor="start" >261円</text>
+<text class="t-sm t-b" x="0" y="248" text-anchor="start" >惣菜・外食</text>
+<rect x="70" y="236" width="192.0" height="16" rx="4" fill="var(--sub)" opacity=".3"/>
+<text class="t-sm" x="269.0" y="248" text-anchor="start" >480円</text>
+<text class="t-sm t-b" x="0" y="276" text-anchor="start" >四季で1円も動かない</text>
+<text class="t-sm" x="0" y="296" text-anchor="start" >しょうが・にんにく・醤油・片栗粉にも旬が無いため</text>
+</svg>
+<figcaption>2人分でぶり200gの差が420円、大根400gの差が60円。倍率は同じなのに、金額の差は7倍あります。</figcaption>
+</figure>
+
+<div class="tablewrap">
 <table class="data">
   <thead>
     <tr><th>料理</th><th>主役（旬）</th><th>春</th><th>夏</th><th>秋</th><th>冬</th><th>惣菜・外食の目安</th></tr>
@@ -194,21 +266,19 @@
     <tr><td>鶏の唐揚げ</td><td>鶏もも肉（旬なし）</td><td>261円</td><td>261円</td><td>261円</td><td>261円</td><td>480円</td></tr>
   </tbody>
 </table>
+</div>
 
-<p>数字はすべて1人あたりです。ぶり大根は冬と夏で240円違います。中身を開くと、2人分でぶり200gの差が420円、大根400gの差が60円。倍率はどちらも同じ0.75と1.35なのに、金額の差は7倍あります。<strong>「旬の野菜を選ぶ」より「旬の魚を選ぶ」ほうが、財布には大きく効く</strong>ということです。</p>
-
-<p>鮭のムニエルがいちばん高くなるのは春です。生鮭の旬は秋なので、鮭そのものに1.35がかかるのは反対にあたる春だけ。夏と冬は鮭が等倍です。それでも夏390円・冬372円と18円ずれるのは、この料理に入るレモン50gの旬が冬だからです。レモンだけで見ると、2人分の代金が夏81円・秋春60円・冬45円と動き、その差が一人あたり18円として出てきます。<strong>主役以外の食材にも旬はあり、それが小さな差を作ります。</strong></p>
-
-<p>唐揚げは四季で1円も動きません。鶏もも肉にも、しょうが・にんにく・醤油・片栗粉にも旬が無いためです。</p>
+<p>
+鮭のムニエルが春に高いのは、1.35が旬（秋）の反対の春にだけかかるからです。夏と冬で18円ずれるのは、レモン50gの旬が冬だから。<strong>主役以外の食材にも旬はあります。</strong>
+</p>
 
 <h2 id="rate">原価率は「外で買ったらいくらか」との比</h2>
 
-<p>原価率は、1人あたりの材料費を、同じ料理を惣菜や外食で買った場合の1人分の目安価格で割ったものです。小さいほど、作ったほうが得だという意味になります。</p>
+<p>
+原価率は、1人あたりの材料費を、惣菜や外食で買った場合の1人分の目安価格で割ったものです。1500品の中央値は62.1%。<strong>60%前後は「安い」ではなく「ふつう」</strong>です。
+</p>
 
-<p>1500品の中央値は62.1%でした。50%未満が326品（21.7%）、50〜80%が1054品（70.3%）、80%以上が120品（8.0%）です。ここが読み違えやすいところで、<strong>60%前後は「安い」ではなく「ふつう」</strong>です。作れば外食の6割で済むのが平年並みで、そこから外れて初めて、得か損かの判断材料になります。</p>
-
-<p>80%以上の120品は、その半分近い58品が副菜でした。サラダや和え物のように、店で買っても値段が上がりにくい料理は、作っても差が出にくいということです。逆に50%未満の326品でいちばん多いのは、野菜を主役にした副菜と汁物でした（合わせて113品）。主菜だけを取り出すと、豆腐・卵・野菜が主役のものは80品中35品が50%を切ります。肉や魚が主役の主菜はどれも2割に届かないので、<strong>外食との差がいちばん開くのは、豆腐・卵・野菜の主菜</strong>ということになります。</p>
-
+<div class="tablewrap">
 <table class="data">
   <thead>
     <tr><th>献立での位置</th><th>収録数</th><th>1人あたり材料費（中央値）</th><th>原価率（中央値）</th><th>季節による振れ幅</th><th>季節による金額差</th></tr>
@@ -220,15 +290,21 @@
     <tr><td>主食</td><td>203品</td><td>263円</td><td>59%</td><td>1.10倍</td><td>27円</td></tr>
   </tbody>
 </table>
+</div>
 
-<p>割合で見ると、いちばん季節に振り回されるのは主菜（1.13倍）ではなく副菜（1.32倍）です。副菜は野菜が主役で、その野菜こそが季節で動くからです。ただし金額に直すと44円と42円で、ほぼ並びます。もとの単価が小さいぶん、割合の大きさは財布の上では相殺されます。</p>
+<p>
+主菜597品のうち、豆腐・卵・野菜が主役のものは80品。そのうち35品が原価率50%を切ります。肉や魚が主役の主菜は、50%を切るものがどれも2割に届かないので、<strong>外食との差がいちばん開くのは、豆腐・卵・野菜の主菜</strong>です。
+</p>
 
-<p>1人1日あたりの予算に上限を設けるなら、主菜に55%、主食に18%、副菜に15%、汁物に12%という配分がひとつの目安になります。主菜のみの日は、その全額が主菜の枠です。</p>
+<p>
+季節に振り回されるのは主菜（1.13倍）より副菜（1.32倍）です。ただし金額では44円と42円で、ほぼ並びます。
+</p>
 
 <h2 id="chart">季節ごとに引ける単価表</h2>
 
-<p>100gあたりの見積もり単価です。太字は旬にあたる季節を指します。</p>
+<p>100gあたりの見積もり単価です。太字は旬にあたる季節を指します。旬が二つある食材（キャベツ・にんじん・なす・さばなど11品目）は、旬でない季節がどちらかの旬の隣にあたるので、1.35が一度も出ません。</p>
 
+<div class="tablewrap">
 <table class="data">
   <thead>
     <tr><th>食材</th><th>旬</th><th>春</th><th>夏</th><th>秋</th><th>冬</th></tr>
@@ -253,14 +329,20 @@
     <tr><td>卵</td><td>なし</td><td>45.0円</td><td>45.0円</td><td>45.0円</td><td>45.0円</td></tr>
   </tbody>
 </table>
+</div>
 
-<p>買い物の場で使うなら、順番は三つです。まず<strong>主役を見る</strong>——肉なら季節は考えなくていい。魚なら旬かどうかで1.5倍前後の差がつきます。次に<strong>真裏の季節だけ避ける</strong>——春の食材は秋、夏の食材は冬。隣の季節はもとの値段のままです。最後に、副菜の野菜は割合ではよく動きますが、金額としては一皿40円ほどの話だと知っておくこと。ここに時間をかけるより、主菜を一日ずらすほうが効きます。</p>
+<p>
+買い物の場では順番が三つ。まず<strong>主役を見る</strong>——肉なら季節は考えなくていい、魚なら旬で1.5倍前後の差。次に<strong>真裏の季節だけ避ける</strong>——春の食材は秋、夏の食材は冬。最後に<strong>副菜に時間をかけない</strong>——割合ではよく動きますが、金額では一皿40円ほどの話です。
+</p>
 
 <div class="related">
-  <p><a href="/guides/">暮らしの手引き</a></p>
-  <p><a href="/guides/meal-planning.html">献立が決まらないときに、何から決めるか</a></p>
-  <p><a href="/guides/freezing-vegetables.html">野菜の冷凍・解凍 早見表</a></p>
-  <p><a href="/guides/freezing-seafood.html">魚介の冷凍と解凍</a></p>
+<p>関連する記事</p>
+<ul>
+  <li><a href="/guides/meal-planning.html">献立が決まらないときに、何から決めるか</a></li>
+  <li><a href="/guides/freezing-vegetables.html">野菜の冷凍・解凍 早見表</a></li>
+  <li><a href="/guides/freezing-seafood.html">魚介の冷凍と解凍</a></li>
+  <li><a href="/guides/">暮らしの手引き 一覧</a></li>
+</ul>
 </div>
 
 <nav class="postnav" aria-label="前後の記事">

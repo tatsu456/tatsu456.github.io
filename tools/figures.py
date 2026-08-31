@@ -36,13 +36,20 @@ def droplet(cx, cy, r=5):
             f'C{cx-r:.1f} {cy+r:.1f} {cx-r:.1f} {cy-r*0.2:.1f} {cx:.1f} {cy-r*1.6:.1f} Z"/>')
 
 
-def pill(x, y, w, h, text, hi=False, size=12):
-    """角丸のラベル。hi=True で塗りつぶし。"""
+def pill(x, y, w, h, text, hi=False, size=14):
+    """角丸のラベル。hi=True で塗りつぶし。
+
+    size が効くのは hi=True のときだけ。hi=False の文字は .t-sm クラスが付き、
+    CSS の font-size(13px) が属性より強いので、size を渡しても 13px で描かれる。
+    幅を見積もるときは 13px として数えること。
+    """
     c = 'pill-hi' if hi else 'pill'
-    t = 't-on' if hi else 't-sm'
+    if hi:
+        return (f'<rect class="{c}" x="{x}" y="{y}" width="{w}" height="{h}" rx="{h/2:.0f}"/>'
+                f'<text class="t-on" x="{x+w/2:.0f}" y="{y+h/2+size*0.36:.0f}" '
+                f'text-anchor="middle" font-size="{size}">{text}</text>')
     return (f'<rect class="{c}" x="{x}" y="{y}" width="{w}" height="{h}" rx="{h/2:.0f}"/>'
-            f'<text class="{t}" x="{x+w/2:.0f}" y="{y+h/2+4:.0f}" text-anchor="middle" '
-            f'font-size="{size}">{text}</text>')
+            f'<text class="t-sm" x="{x+w/2:.0f}" y="{y+h/2+4.6:.0f}" text-anchor="middle">{text}</text>')
 
 
 def diamond(cx, cy, w, h):

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>標高と季節で変わる登山の持ち物｜tatsu456</title>
 <meta name="description" content="同じ山でも6月と10月では持つべきものが変わります。標高100mごとに気温が約0.6℃下がるという前提から、登山装備を組み立て直す考え方をまとめました。">
-<link rel="stylesheet" href="/assets/style.css?v=20260831m">
+<link rel="stylesheet" href="/assets/style.css?v=20260831q">
 </head>
 <body>
 
@@ -111,58 +111,95 @@
 
 
 <h1>標高と季節で変わる登山の持ち物</h1>
-<p class="meta">最終更新 2026年8月22日</p>
+<p class="meta">最終更新 2026年8月31日</p>
 
-<p>
-持ち物リストを一度作って、それを毎回使い回している人は多いと思います。
-私もそうでした。ただ、この方法には落とし穴があります。
-<strong>同じ山でも、時期が違えば必要な装備が変わる</strong>からです。
-</p>
-
-<p>
+<p class="card">
+<strong>同じ山でも、時期が違えば必要な装備が変わります。</strong>
 里が半袖で過ごせる陽気でも、標高2,000mの稜線は真冬並みということが普通に起きます。
-装備を「山ごと」ではなく「標高と時期の組み合わせごと」に考え直すと、
-過不足がかなり減ります。
+装備を「山ごと」ではなく「標高と時期の組み合わせごと」に考え直すと、過不足がかなり減ります。
 </p>
 
-<div class="toc">
-<p>この記事の内容</p>
-<ul>
-  <li><a href="#rate">標高から山頂の気温を見積もる</a></li>
-  <li><a href="#wind">風速で体感温度はさらに下がる</a></li>
-  <li><a href="#layer">レイヤリングの考え方</a></li>
-  <li><a href="#season">季節の変わり目に注意する理由</a></li>
-  <li><a href="#always">季節を問わず必ず持つもの</a></li>
-</ul>
-</div>
+<h2 id="rate">山頂の気温は、登山口から引き算で出る</h2>
 
-<h2 id="rate">標高から山頂の気温を見積もる</h2>
+<figure class="fig">
+<svg viewBox="0 -4 400 340" role="img" aria-label="標高1,000mの登山口が20℃のとき、標高差1,500mを100mごとに0.6℃引くと9℃下がり、標高2,500mの山頂は約11℃になる">
+<defs><marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="currentColor" opacity=".5"/></marker></defs>
+<text class="t t-b" x="0" y="12" text-anchor="start">標高が100m上がるごとに、気温は約0.6℃下がる</text>
+<path class="arrow" d="M30 255 V61" marker-end="url(#arw)"/>
+<line x1="22" y1="255.0" x2="38" y2="255.0" stroke="var(--cool)" stroke-width="1.5" opacity=".8"/>
+<line x1="22" y1="242.1" x2="38" y2="242.1" stroke="var(--cool)" stroke-width="1.5" opacity=".8"/>
+<line x1="22" y1="229.1" x2="38" y2="229.1" stroke="var(--cool)" stroke-width="1.5" opacity=".8"/>
+<line x1="22" y1="216.2" x2="38" y2="216.2" stroke="var(--cool)" stroke-width="1.5" opacity=".8"/>
+<line x1="22" y1="203.3" x2="38" y2="203.3" stroke="var(--cool)" stroke-width="1.5" opacity=".8"/>
+<line x1="22" y1="190.3" x2="38" y2="190.3" stroke="var(--cool)" stroke-width="1.5" opacity=".8"/>
+<line x1="22" y1="177.4" x2="38" y2="177.4" stroke="var(--cool)" stroke-width="1.5" opacity=".8"/>
+<line x1="22" y1="164.5" x2="38" y2="164.5" stroke="var(--cool)" stroke-width="1.5" opacity=".8"/>
+<line x1="22" y1="151.5" x2="38" y2="151.5" stroke="var(--cool)" stroke-width="1.5" opacity=".8"/>
+<line x1="22" y1="138.6" x2="38" y2="138.6" stroke="var(--cool)" stroke-width="1.5" opacity=".8"/>
+<line x1="22" y1="125.7" x2="38" y2="125.7" stroke="var(--cool)" stroke-width="1.5" opacity=".8"/>
+<line x1="22" y1="112.7" x2="38" y2="112.7" stroke="var(--cool)" stroke-width="1.5" opacity=".8"/>
+<line x1="22" y1="99.8" x2="38" y2="99.8" stroke="var(--cool)" stroke-width="1.5" opacity=".8"/>
+<line x1="22" y1="86.9" x2="38" y2="86.9" stroke="var(--cool)" stroke-width="1.5" opacity=".8"/>
+<line x1="22" y1="73.9" x2="38" y2="73.9" stroke="var(--cool)" stroke-width="1.5" opacity=".8"/>
+<line x1="22" y1="61.0" x2="38" y2="61.0" stroke="var(--cool)" stroke-width="1.5" opacity=".8"/>
+<rect class="panel" x="62" y="34" width="338" height="54" rx="12"/>
+<text class="t t-b" x="76" y="58" text-anchor="start">山頂 2,500m</text>
+<text class="t t-b" x="386" y="68" text-anchor="end" style="font-size:22px">約11℃</text>
+<text class="t t-b" x="76" y="122" text-anchor="start">標高差 1,500m</text>
+<text class="t-sm" x="76" y="146" text-anchor="start">1,500 ÷ 100 × 0.6</text>
+<text class="t t-b bad-t" x="76" y="174" text-anchor="start">→ 9℃低下</text>
+<rect class="panel" x="62" y="228" width="338" height="54" rx="12"/>
+<text class="t t-b" x="76" y="252" text-anchor="start">登山口 1,000m</text>
+<text class="t t-b" x="386" y="262" text-anchor="end" style="font-size:22px">20℃</text>
+<text class="t-sm" x="0" y="306" text-anchor="start">目盛り1つが100m。1つ上がるごとに0.6℃下がる</text>
+<text class="t-sm bad-t t-b" x="0" y="328" text-anchor="start">→ 里が20℃でも、たどり着く先は約11℃</text>
+</svg>
+<figcaption>この下がり方は気温減率と呼ばれ、登山口の気温が分かれば山頂の気温を概算できます。</figcaption>
+</figure>
 
 <p>
-気温は標高が上がるほど下がります。
-一般に<strong>標高が100m上がるごとに約0.6℃低下する</strong>とされ、
-これは気温減率と呼ばれます。登山口の気温が分かれば、山頂の気温を概算できます。
+里で20℃と聞くと薄着で出かけたくなりますが、これは風のない状態での話です。
 </p>
 
-<div class="card">
-<strong>山頂の気温 ≒ 登山口の気温 −（標高差 ÷ 100 × 0.6）</strong><br><br>
-例：登山口（標高1,000m）が20℃、山頂が2,500mの場合<br>
-標高差1,500m → 1,500 ÷ 100 × 0.6 = <strong>9℃低下</strong> → 山頂は約11℃
-</div>
+<h2 id="wind">風が吹けば、そこからさらに下がる</h2>
+
+<figure class="fig">
+<svg viewBox="0 -4 400 236" role="img" aria-label="山頂11℃でも風速5m/sなら体感は約6℃、風速10m/sなら約1℃まで下がる">
+<defs><marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="currentColor" opacity=".5"/></marker></defs>
+<text class="t t-b" x="0" y="12" text-anchor="start">風速1m/sにつき、体感温度は約1℃下がる</text>
+<text class="t-sm" x="0" y="34" text-anchor="start">山頂11℃のとき</text>
+<rect x="100" y="54" width="132" height="24" rx="6" fill="var(--cool)" opacity=".35" stroke="var(--cool)" stroke-width="1.5"/>
+<text class="t t-b" x="0" y="72" text-anchor="start">無風</text>
+<text class="t t-b" x="242" y="72" text-anchor="start">11℃</text>
+<rect x="100" y="100" width="72" height="24" rx="6" fill="var(--cool)" opacity=".35" stroke="var(--cool)" stroke-width="1.5"/>
+<text class="t t-b" x="0" y="118" text-anchor="start">風速5m/s</text>
+<text class="t t-b" x="182" y="118" text-anchor="start">約6℃</text>
+<path class="arrow" d="M390 107.5 h-46" marker-end="url(#arw)" style="stroke:var(--cool)"/>
+<path class="arrow" d="M390 116.5 h-46" marker-end="url(#arw)" style="stroke:var(--cool)"/>
+<rect x="100" y="146" width="12" height="24" rx="6" fill="var(--cool)" opacity=".35" stroke="var(--cool)" stroke-width="1.5"/>
+<text class="t t-b" x="0" y="164" text-anchor="start">風速10m/s</text>
+<text class="t t-b" x="122" y="164" text-anchor="start">約1℃</text>
+<path class="arrow" d="M390 144.5 h-46" marker-end="url(#arw)" style="stroke:var(--cool)"/>
+<path class="arrow" d="M390 153.5 h-46" marker-end="url(#arw)" style="stroke:var(--cool)"/>
+<path class="arrow" d="M390 162.5 h-46" marker-end="url(#arw)" style="stroke:var(--cool)"/>
+<path class="arrow" d="M390 171.5 h-46" marker-end="url(#arw)" style="stroke:var(--cool)"/>
+<line x1="0" y1="196" x2="400" y2="196" stroke="currentColor" opacity=".15"/>
+<text class="t t-b bad-t" x="0" y="222" text-anchor="start">＋ さらに濡れが加わると、体温は急速に奪われる</text>
+</svg>
+</figure>
 
 <p>
-里で20℃と聞くと薄着で出かけたくなりますが、
-実際にたどり着く先は11℃です。しかもこれは風のない状態での話です。
+稜線に出ると、風を遮るものがなくなります。
+汗で濡れた服のまま風に当たるのは、夏でも危険な状況になり得ます。
 </p>
 
-<h2 id="wind">風速で体感温度はさらに下がる</h2>
+<h2 id="chill">気温別の、体感温度の目安</h2>
 
 <p>
-稜線に出ると風を遮るものがなくなります。
-一般に<strong>風速1m/sにつき体感温度は約1℃下がる</strong>と言われます。
-先ほどの例で風速10m/sが吹いていれば、体感は氷点下近くまで落ちます。
+気温が5℃なら、風速10m/sで体感は約−5℃まで落ちます。
 </p>
 
+<div class="tablewrap">
 <table class="data">
 <thead>
 <tr><th>気温</th><th>無風</th><th>風速5m/s</th><th>風速10m/s</th></tr>
@@ -173,40 +210,36 @@
 <tr><td>5℃</td><td>5℃</td><td>約0℃</td><td>約−5℃</td></tr>
 </tbody>
 </table>
+</div>
+
+<h2 id="layer">読めないぶんは、脱ぎ着で埋める</h2>
+
+<figure class="fig">
+<svg viewBox="0 -4 400 314" role="img" aria-label="肌に触れるベースレイヤーを保温のミドルレイヤーが包み、その外を風雨を防ぐアウターレイヤーが包む三層の重ね方">
+<defs><marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="currentColor" opacity=".5"/></marker></defs>
+<text class="t t-b" x="0" y="12" text-anchor="start">薄い層を重ねて、脱ぎ着で調整する</text>
+<text class="t-sm" x="0" y="32" text-anchor="start">厚い上着を1枚持つより、対応できる幅が広い</text>
+<rect class="box" x="0" y="48" width="400" height="254" rx="14"/>
+<text class="t t-b" x="14" y="72" text-anchor="start">アウター｜風雨を防ぐ層</text>
+<text class="t-sm" x="14" y="92" text-anchor="start">防水透湿素材のレインウェア。防風着を兼ねる</text>
+<text class="t-sm t-hi t-b" x="14" y="114" text-anchor="start">→ 稜線に出る前に着るかどうかで、消耗がまるで違う</text>
+<rect class="panel" x="12" y="126" width="376" height="164" rx="12"/>
+<text class="t t-b" x="26" y="150" text-anchor="start">ミドル｜保温の層</text>
+<text class="t-sm" x="26" y="170" text-anchor="start">フリースや薄手のダウン</text>
+<rect class="panel" x="24" y="184" width="352" height="100" rx="10"/>
+<text class="t t-b" x="38" y="208" text-anchor="start">ベース｜肌に触れる層</text>
+<text class="t-sm" x="38" y="228" text-anchor="start">汗を肌から離す。化繊かウール</text>
+<text class="t-sm bad-t t-b" x="38" y="250" text-anchor="start">綿は避ける</text>
+</svg>
+<figcaption>ミドルレイヤーは行動中に暑くて脱ぐことが多いので、すぐ出し入れできる位置に入れておきます。</figcaption>
+</figure>
 
 <p>
-さらに濡れが加わると体温は急速に奪われます。
-汗で濡れた服のまま稜線の風に当たるのは、夏でも危険な状況になり得ます。
-</p>
-
-<h2 id="layer">レイヤリングの考え方</h2>
-
-<p>
-気温が読めない以上、<strong>脱ぎ着で調整する</strong>のが基本になります。
-厚い上着を1枚持つより、薄い層を重ねるほうが対応幅が広くなります。
-</p>
-
-<h3>ベースレイヤー（肌に触れる層）</h3>
-<p>
-役割は汗を肌から離すこと。化繊かウールを選びます。
-<strong>綿は避けてください</strong>。乾きが遅く、濡れたまま張り付いて体温を奪い続けます。
+綿は避けてください。乾きが遅く、濡れたまま張り付いて体温を奪い続けます。
 夏の低山でも、この一点だけは守る価値があります。
 </p>
 
-<h3>ミドルレイヤー（保温の層）</h3>
-<p>
-フリースや薄手のダウンなど。行動中は暑くて脱ぐことが多いので、
-すぐ出し入れできる位置に入れておくと使い勝手が変わります。
-</p>
-
-<h3>アウターレイヤー（風雨を防ぐ層）</h3>
-<p>
-防水透湿素材のレインウェアが基本です。
-雨具としてだけでなく<strong>防風着として機能する</strong>点が重要で、
-稜線に出る前に着るかどうかで消耗がまるで違います。
-</p>
-
-<h2 id="season">季節の変わり目に注意する理由</h2>
+<h2 id="season">季節の変わり目で、装備は一段階変わる</h2>
 
 <p>
 同じ「6月」でも、標高1,500m以上では残雪が残っていることがあります。
@@ -219,6 +252,7 @@
 標高が高いほど、この切り替わりは早く訪れます。
 </p>
 
+<div class="tablewrap">
 <table class="data">
 <thead>
 <tr><th>標高帯</th><th>雪・凍結の備えが要る時期</th><th>装備の目安</th></tr>
@@ -230,18 +264,18 @@
 <tr><td>2,500m〜</td><td>9月〜6月</td><td>11〜3月は冬山装備一式<br><small>4〜6月はアイゼンとピッケル。雪の備えがいらないのは7・8月だけ</small></td></tr>
 </tbody>
 </table>
+</div>
 
 <p class="meta">
 ※ 目安です。その年の気象や斜面の向きで大きく前後します。
 必ず直近の山小屋情報や登山届の情報を確認してください。
-標高帯の区切りは<a href="../yamajitaku/">山じたく</a>の装備判定と同じ 1,000m / 1,500m / 2,500m にそろえています。
+標高帯の区切りは<a href="/yamajitaku/">山じたく</a>の装備判定と同じ 1,000m / 1,500m / 2,500m にそろえています。
 </p>
 
 <h2 id="always">季節を問わず必ず持つもの</h2>
 
 <p>
-装備が変動する一方で、時期に関係なく外せないものがあります。
-日帰りの低山でも同じです。
+装備が変動する一方で、時期に関係なく外せないものがあります。日帰りの低山でも同じです。
 </p>
 
 <ul>
@@ -254,27 +288,25 @@
   <li><strong>エマージェンシーシート</strong> — 軽く、かさばらず、動けなくなったときに体温を保ちます</li>
 </ul>
 
-<div class="card">
-<strong>安全についての注意</strong><br>
+<p class="card">
+<strong>安全についての注意。</strong>
 この記事の数値はいずれも概算です。実際の気象は地形や当日の条件で大きく変わります。
-計画は必ず最新の予報と現地情報にもとづいて立て、
-登山届を提出し、余裕のある行程を組んでください。
+計画は必ず最新の予報と現地情報にもとづいて立て、登山届を提出し、余裕のある行程を組んでください。
 迷ったときは引き返す判断が最も有効な装備です。
-</div>
+</p>
 
+<div class="related">
+<p>関連する記事</p>
+<ul>
+  <li><a href="/yamajitaku/">山じたく（持ち物チェックリストのアプリ）</a></li>
+  <li><a href="/guides/">暮らしの手引き 一覧</a></li>
+</ul>
+</div>
 
 <nav class="postnav" aria-label="前後の記事">
   <a class="prev" href="/guides/ferment-storage.html"><span class="lbl">前の記事</span>発酵食品を常温・冷暗所・冷蔵庫のどこに置くか</a>
   <a class="next" href="/guides/pack-weight.html"><span class="lbl">次の記事</span>ザックの重さは体重の何％まで</a>
 </nav>
-
-<div class="related">
-<p>関連する記事</p>
-<ul>
-  <li><a href="./">暮らしの手引き 一覧</a></li>
-  <li><a href="../yamajitaku/">山じたく（持ち物チェックリストのアプリ）</a></li>
-</ul>
-</div>
 
 
 <footer class="sitefooter">

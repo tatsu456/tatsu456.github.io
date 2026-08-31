@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>献立が決まらないときに、何から決めるか｜tatsu456</title>
-<meta name="description" content="一汁三菜のような「型」から決めると献立は早く決まります。型ごとの構成、人数を変えたときの分量の書き換え、同じものが続かない仕組みまで。">
-<link rel="stylesheet" href="/assets/style.css?v=20260831m">
+<meta name="description" content="一汁三菜のような「型」から決めると献立は早く決まります。型ごとの構成、決める順番の固定、同じものが続かない仕組みまで。">
+<link rel="stylesheet" href="/assets/style.css?v=20260831q">
 </head>
 <body>
 
@@ -113,79 +113,165 @@
 <h1>献立が決まらないときに、何から決めるか</h1>
 <p class="meta">最終更新 2026年8月31日</p>
 
-<p>夕方、冷蔵庫を開けて、閉じて、また開ける。「今日は何を食べようか」と考え始めたのに、10分たっても決まらない。結局いつものものを作る——という夕方が続くとき、悪いのは料理の腕でも冷蔵庫の中身でもなく、<strong>最初に立てた問いの形</strong>であることが多いです。</p>
-
-<p>「何を食べるか」は、候補が数百ある問いです。しかも一皿目をそこから引くと、残りの副菜も汁物も主食も、その一皿に引っ張られて決め直しになります。順番が決まっていないと、決めるたびに前へ戻れてしまう。迷いはそこで生まれます。</p>
-
-<p>この記事は、献立を自動で組む仕組み（献立メーカー_EX）の内部で実際に採られている決め方を、家庭の台所の言葉に置き直したものです。要点はひとつで、<strong>「何を」より先に「何品の型か」を決め、そのあとは決める順番を一本に固定してしまう</strong>ということです。</p>
-
-<div class="toc">
-  <p><a href="#order">決める順番を一本にする</a></p>
-  <p><a href="#staple">主食は最後に決まり、選択肢がいちばん狭い</a></p>
-  <p><a href="#season">旬は「絞り込み」ではなく「配点」にする</a></p>
-  <p><a href="#repeat">続くのを避けるには、料理名ではなくタンパク源で見る</a></p>
-  <p><a href="#amount">人数を変えるとき、動かす数字と動かさない数字</a></p>
-  <p><a href="#chart">型から引く早見表</a></p>
-</div>
+<p class="card">
+<strong>「何を食べるか」より先に、「何品の型か」を決めます。</strong>
+型が決まれば、あとは主菜から順に埋めるだけです。迷いが減るのは選択肢が減るからではなく、決める順番が一本になって戻れなくなるからです。
+</p>
 
 <h2 id="order">決める順番を一本にする</h2>
 
-<p>先に決めるのは「一汁三菜にするか、一汁一菜にするか」という<strong>型</strong>です。型がやっていることは、実装の上では驚くほど単純で、<strong>埋めるべき空欄の並びを吐き出すだけ</strong>です。一汁三菜なら主菜・副菜・副菜・汁物・主食、一汁二菜なら主菜・副菜・汁物・主食、一汁一菜なら主菜・汁物・主食。品数はこの並びの長さそのものです。</p>
+<p>先に決めるのは型です。一汁三菜／一汁二菜／一汁一菜／メイン＋副菜／メインのみの5つで、中身は<a href="#chart">早見表</a>にまとめました。</p>
 
-<p>大事なのは中身ではなく順序です。<strong>並びの先頭は必ず主菜。主食の枠を持つ型では、主食が必ず末尾に来ます</strong>。コードのコメントにも「主菜を先に決めるのは、その日の残りを主菜に対して釣り合わせるため」と書かれています。空欄は先頭から順に埋められ、決まった料理はその日の一覧に足されてから次の空欄へ進みます。つまり<strong>後の一皿は必ず、先に決まった皿を見て決まる</strong>。逆流はしません。</p>
+<figure class="fig">
+<svg viewBox="0 -4 400 366" role="img" aria-label="一汁三菜の埋める順番は主菜597品・副菜486品・副菜486品・汁物214品・主食203品。主食は単品完結を除くと実質113品で、選択肢がいちばん狭い">
+<defs><marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="currentColor" opacity=".5"/></marker></defs>
+<rect class="pill-hi" x="60" y="0" width="280" height="28" rx="14"/><text class="t-on" x="200" y="19" text-anchor="middle" font-size="13">型を決めると、埋める空欄の並びが出る</text>
+<path class="arrow" d="M200 28 V46" marker-end="url(#arw)"/>
+<text class="t-sm t-b" x="0" y="64" text-anchor="start">一汁三菜の並び。上から順に埋め、上へは戻らない</text>
+<circle cx="17" cy="96" r="13" fill="var(--accent)"/>
+<text class="t-on" x="17" y="101" text-anchor="middle" font-size="13">1</text>
+<text class="t t-b" x="38" y="102" text-anchor="start">主菜</text>
+<rect x="86" y="87" width="230.0" height="18" rx="4" fill="var(--cool)" opacity=".45"/>
+<text class="t-sm" x="324.0" y="101" text-anchor="start">597品</text>
+<path class="arrow" d="M17 110 V134" marker-end="url(#arw)"/>
+<circle cx="17" cy="148" r="13" fill="var(--accent)"/>
+<text class="t-on" x="17" y="153" text-anchor="middle" font-size="13">2</text>
+<text class="t t-b" x="38" y="154" text-anchor="start">副菜</text>
+<rect x="86" y="139" width="187.2" height="18" rx="4" fill="var(--cool)" opacity=".45"/>
+<text class="t-sm" x="281.2" y="153" text-anchor="start">486品</text>
+<path class="arrow" d="M17 162 V186" marker-end="url(#arw)"/>
+<circle cx="17" cy="200" r="13" fill="var(--accent)"/>
+<text class="t-on" x="17" y="205" text-anchor="middle" font-size="13">3</text>
+<text class="t t-b" x="38" y="206" text-anchor="start">副菜</text>
+<rect x="86" y="191" width="187.2" height="18" rx="4" fill="var(--cool)" opacity=".45"/>
+<text class="t-sm" x="281.2" y="205" text-anchor="start">486品</text>
+<path class="arrow" d="M17 214 V238" marker-end="url(#arw)"/>
+<circle cx="17" cy="252" r="13" fill="var(--accent)"/>
+<text class="t-on" x="17" y="257" text-anchor="middle" font-size="13">4</text>
+<text class="t t-b" x="38" y="258" text-anchor="start">汁物</text>
+<rect x="86" y="243" width="82.4" height="18" rx="4" fill="var(--cool)" opacity=".45"/>
+<text class="t-sm" x="176.4" y="257" text-anchor="start">214品</text>
+<path class="arrow" d="M17 266 V290" marker-end="url(#arw)"/>
+<circle cx="17" cy="304" r="13" fill="var(--accent)"/>
+<text class="t-on" x="17" y="309" text-anchor="middle" font-size="13">5</text>
+<text class="t t-b" x="38" y="310" text-anchor="start">主食</text>
+<rect x="86" y="295" width="43.5" height="18" rx="4" fill="var(--cool)" opacity=".45"/>
+<rect x="129.5" y="295" width="34.7" height="18" rx="4" fill="var(--bad2)" opacity=".18"/>
+<text class="t-sm t-b" x="172.2" y="309" text-anchor="start">203品→実質113品</text>
+<text class="t-sm bad-t t-b" x="86" y="331" text-anchor="start">赤＝単品完結（丼・麺）の90品</text>
+<text class="t-sm t-hi t-b" x="0" y="356" text-anchor="start">選択肢もいちばん狭い。白ごはん系5品だけは繰り返してよい。</text>
+</svg>
+<figcaption>できあがった献立の表示は主食→汁物→主菜→副菜の順です。書き写す順番と決めていく順番は、一致しなくて構いません。</figcaption>
+</figure>
 
-<p>主食が最後なのにも理由があります。パンにするかどうかは、主菜が洋食かどうかで決まります。だから主菜が判明するまで振れない。主食を最後に置くのは、順番の都合ではなく<strong>依存関係の結果</strong>です。</p>
+<p>型がやっているのは、埋めるべき空欄の並びを吐き出すことだけです。品数は、その並びの長さそのものです。</p>
 
-<p>紛らわしいのは、決める順番と読む順番が別だという点です。できあがった献立の表示は主食→汁物→主菜→副菜の順に並びます。献立表に書き写すときの順番と、頭の中で決めていく順番は、一致していなくて構いません。ここを混同すると「主食から書くのだから主食から決めるのだろう」と考えてしまい、また迷いが戻ってきます。</p>
+<p>空欄は先頭から順に埋められ、決まった料理は一覧に足されてから次へ進みます。つまり<strong>後の一皿は必ず、先に決まった皿を見て決まる</strong>。逆流はしません。</p>
 
-<h2 id="staple">主食は最後に決まり、選択肢がいちばん狭い</h2>
+<p>「主菜を先に決めるのは、その日の残りを主菜に対して釣り合わせるため」とコードのコメントにあります。</p>
 
-<p>役割ごとに、選べる幅はまったく違います。実際に収録されている品数は主菜597・副菜486・汁物214・主食203。数だけ見れば主食も200品ありますが、実質はまるで違います。</p>
+<p>主食が末尾なのは順番の都合ではありません。パンにするかは主菜が洋食かどうかで決まるので、主菜が判明するまで振れない。</p>
 
-<p>主食203品のうち90品が「単品完結」——親子丼、牛丼、カレーライス、チャーハン、焼きそばのたぐいです。これらは<strong>ほかの皿を持つ型では問答無用で外されます</strong>。理由は明快で、丼や麺は一食まるごとだからです。横に副菜と汁物を並べる前提の献立に、そもそも座る場所がない。そして主食の空欄を持つ型はどれも二皿以上、主食の空欄が無い型ではそもそも主食が選ばれません。つまり<strong>単品完結の主食は、どの型でも一度も出てきません</strong>。</p>
+<h2 id="staple">主食は、悩む対象から外す</h2>
 
-<p>残る113品の内訳は、味つきごはん88・洋風の主食20（パンやパスタ）・白ごはん系5。白ごはん系はたった5品（白ごはん／麦ごはん／雑穀ごはん／玄米ごはん／玄米と押し麦のごはん）しかありません。そのため、ここだけ「同じものを繰り返してよい」という例外になっています。例外を入れた経緯もそのまま残っていて、白ごはん系を使い切ると「まだ使っていない」主食がパンだけになり、<strong>焼き魚の横にトーストが出た</strong>そうです。</p>
+<p>主食203品のうち90品は、親子丼・牛丼・カレーライス・チャーハン・焼きそばのような「単品完結」です。一食まるごとなので、ほかの皿を持つ型では外されます。</p>
 
-<p>台所側の教訓としては、主食を悩む対象から外してしまうのが早い、ということです。主食は選択肢がいちばん狭く、しかも白ごはん系にかぎっては繰り返してよい枠です。白ごはんを既定にして、変えるのは「主菜が洋食のとき」「炊き込みにしたい日」だけにする。ここで頭を使わないぶんを主菜に回せます。</p>
+<p>主食の空欄を持つ型はどれも二皿以上。枠が無い型では、そもそも主食が選ばれません。つまり<strong>単品完結の主食は、どの型でも一度も出てきません</strong>。</p>
 
-<h2 id="season">旬は「絞り込み」ではなく「配点」にする</h2>
+<p>残る113品は味つきごはん88・洋風の主食20・白ごはん系5。白ごはん系が5品しかないため、ここだけ繰り返してよい例外です。これを使い切ると「まだ使っていない」主食がパンだけになり、<strong>焼き魚の横にトーストが出た</strong>そうです。</p>
 
-<p>「旬のものを食べたい」を素直に実装すると失敗します。旬でないものを候補から外す方式にすると、<strong>2月に候補が空になる</strong>からです。同じ理由で、8月は同じ茄子ばかりが並びます。</p>
+<p>白ごはんを既定にして、変えるのは「主菜が洋食のとき」「炊き込みにしたい日」だけ。ここで使わずに済んだ頭を主菜に回せます。</p>
 
-<p>そこで採られているのは、外さずに<strong>点を付ける</strong>やり方です。まず「どのくらい旬に寄せるか」を割合で指定します。気にしない0／ときどき0.3／半分くらい0.5／多め0.75／できるだけ1.0の5段階で、既定は「半分くらい」。画面には「半分くらいが旬の料理になります」と出ます。</p>
+<h2 id="season">旬は「絞り込み」ではなく「配点」</h2>
 
-<p>抽選は<strong>空欄ごとに1回だけ</strong>行います。候補ごとに振らないのは、そうすると料理1品ごとに別々の判定が出てしまい、指定した割合が何の意味も持たなくなるからです。「この空欄は旬に寄せる」と決まった空欄では、その季節に合う料理に+35、季節を問わない料理に+8、隣の季節の料理に-5、真逆の季節に-30。加えて旬の食材1つにつき+5が乗ります。</p>
+<figure class="fig">
+<svg viewBox="0 -4 400 316" role="img" aria-label="旬でないものを候補から外すと2月に候補が空になる。外さずに点を付ける方式では、その季節に+35、季節を問わないものに+8、隣の季節に-5、真逆の季節に-30">
+<defs><marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="currentColor" opacity=".5"/></marker></defs>
+<text class="t t-b bad-t" x="0" y="12" text-anchor="start">候補から外す</text>
+<rect class="panel-bad" x="0" y="18" width="400" height="86" rx="14"/>
+<rect class="box" x="14" y="36" width="38" height="38" rx="6"/>
+<path class="bad" stroke-width="2" d="M23 45 L43 65 M43 45 L23 65"/>
+<rect class="box" x="60" y="36" width="38" height="38" rx="6"/>
+<path class="bad" stroke-width="2" d="M69 45 L89 65 M89 45 L69 65"/>
+<rect class="box" x="106" y="36" width="38" height="38" rx="6"/>
+<path class="bad" stroke-width="2" d="M115 45 L135 65 M135 45 L115 65"/>
+<rect class="box" x="152" y="36" width="38" height="38" rx="6"/>
+<path class="bad" stroke-width="2" d="M161 45 L181 65 M181 45 L161 65"/>
+<rect class="box" x="198" y="36" width="38" height="38" rx="6"/>
+<path class="bad" stroke-width="2" d="M207 45 L227 65 M227 45 L207 65"/>
+<path class="arrow" d="M250 55 h16" marker-end="url(#arw)"/>
+<text class="t t-b" x="276" y="61" text-anchor="start" style="fill:var(--ink)">候補が空</text>
+<text class="t-sm bad-t t-b" x="0" y="126" text-anchor="start">2月に候補が空になる。8月は同じ茄子ばかり並ぶ</text>
+<text class="t t-b t-hi" x="0" y="160" text-anchor="start">外さずに点を付ける</text>
+<rect class="panel-good" x="0" y="166" width="400" height="96" rx="14"/>
+<rect class="box" x="10" y="180" width="88" height="68" rx="8"/>
+<text class="t-sm t-b" x="54" y="204" text-anchor="middle">その季節</text>
+<text class="t t-b t-hi" x="54" y="234" text-anchor="middle" style="font-size:20px">+35</text>
+<rect class="box" x="106" y="180" width="88" height="68" rx="8"/>
+<text class="t-sm t-b" x="150" y="204" text-anchor="middle">季節問わず</text>
+<text class="t t-b t-hi" x="150" y="234" text-anchor="middle" style="font-size:20px">+8</text>
+<rect class="box" x="202" y="180" width="88" height="68" rx="8"/>
+<text class="t-sm t-b" x="246" y="204" text-anchor="middle">隣の季節</text>
+<text class="t t-b bad-t" x="246" y="234" text-anchor="middle" style="font-size:20px">-5</text>
+<rect class="box" x="298" y="180" width="88" height="68" rx="8"/>
+<text class="t-sm t-b" x="342" y="204" text-anchor="middle">真逆の季節</text>
+<text class="t t-b bad-t" x="342" y="234" text-anchor="middle" style="font-size:20px">-30</text>
+<text class="t-sm" x="0" y="284" text-anchor="start">＋旬の食材1つにつき+5。抽選は空欄ごとに1回だけ</text>
+<text class="t-sm t-hi t-b" x="0" y="306" text-anchor="start">外さないので、2月でも候補は残る</text>
+</svg>
+<figcaption>旬は値段にも効きます。旬の食材は0.75倍、隣の季節は等倍、それ以外は1.35倍。旬に寄せるのは、安く作るのと同じ方向です。</figcaption>
+</figure>
 
-<p>隣の季節を軽い減点にとどめているのは、初夏に出る春の料理を、冬の料理と同じだけ罰したくないからです。季節の区切りは3月始まりで、春が3〜5月、夏が6〜8月、秋が9〜11月、冬が12〜2月。旬は値段にも効いていて、旬の食材は0.75倍、隣の季節は等倍、それ以外は1.35倍で見積もられます。<strong>旬に寄せることは、安く作ることとほぼ同じ方向を向いている</strong>わけです。</p>
+<p>旬でないものを候補から外すと、2月に候補が空になります。そこで、外さずに点を付けます。</p>
 
-<p>買い物の場面に置き直すと、「今日は旬のものだけ」と決めるのではなく「5品のうち2品は旬から」と決める。売り場の状況に負けない決め方はこちらです。</p>
+<p>どのくらい旬に寄せるかは割合で指定し、気にしない0／ときどき0.3／半分くらい0.5／多め0.75／できるだけ1.0の5段階。既定は「半分くらい」です。</p>
+
+<p>買い物でも同じです。「今日は旬のものだけ」ではなく「5品のうち2品は旬から」と決める。売り場に負けないのはこちらです。</p>
 
 <h2 id="repeat">続くのを避けるには、料理名ではなくタンパク源で見る</h2>
 
-<p>「昨日と同じにならないように」を料理名で見ると、鶏の照り焼きの翌日に鶏の唐揚げが通ってしまいます。見る単位は料理名ではなく<strong>タンパク源</strong>——牛肉・豚肉・鶏肉・魚・魚介・卵・大豆製品・野菜・その他の9種です。</p>
+<figure class="fig">
+<svg viewBox="0 -4 400 410" role="img" aria-label="料理名で見ると鶏の照り焼きの翌日に鶏の唐揚げが通ってしまう。タンパク源で見れば昨日と同じなら主菜で-45、それ以外の皿で-15の減点が効く">
+<defs><marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="currentColor" opacity=".5"/></marker></defs>
+<text class="t t-b bad-t" x="0" y="12" text-anchor="start">料理名で見る</text>
+<rect class="panel-bad" x="0" y="18" width="400" height="78" rx="14"/>
+<rect class="pill" x="14" y="41" width="130" height="32" rx="16"/><text class="t-sm" x="79" y="62" text-anchor="middle">鶏の照り焼き</text>
+<path class="arrow" d="M152 57 h16" marker-end="url(#arw)"/>
+<rect class="pill" x="176" y="41" width="130" height="32" rx="16"/><text class="t-sm" x="241" y="62" text-anchor="middle">鶏の唐揚げ</text>
+<text class="t t-b" x="318" y="62" text-anchor="start" style="fill:var(--ink)">通る</text>
+<text class="t-sm bad-t t-b" x="0" y="118" text-anchor="start">別の料理名なので、翌日に通ってしまう</text>
+<text class="t t-b t-hi" x="0" y="152" text-anchor="start">タンパク源で見る</text>
+<rect class="panel-good" x="0" y="158" width="400" height="78" rx="14"/>
+<rect class="pill" x="14" y="181" width="130" height="32" rx="16"/><text class="t-sm" x="79" y="202" text-anchor="middle">鶏肉</text>
+<path class="arrow" d="M152 197 h16" marker-end="url(#arw)"/>
+<rect class="pill" x="176" y="181" width="130" height="32" rx="16"/><text class="t-sm" x="241" y="202" text-anchor="middle">鶏肉</text>
+<text class="t t-b" x="318" y="202" text-anchor="start" style="fill:var(--ink)">-45</text>
+<text class="t-sm t-b" x="14" y="268" text-anchor="start">いつ</text>
+<text class="t-sm t-b" x="196" y="268" text-anchor="start">主菜</text>
+<text class="t-sm t-b" x="290" y="268" text-anchor="start">それ以外の皿</text>
+<line x1="0" y1="276" x2="400" y2="276" stroke="currentColor" opacity=".2"/>
+<rect x="0" y="282" width="400" height="34" rx="8" fill="currentColor" opacity=".04"/>
+<text class="t t-b" x="14" y="305" text-anchor="start">昨日と同じ</text>
+<text class="t t-b bad-t" x="196" y="305" text-anchor="start">-45</text>
+<text class="t t-b bad-t" x="290" y="305" text-anchor="start">-15</text>
+<text class="t t-b" x="14" y="339" text-anchor="start">一昨日と同じ</text>
+<text class="t t-b bad-t" x="196" y="339" text-anchor="start">-18</text>
+<text class="t t-b bad-t" x="290" y="339" text-anchor="start">-5</text>
+<text class="t-sm t-b" x="0" y="378" text-anchor="start">見る単位はこの9種</text>
+<text class="t-sm" x="0" y="400" text-anchor="start">牛肉・豚肉・鶏肉・魚・魚介・卵・大豆製品・野菜・その他</text>
+</svg>
+<figcaption>連投回避が効くのは、一度に組んだ何日分かの中でだけです。過去の献立をまたいで避ける仕組みは確認できませんでした。</figcaption>
+</figure>
 
-<p>減点はこうです。昨日と同じタンパク源なら主菜で-45、それ以外の皿で-15。一昨日なら主菜-18、それ以外-5。同じ日の中では、同一タンパク源が-22、ジャンルの被りが-6（主食は対象外）、25分を超える料理が重なると-10。最後のひとつは味ではなく<strong>手間の分散</strong>のための減点です。</p>
+<p>いちばん重い減点は、同じ日に主役級の食材が重なったときの-70（1回につき、最大3回まで）です。旬の合致+35と旬の食材ボーナスを足すとおよそ50になるため、それを上回らないと<strong>同じ夏野菜の皿が2つ並ぶのを止められない</strong>からだそうです。主役級かどうかは、調味料でなく80g以上使うかで判定されます。</p>
 
-<p>いちばん重いのは、同じ日に「主役級の食材」が重なったときの-70（1回につき、最大3回まで）です。この数字の根拠も残されていて、旬の合致+35と旬の食材ボーナスを足すとおよそ50になるため、それを上回る重さでないと<strong>同じ夏野菜の皿が2つ並ぶのを止められない</strong>からだそうです。主役級かどうかは、調味料でなく80g以上使うかで判定されます。</p>
-
-<p>家でやるなら、冷蔵庫のメモに書くのは料理名ではなく「昨日=鶏／一昨日=魚」で十分です。それだけで三日続けて鶏、という失敗はほぼ消えます。なお、この連投回避が効くのは一度に組んだ何日分かの中でだけです。過去に作った献立をまたいで避ける仕組みは、確認できませんでした。</p>
-
-<h2 id="amount">人数を変えるとき、動かす数字と動かさない数字</h2>
-
-<p>献立が決まったあと、レシピの想定人数と食卓の人数が合わないことがあります。倍率は「食べる人数 ÷ レシピの想定人数」で、人数は1〜8人。倍率が1のときは何も書き換えません。</p>
-
-<p>書き換えの判断基準はひとつだけで、<strong>その行に数字があるかどうか</strong>です。「1と1/2」「1/2」「2」「1.5」のいずれかの形が拾えれば動かし、ひとつも見つからなければ行をそのまま返します。だから「適量」「少々」は動きません。除外リストで守っているのではなく、<strong>数字が無いという事実がそのまま理由になっている</strong>のが要点です。ひとつまみは2倍にならない。</p>
-
-<p>裏返せば、数字のある調味料は動きます。「大さじ1」を3倍にすれば「大さじ3」になります。行の中の数字は全部動くので、「1.5合（225g）」を2倍にすると「3合（450g）」になります。</p>
-
-<p>そして丸めは、台所で使える分数に寄せます。整数にごく近ければ整数で書き、そうでなければ1/4・1/3・1/2・2/3・3/4のどれかに寄せ、整数部があれば「1と1/2」の形にし、どれにも当たらなければ小数第1位まで。「0.6667個」は誰も実行できない、という理由が明記されています。1個の2/3は「2/3個」、1/2個の2倍は「1個」、1と1/2本の2倍は「3本」。</p>
-
-<p>手で倍にするときも同じ線引きで足ります。<strong>量って入れるものは倍にし、味を見て決めるものは倍にしない。</strong>そして端数は分数に寄せて、計量スプーンで再現できる形にしておく。</p>
+<p>冷蔵庫のメモに書くのは料理名ではなく「昨日=鶏／一昨日=魚」で十分です。それだけで三日続けて鶏、という失敗はほぼ消えます。</p>
 
 <h2 id="chart">型から引く早見表</h2>
 
-<p>最後に、型を選ぶための表です。左から順に見て、今日の体力に合う行を1行選ぶ。決めるのはそこまでで、あとは主菜から順に埋めていきます。</p>
+<p>今日の体力に合う行を1行選ぶ。決めるのはそこまでです。</p>
 
+<div class="tablewrap">
 <table class="data">
   <thead>
     <tr><th>型</th><th>品数</th><th>内訳</th><th>献立表の読み順</th><th>備考</th></tr>
@@ -199,14 +285,18 @@
     <tr><td>（参考）役割ごとの収録数</td><td>主菜597・副菜486・汁物214・主食203</td><td>主食は「単品完結」90品を複数皿の型で常時除外→実質113品</td><td>内訳は味つきごはん88・洋風の主食20・白ごはん系5</td><td>白ごはん系5品＝白ごはん／麦ごはん／雑穀ごはん／玄米ごはん／玄米と押し麦のごはん。ここだけ繰り返し可</td></tr>
   </tbody>
 </table>
+</div>
 
-<p>迷う量を減らす方法は、選択肢を増やすことでも減らすことでもなく、<strong>決める順番を固定して、戻れなくすること</strong>です。型を選ぶ、主菜を決める、そのあとは主菜に釣り合わせる。主食は最後に、しかも既定でいい。この一本道を毎日同じように通れば、10分かかっていた場面は数十秒で終わります。</p>
+<p>型を選ぶ、主菜を決める、あとは主菜に釣り合わせる。この一本道を毎日通れば、10分かかっていた場面は数十秒で終わります。</p>
 
 <div class="related">
-  <p><a href="/kondate/">献立メーカー_EX</a></p>
-  <p><a href="/guides/">暮らしの手引き 一覧</a></p>
-  <p><a href="/guides/freezing-dishes.html">作りおきと料理の冷凍</a></p>
-  <p><a href="/guides/freezing-vegetables.html">野菜の冷凍・解凍 早見表</a></p>
+<p>関連する記事</p>
+<ul>
+  <li><a href="/kondate/">献立メーカー_EX</a></li>
+  <li><a href="/guides/freezing-dishes.html">作りおきと料理の冷凍</a></li>
+  <li><a href="/guides/freezing-vegetables.html">野菜の冷凍・解凍 早見表</a></li>
+  <li><a href="/guides/">暮らしの手引き 一覧</a></li>
+</ul>
 </div>
 
 <nav class="postnav" aria-label="前後の記事">

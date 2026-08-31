@@ -2,7 +2,7 @@
   color-scheme: light dark;
   --accent: #2f6b40;
   --text: #1c1c1e;
-  --muted: #6b6b6b;
+  --muted: #5f5f5f;
   --bg: #fff;
   --card: #fafafa;
   --line: #e2e2e2;
@@ -19,6 +19,8 @@
     --card: #1a1a1a;
     --line: #2e2e2e;
     --code-bg: #202022;
+    /* 暗所では地に沈むので明るくする。#6b6b6b のままだと図の補足文字が3:1台 */
+    --muted: #9a9a9a;
     /* ボタンは暗所でも白文字が乗るよう、--accent より暗いままにする */
     --btn: #377a4a;
     --btn-hover: #2f6b40;
@@ -435,6 +437,16 @@ table.data td {
 
 table.data th { background: var(--card); font-weight: 600; }
 
+/* 列の多い表を、ページごと横に流さず、包みの中だけでスクロールさせる。
+   表そのものを display:block にすると、収まっていた表まで折り返さなくなるので包む。 */
+.tablewrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 1.2rem 0;
+}
+
+.tablewrap table.data { margin: 0; }
+
 .related {
   border-top: 1px solid var(--line);
   margin-top: 3rem;
@@ -753,7 +765,7 @@ code { font-size: .9em; }
   --cool-soft: #dceaf7;
   --warn: #c8862f;      /* 注意 */
   --warn-soft: #f7ecd8;
-  --bad2: #c0392b;      /* うまくいかない側 */
+  --bad2: #b33325;      /* うまくいかない側。赤い面の上で4.5:1を超える濃さ */
   --bad-soft: #f7dedb;
   --good-soft: #dcefe2;
   --panel: #ffffff;
@@ -791,13 +803,8 @@ code { font-size: .9em; }
 .fig .t-sm { fill: var(--sub); font-size: 13px; font-family: inherit; }
 .fig .t-hi { fill: var(--hi); font-weight: 700; }
 .fig .arrow { stroke: var(--sub); stroke-width: 1.5; fill: none; }
-.fig .bad { stroke: #c0392b; }
-.fig .bad-t { fill: #c0392b; }
-
-@media (prefers-color-scheme: dark) {
-  .fig .bad { stroke: #e8796b; }
-  .fig .bad-t { fill: #e8796b; }
-}
+.fig .bad { stroke: var(--bad2); }
+.fig .bad-t { fill: var(--bad2); }
 
 /* 手順の番号つき見出し */
 .step {

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ザックの重さは体重の何％まで｜tatsu456</title>
 <meta name="description" content="ザックの重さの目安は体重の何％か。日帰り・小屋泊とテント泊で物差しが2本に分かれる理由、着ていくものを数えない理由、体重を使わない場合の絶対量の基準まで。">
-<link rel="stylesheet" href="/assets/style.css?v=20260831m">
+<link rel="stylesheet" href="/assets/style.css?v=20260831q">
 </head>
 <body>
 
@@ -111,50 +111,115 @@
 
 
 <h1>ザックの重さは体重の何％まで</h1>
-<p class="meta">最終更新 2026年8月29日</p>
+<p class="meta">最終更新 2026年8月31日</p>
 
-<p>出発前夜、荷造りを終えたザックを持ち上げて「これは重すぎないだろうか」と迷うことがあります。調べてみると「体重の20%まで」「いや15%が限界」といった数字が並び、どれを自分に当てればいいのか分からなくなります。</p>
+<p class="card">
+<strong>物差しは1本ではなく、泊まり方で2本、体重を使うかどうかでもう一度分かれます。</strong>
+日帰り・小屋泊は体重の10 / 15 / 20%、テント泊は18 / 25 / 32%。
+数字は持ち物アプリ「山じたく」の判定用です。
+</p>
 
-<p>結論を先に書くと、この問いに一つの数字では答えられません。答えは<strong>泊まり方で2本に分かれ</strong>、さらに<strong>体重を基準にするかしないかで、もう一度分かれます</strong>。以下は登山の持ち物アプリ「山じたく」が判定に使っている数字をそのまま並べたものです。しきい値もグラム数も定数として書かれているので、自分のザックを量れば、同じ表に当てて同じ判定ができます。</p>
+<h2 id="two-rulers">どちらの物差しを当てるか</h2>
 
-<div class="toc">
-<p><strong>この記事の内容</strong></p>
-<ul>
-<li><a href="#two-rulers">物差しは1本ではなく2本ある</a></li>
-<li><a href="#what-counts">「背負う重さ」に何を数えるか</a></li>
-<li><a href="#absolute">体重を入れないなら、kgの物差しに切り替わる</a></li>
-<li><a href="#examples">ごく普通の一式は、どこに着地するか</a></li>
-<li><a href="#where">重さの正体は、ザック本体・寝るもの・水</a></li>
-<li><a href="#table">早見表</a></li>
-</ul>
-</div>
+<figure class="fig">
+<svg viewBox="0 -4 400 286" role="img" aria-label="物差しは2本。日帰り・小屋泊は体重の10・15・20%で4段階に割れ、テント泊は18・25・32%で割れる。体重60kgの人が15kgを背負うと、日帰り・小屋泊では重すぎます、テント泊ではちょうどよいになる">
+<defs><marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="currentColor" opacity=".5"/></marker></defs>
+<text class="t t-b" x="0" y="12" text-anchor="start" >日帰り・小屋泊</text>
+<text class="t-sm" x="400" y="12" text-anchor="end" >体重の何％</text>
+<rect class="panel" x="0" y="20" width="97" height="34" rx="8"/>
+<text class="t t-b" x="48.5" y="41" text-anchor="middle" >軽め</text>
+<rect class="panel-good" x="101" y="20" width="97" height="34" rx="8"/>
+<text class="t t-b" x="149.5" y="41" text-anchor="middle" style="fill:var(--ink)">ちょうどよい</text>
+<rect x="202" y="20" width="97" height="34" rx="8" fill="var(--warn-soft)"/>
+<text class="t t-b" x="250.5" y="41" text-anchor="middle" style="fill:var(--ink)">やや重い</text>
+<rect class="panel-bad" x="303" y="20" width="97" height="34" rx="8"/>
+<text class="t t-b" x="351.5" y="41" text-anchor="middle" style="fill:var(--ink)">重すぎます</text>
+<text class="t-sm" x="99" y="70" text-anchor="middle" >10%</text>
+<text class="t-sm" x="200" y="70" text-anchor="middle" >15%</text>
+<text class="t-sm" x="301" y="70" text-anchor="middle" >20%</text>
+<text class="t t-b" x="0" y="96" text-anchor="start" >テント泊</text>
+<text class="t-sm" x="400" y="96" text-anchor="end" >体重の何％</text>
+<rect class="panel" x="0" y="104" width="97" height="34" rx="8"/>
+<text class="t t-b" x="48.5" y="125" text-anchor="middle" >軽め</text>
+<rect class="panel-good" x="101" y="104" width="97" height="34" rx="8"/>
+<text class="t t-b" x="149.5" y="125" text-anchor="middle" style="fill:var(--ink)">ちょうどよい</text>
+<rect x="202" y="104" width="97" height="34" rx="8" fill="var(--warn-soft)"/>
+<text class="t t-b" x="250.5" y="125" text-anchor="middle" style="fill:var(--ink)">やや重い</text>
+<rect class="panel-bad" x="303" y="104" width="97" height="34" rx="8"/>
+<text class="t t-b" x="351.5" y="125" text-anchor="middle" style="fill:var(--ink)">重すぎます</text>
+<text class="t-sm" x="99" y="154" text-anchor="middle" >18%</text>
+<text class="t-sm" x="200" y="154" text-anchor="middle" >25%</text>
+<text class="t-sm" x="301" y="154" text-anchor="middle" >32%</text>
+<line x1="0" y1="176" x2="400" y2="176" stroke="currentColor" opacity=".15"/>
+<text class="t t-b" x="0" y="200" text-anchor="start" >体重60kgの人が15kgを背負うと</text>
+<rect class="panel-bad" x="0" y="212" width="194" height="62" rx="12"/>
+<text class="t-sm" x="97" y="236" text-anchor="middle" style="fill:var(--ink)">日帰り・小屋泊の物差し</text>
+<text class="t t-b" x="97" y="262" text-anchor="middle" style="fill:var(--ink)">重すぎます</text>
+<rect class="panel-good" x="206" y="212" width="194" height="62" rx="12"/>
+<text class="t-sm" x="303" y="236" text-anchor="middle" style="fill:var(--ink)">テント泊の物差し</text>
+<text class="t t-b" x="303" y="262" text-anchor="middle" style="fill:var(--ink)">ちょうどよい</text>
+</svg>
+<figcaption>1g超えた瞬間に次の段階へ落ちます。</figcaption>
+</figure>
 
-<h2 id="two-rulers">物差しは1本ではなく2本ある</h2>
+<p>
+2本に割れるのは、テント・シュラフ・マットが削りようのない重さだからです。
+テント泊では数kgが確定し、日帰りと同じ線なら全員が「重すぎます」になります。
+</p>
 
-<p>日帰りと小屋泊は同じ物差しで、<strong>体重の10% / 15% / 20%</strong>で4段階に割れます。テント泊だけは別の物差しで、<strong>18% / 25% / 32%</strong>です。段階の名前は軽い順に「軽め」「ちょうどよい」「やや重い」「重すぎます」の4つです。</p>
+<p>
+体重を入れたくないなら、絶対量(kg)の物差しに切り替わります。日帰り・小屋泊は<strong>6 / 10 / 15kg</strong>、テント泊は<strong>10 / 15 / 19kg</strong>。
+</p>
 
-<p>なぜ2本に割るのかというと、テント・シュラフ・マットは削りようがないからです。テント泊を選んだ時点で数kgが確定するので、日帰りと同じ線を引けば全員が「重すぎます」になってしまい、判定として意味をなさなくなります。実際、<strong>体重60kgの人が15kgを背負ったとき、日帰りの物差しでは「重すぎます」、テント泊の物差しでは「ちょうどよい」</strong>と、まったく逆の答えになります。同じ重さでも、何をしに行くかで評価が変わるということです。</p>
+<p>
+体重60kgで13.0kgなら、入れれば「重すぎます」、入れなければ「やや重い」。
+日帰り・小屋泊では絶対量のほうが緩く、体重が軽い人ほど甘く出ます。
+</p>
 
-<p>境界は「以下」で判定されます。体重60kgで9.0kgちょうどは「ちょうどよい」に残り、12.0kgちょうどはまだ「やや重い」です。1g超えた瞬間に次の段階へ落ちます。</p>
+<h2 id="what-counts">数えるのは装備・献立・水の3つだけ</h2>
 
-<h2 id="what-counts">「背負う重さ」に何を数えるか</h2>
+<figure class="fig">
+<svg viewBox="0 -4 400 348" role="img" aria-label="背負う重さに足すのは装備・献立・水の3つだけ。登山靴950g、行動用パンツ280g、ベースレイヤー150g、帽子80g、靴下70g、腕時計60gの合計1.6kgは着ていくので数えない。ただしザック本体だけは着ていくに移せない">
+<defs><marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="currentColor" opacity=".5"/></marker></defs>
+<text class="t t-b t-hi" x="0" y="12" text-anchor="start" >ザックに入れて量る</text>
+<rect class="panel-good" x="0" y="18" width="400" height="66" rx="12"/>
+<rect class="box" x="14" y="32" width="118" height="40" rx="10"/>
+<text class="t t-b" x="73" y="57" text-anchor="middle" >装備</text>
+<rect class="box" x="141" y="32" width="118" height="40" rx="10"/>
+<text class="t t-b" x="200" y="57" text-anchor="middle" >献立</text>
+<rect class="box" x="268" y="32" width="118" height="40" rx="10"/>
+<text class="t t-b" x="327" y="57" text-anchor="middle" >水</text>
+<text class="t t-b bad-t" x="0" y="110" text-anchor="start" >着ていくものは数えない</text>
+<rect class="panel-bad" x="0" y="116" width="400" height="116" rx="12"/>
+<text class="t-sm" x="16" y="142" text-anchor="start" style="fill:var(--ink)">登山靴</text>
+<text class="t-sm" x="186" y="142" text-anchor="end" style="fill:var(--ink)">950g</text>
+<text class="t-sm" x="214" y="142" text-anchor="start" style="fill:var(--ink)">行動用パンツ</text>
+<text class="t-sm" x="384" y="142" text-anchor="end" style="fill:var(--ink)">280g</text>
+<text class="t-sm" x="16" y="168" text-anchor="start" style="fill:var(--ink)">ベースレイヤー</text>
+<text class="t-sm" x="186" y="168" text-anchor="end" style="fill:var(--ink)">150g</text>
+<text class="t-sm" x="214" y="168" text-anchor="start" style="fill:var(--ink)">帽子</text>
+<text class="t-sm" x="384" y="168" text-anchor="end" style="fill:var(--ink)">80g</text>
+<text class="t-sm" x="16" y="194" text-anchor="start" style="fill:var(--ink)">靴下</text>
+<text class="t-sm" x="186" y="194" text-anchor="end" style="fill:var(--ink)">70g</text>
+<text class="t-sm" x="214" y="194" text-anchor="start" style="fill:var(--ink)">腕時計</text>
+<text class="t-sm" x="384" y="194" text-anchor="end" style="fill:var(--ink)">60g</text>
+<text class="t t-b" x="16" y="220" text-anchor="start" style="fill:var(--ink)">合計 1.6kg</text>
+<text class="t-sm bad-t t-b" x="0" y="256" text-anchor="start" >→ 混ぜると判定が1段階まるごとずれる</text>
+<rect class="box-hi" x="0" y="280" width="400" height="58" rx="12"/>
+<text class="t-sm" x="200" y="302" text-anchor="middle" >ザック本体だけは「着ていく」に移せない</text>
+<text class="t-sm" x="200" y="324" text-anchor="middle" >外すと1kg近くが合計から消える</text>
+</svg>
+<figcaption>水は1ml = 1gです。500mlのボトル1本で500gは、防寒着1枚（350g）より重い量です。</figcaption>
+</figure>
 
-<p>合計に足されるのは<strong>装備・献立・水の3つだけ</strong>で、着ていくものは1gも入りません。登山靴も、行動用のパンツも、ベースレイヤーも、帽子も、靴下も、腕時計も、身につけている限り肩には乗らないからです。高尾山の日帰り想定で数えると、この着用ぶんは登山靴950g・行動用パンツ280g・ベースレイヤー150g・帽子80g・靴下70g・腕時計60gで合計1.6kgになります。これを背負う重さに混ぜてしまうと、判定が1段階まるごとずれます。</p>
-
-<p>ただし<strong>ザック本体だけは「着ていく」に切り替えられません</strong>。背負っているのだから着用ではないか、という理屈は成り立ちますが、そうすると1kg近くが合計から丸ごと消えて、実態より軽い見積もりが出てしまいます。</p>
-
-<p>水は1ml = 1gで数えます。500mlのボトル1本で500g、これは防寒着1枚（350g）より重いということです。</p>
-
-<h2 id="absolute">体重を入れないなら、kgの物差しに切り替わる</h2>
-
-<p>体重を入れたくない人もいます。その場合は体重比ではなく、絶対量(kg)で判定することになります。日帰り・小屋泊は<strong>6 / 10 / 15kg</strong>、テント泊は<strong>10 / 15 / 19kg</strong>です。</p>
-
-<p>ここで気をつけたいのは、2つの物差しが常に一致するわけではないことです。体重60kgに換算すると、テント泊の絶対量はほぼ体重比と重なります（食い違うのは10.0〜10.8kgと19.0〜19.2kgの狭い帯だけ）。ところが日帰り・小屋泊のほうは、絶対量のほうが明らかに緩くなります。<strong>体重60kgで13.0kgを背負うと、体重を入れれば「重すぎます」、入れなければ「やや重い」</strong>です。食い違うのは9.0〜10.0kgと12.0〜15.0kgの区間です。既定の日帰り一式が8.3kgなので、少し足すだけで入り込む帯にあたります。体重が軽い人ほど、絶対量の物差しは甘く出ると考えたほうが安全です。</p>
+<p>
+着ていくものが1gも入らないのは、身につけている限り肩に乗らないからです。
+図の内訳は高尾山の日帰り想定です。
+</p>
 
 <h2 id="examples">ごく普通の一式は、どこに着地するか</h2>
 
-<p>基準を示して終わりでは実感が湧かないので、条件から自動生成した既定の持ち物リスト（何も足さず、何も削っていない状態）が実際に何kgになるかを見ます。いずれも行動6時間での計算です。体重は最後の1行だけ68kg、ほかは60kgとしています。</p>
-
+<div class="tablewrap">
 <table class="data">
 <caption>既定の持ち物リストの実測（行動6時間／体重は最終行のみ68kg、ほかは60kg）</caption>
 <thead>
@@ -167,19 +232,56 @@
 <tr><td>北アルプス9泊10日・テント泊（体重68kg）</td><td>テント泊</td><td>21.3kg</td><td>31.3%「やや重い」</td></tr>
 </tbody>
 </table>
+</div>
 
-<p>興味深いのは2行目です。12.0kgは体重60kgのちょうど20%をわずかに超えます。画面には四捨五入して「体重の20%」と出ますが、判定はしきい値を10g超えているので「重すぎます」に落ちます。<strong>表示上は基準どおりに見えるのに、判定は一段下</strong>という状態です。夏の北アルプスに1泊、小屋泊で、特別なものは何も足していない普通の装備一式が、この線のすぐ上に着地するということでもあります。20%は「無茶をした人が超える線」ではなく、<strong>普通に荷造りすると触れる線</strong>だと考えたほうが実態に合います。</p>
+<p>
+2行目の12.0kgは、画面には四捨五入して「体重の20%」と出ます。
+しきい値を10g超えているので、判定は「重すぎます」です。
+夏の北アルプスに1泊、何も足していない普通の一式が、この線のすぐ上に着地します。
+</p>
 
-<p>4行目も割れます。体重68kgで31.3%ならテント泊の物差しでは「やや重い」ですが、体重を入れずに絶対量で見ると19kgを超えるので「重すぎます」になります。同じリストで判定が分かれる例です。なおこの2つのテント泊の例は献立を空にしたままの数字なので、食料を積めばさらに増えます。</p>
+<p>
+4行目は絶対量で見ると19kgを超え、「重すぎます」に割れます。
+テント泊の2例は献立が空のままの数字です。
+</p>
 
 <h2 id="where">重さの正体は、ザック本体・寝るもの・水</h2>
 
-<p>重すぎると分かったとき、多くの人はまず「あると快適なもの」から削ろうとします。しかし内訳を見ると、そこは的ではありません。</p>
+<figure class="fig">
+<svg viewBox="0 -4 400 258" role="img" aria-label="槍ヶ岳2泊3日テント泊18.5kgの内訳。ザック1900g、テント1600g、シュラフ1050g、マット400g、水3500gの5点で8450g、総重量の46%を占める">
+<defs><marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="currentColor" opacity=".5"/></marker></defs>
+<text class="t t-b" x="0" y="12" text-anchor="start" >槍ヶ岳2泊3日テント泊 18.5kg</text>
+<text class="t-sm" x="400" y="12" text-anchor="end" >の内訳</text>
+<text class="t" x="0" y="42" text-anchor="start" >ザック</text>
+<text class="t t-b" x="124" y="42" text-anchor="end" >1,900g</text>
+<rect x="136" y="29" width="132.5" height="15" rx="4" fill="var(--hi)" opacity=".8"/>
+<text class="t" x="0" y="68" text-anchor="start" >テント</text>
+<text class="t t-b" x="124" y="68" text-anchor="end" >1,600g</text>
+<rect x="136" y="55" width="111.5" height="15" rx="4" fill="var(--hi)" opacity=".8"/>
+<text class="t" x="0" y="94" text-anchor="start" >シュラフ</text>
+<text class="t t-b" x="124" y="94" text-anchor="end" >1,050g</text>
+<rect x="136" y="81" width="73.2" height="15" rx="4" fill="var(--hi)" opacity=".8"/>
+<text class="t" x="0" y="120" text-anchor="start" >マット</text>
+<text class="t t-b" x="124" y="120" text-anchor="end" >400g</text>
+<rect x="136" y="107" width="27.9" height="15" rx="4" fill="var(--hi)" opacity=".8"/>
+<text class="t" x="0" y="146" text-anchor="start" >水</text>
+<text class="t t-b" x="124" y="146" text-anchor="end" >3,500g</text>
+<rect x="136" y="133" width="244.0" height="15" rx="4" fill="var(--hi)" opacity=".8"/>
+<text class="t t-b" x="0" y="176" text-anchor="start" >この5点で8,450g</text>
+<text class="t t-b t-hi" x="400" y="176" text-anchor="end" >総重量の46%</text>
+<rect x="0" y="188" width="400" height="14" rx="7" fill="var(--sub)" opacity=".18"/>
+<rect x="0" y="188" width="184" height="14" rx="7" fill="var(--hi)"/>
+<text class="t-sm" x="0" y="226" text-anchor="start" >削る余地は「泊まる」ことそのものに埋まっている。</text>
+<text class="t-sm t-b" x="0" y="246" text-anchor="start" >小物を1つ抜くより、寝具か水か日程を見直すほうが早い</text>
+</svg>
+<figcaption>寝る3点（テント・シュラフ・マット）だけで総重量の16.5%、厳冬期1泊2日は19.1%、9泊10日は14.3%です。</figcaption>
+</figure>
 
-<p>槍ヶ岳2泊3日テント泊の18.5kgのうち、<strong>ザック1,900g＋テント1,600g＋シュラフ1,050g＋マット400g＋水3,500g＝8,450gが、総重量の46%</strong>を占めます。半分近くが5点で決まっているということです。ちなみに寝る3点（テント・シュラフ・マット）だけを取り出すと総重量の16.5%、厳冬期1泊2日で19.1%、9泊10日で14.3%で、装備だけに対して見ても2割前後です。<strong>削る余地は「泊まる」ことそのものに埋まっていて、小物側にはほとんどありません。</strong></p>
+<p>
+ザック本体は容量に連動して、900gから2,300gまで開きます。
+</p>
 
-<p>ザック本体は容量に連動して重くなります。900gから2,300gまで、実に1.4kgの幅があります。容量表示だけ大きくして重さを据え置けば「70Lなのに1.9kg」というありえない見積もりになるので、当然の連動です。そしてこの容量は<strong>標高帯をまったく見ず、泊まり方と泊数だけで決まります</strong>。3,000m峰だから大きいザックが要るのではなく、何泊してどこで寝るかだけが容量を決める、という考え方です。</p>
-
+<div class="tablewrap">
 <table class="data">
 <caption>ザック本体の容量めやすと重量（泊まり方と泊数だけで決まる／標高は見ない）</caption>
 <thead>
@@ -195,15 +297,25 @@
 <tr><td>テント泊</td><td>4泊5日以上</td><td>60〜75L</td><td>2,300g</td></tr>
 </tbody>
 </table>
+</div>
 
-<p>水は日数を掛けません。水場や小屋で汲み直すので、何泊しても<strong>1日分だけ</strong>持つ計算です（テント泊のみ炊事と翌朝のぶんとして1,000ml上乗せ）。1日分は体重×行動時間×5mlに季節補正（夏1.2／春秋1.0／冬0.8）を掛け、500ml単位に切り上げます。体重60kg・行動6時間なら夏2,500ml、春秋2,000ml、冬1,500ml。行動8時間の夏なら3,000mlです。<strong>夏の水だけで体重の4.2%</strong>を使う計算で、これは判定の1段階ぶんに近い量です。逆に言えば、途中に水場がある山なら、汲む場所を決めておくだけで判定が1段階変わり得ます。</p>
+<p>
+水は日数を掛けず、何泊しても1日分だけです（テント泊のみ炊事と翌朝のぶん1,000ml上乗せ）。
+1日分は500ml単位に切り上げ、体重60kg・行動6時間なら夏2,500ml、春秋2,000ml、冬1,500mlです。
+</p>
 
-<p>対照的に、たとえばカメラは400gです。「スマホで足りるならその400gを防寒着や水にまわせる」という程度の効き方で、単体で判定を動かす力はありません。小物を1つ抜くより、寝具か水か日程を見直すほうが、はるかに早いということです。</p>
+<p>
+夏の水だけで<strong>体重の4.2%</strong>、判定の1段階ぶんに近い量です。
+水場がある山なら、汲む場所を決めるだけで判定が変わり得ます。
+</p>
 
 <h2 id="table">早見表</h2>
 
-<p>ザックの中身を全部詰め、水も入れた状態で量ってください。着ていくもの（登山靴・帽子・行動着・腕時計など）は外して量ります。数えるのは装備・食料・水の3つだけです。</p>
+<p>
+中身を全部詰めて水も入れ、着ていくものは外して量ります。
+</p>
 
+<div class="tablewrap">
 <table class="data">
 <caption>判定の早見表（上半分が日帰り・小屋泊の物差し、下半分がテント泊の物差し）</caption>
 <thead>
@@ -220,24 +332,43 @@
 <tr><td>重すぎます</td><td>32%超</td><td>19.2kg超</td><td>19.0kg超</td></tr>
 </tbody>
 </table>
-<p class="meta">境界は「以下」で判定します。体重60kg・日帰りの9.0kgちょうどは「ちょうどよい」、12.0kgちょうどは「やや重い」に残ります。</p>
+</div>
+<p class="meta">境界は「以下」で判定します。体重60kg・日帰りの9.0kgちょうどは「ちょうどよい」に残ります。</p>
 
-<h3>判定が出たあと、何をするか</h3>
+<h2 id="after">判定が出たあと、何をするか</h2>
 
-<p>日帰り・小屋泊で「やや重い」に入ったら、背負えるものの、下りの膝と終盤の集中力に効いてきます。「あると快適」なものから見直す段階です。「重すぎます」まで行くと、転倒・膝の故障・行動時間の超過につながります。水は途中で汲む、共同装備を分ける、日程を見直す、という順で考えます。</p>
+<p>
+日帰り・小屋泊で「やや重い」なら、下りの膝と終盤の集中力に効いてきます。
+「あると快適」なものから見直す段階です。
+</p>
 
-<p>テント泊で「やや重い」なら、まず見直すのは寝る3点と共同装備の分担です。「重すぎます」まで行った場合は、共同装備の分担、水を現地で汲むことに加えて、<strong>小屋泊への切り替えまで含めて</strong>検討する場面と考えてよいでしょう。テント一式・シュラフ・マットが消えれば、物差しそのものが緩いほうへ変わるわけではなく、むしろ厳しい10/15/20%の側へ移りますが、それでも総重量は大きく下がります。</p>
+<p>
+「重すぎます」は転倒・膝の故障・行動時間の超過につながります。
+水は途中で汲む、共同装備を分ける、日程を見直す、の順で考えます。
+</p>
 
-<p>逆に「軽め」に収まったなら、余裕があるということです。防寒着や非常食をもう一段しっかりさせても背負えます。軽さそのものが目的ではありません。</p>
+<p>
+テント泊で「やや重い」なら、見直すのは寝る3点と共同装備の分担です。
+「重すぎます」なら、小屋泊への切り替えまで検討します。
+ただし物差しは厳しい10/15/20%の側へ移りますが、それでも総重量は大きく下がります。
+</p>
 
-<p>なお、ここで使っている品目ごとのグラム数は一般的な製品のおおよその値です。実際に量って入れ直すほど、見積もりは正確になります。判定を1段階ずらすのに必要な差は、段階の幅そのものです。体重60kgなら日帰り・小屋泊で3.0kg、テント泊で4.2kg（体重50kgなら2.5kgと3.5kg）で、ボトル1本ぶんで結論が変わるのは境界のすぐ手前にいるときだけです。裏を返せば、境界に近いほど量る手間は報われます。</p>
+<p>
+「軽め」なら余裕があります。防寒着や非常食をもう一段しっかりさせても背負えます。
+</p>
+
+<p>
+品目ごとのグラム数は一般的な製品のおおよその値です。
+1段階ずらすには段階の幅ぶん、体重60kgなら日帰り・小屋泊で3.0kg、テント泊で4.2kgの差が要ります。
+境界に近いほど、量る手間は報われます。
+</p>
 
 <div class="related">
-<p><strong>関連する記事</strong></p>
+<p>関連する記事</p>
 <ul>
-<li><a href="/guides/hiking-gear-by-altitude.html">標高と季節で変わる登山の持ち物</a></li>
-<li><a href="/yamajitaku/">山じたく</a></li>
-<li><a href="/guides/">手引き一覧</a></li>
+  <li><a href="/guides/hiking-gear-by-altitude.html">標高と季節で変わる登山の持ち物</a></li>
+  <li><a href="/yamajitaku/">山じたく</a></li>
+  <li><a href="/guides/">暮らしの手引き 一覧</a></li>
 </ul>
 </div>
 

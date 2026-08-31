@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>登山に水をどれだけ持つか｜tatsu456</title>
 <meta name="description" content="体重と行動時間と季節から必要な水の量を見積もる方法。日数ぶんをまとめて持たない理由と、テント泊だけ上乗せする理由も。">
-<link rel="stylesheet" href="/assets/style.css?v=20260831m">
+<link rel="stylesheet" href="/assets/style.css?v=20260831q">
 </head>
 <body>
 
@@ -113,37 +113,61 @@
 <h1>登山に水をどれだけ持つか</h1>
 <p class="meta">最終更新 2026年8月31日</p>
 
-<p>出発前夜、玄関に置いたザックの横に1Lのボトルを並べて、2本にするか3本にするかで手が止まることがあります。足りなければ行動そのものが止まりますが、水は1Lで1kgあり、荷物の中でいちばん重さに効きます。1本増やすか減らすかは、そのまま背中の1kgです。</p>
+<p class="card">
+<strong>水の量は勘ではなく掛け算で出せます。</strong>
+体重と行動時間から土台を出し、季節で補正して500ml単位に切り上げる。水は1Lで1kgあり、1本増やすか減らすかは、そのまま背中の1kgです。
+</p>
 
-<p>この判断は、勘ではなく掛け算で出せます。以下は登山の持ち物アプリ「山じたく」が水の量に使っている計算を、そのまま並べたものです。<strong>体の大きさ・動く時間・季節</strong>の3つで1日ぶんを出し、切り上げて持ち出しやすい数字にする、という順番になっています。</p>
+<h2 id="calc">体重×行動時間×5ml から始める</h2>
 
-<div class="toc">
-<p><strong>この記事の内容</strong></p>
-<ul>
-<li><a href="#basis">土台は「体重×行動時間×5ml」</a></li>
-<li><a href="#season">季節で1.2倍・0.8倍する</a></li>
-<li><a href="#round">500ml単位に切り上げる</a></li>
-<li><a href="#oneday">日数ぶんをまとめては持たない</a></li>
-<li><a href="#tent">テント泊だけ1L足す</a></li>
-<li><a href="#table">早見表</a></li>
-<li><a href="#adjust">表のとおりでは足りない場面</a></li>
-</ul>
-</div>
+<figure class="fig">
+<svg viewBox="0 -4 400 352" role="img" aria-label="体重60kgが6時間歩くと土台は1800ml。夏は1.2倍で2160ml、春秋は1.0倍で1800ml、冬は0.8倍で1440ml。500ml単位に切り上げてそれぞれ2500ml・2000ml・1500ml。テント泊はさらに1000mlを足す">
+<defs><marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="currentColor" opacity=".5"/></marker></defs>
+<text class="t t-b" x="0" y="12" text-anchor="start">① 土台をつくる</text>
+<rect class="panel" x="0" y="18" width="400" height="48" rx="12"/>
+<text class="t-sm" x="14" y="47" text-anchor="start">体重60kg × 行動6時間 × 5ml</text>
+<text class="t t-b" x="386" y="48" text-anchor="end" style="font-size:20px">1,800 ml</text>
+<path class="arrow" d="M200 68 V80" marker-end="url(#arw)"/>
+<text class="t t-b" x="0" y="94" text-anchor="start">② 季節の倍率をかける</text>
+<rect class="panel" x="0" y="100" width="128" height="76" rx="12"/>
+<text class="t t-b" x="64" y="124" text-anchor="middle">夏</text>
+<text class="t-sm" x="64" y="146" text-anchor="middle">× 1.2</text>
+<text class="t t-b" x="64" y="170" text-anchor="middle">2,160 ml</text>
+<rect class="panel" x="136" y="100" width="128" height="76" rx="12"/>
+<text class="t t-b" x="200" y="124" text-anchor="middle">春・秋</text>
+<text class="t-sm" x="200" y="146" text-anchor="middle">× 1.0</text>
+<text class="t t-b" x="200" y="170" text-anchor="middle">1,800 ml</text>
+<rect class="panel" x="272" y="100" width="128" height="76" rx="12"/>
+<text class="t t-b" x="336" y="124" text-anchor="middle">冬</text>
+<text class="t-sm" x="336" y="146" text-anchor="middle">× 0.8</text>
+<text class="t t-b" x="336" y="170" text-anchor="middle">1,440 ml</text>
+<path class="arrow" d="M64 180 V192" marker-end="url(#arw)"/>
+<path class="arrow" d="M200 180 V192" marker-end="url(#arw)"/>
+<path class="arrow" d="M336 180 V192" marker-end="url(#arw)"/>
+<text class="t t-b" x="0" y="210" text-anchor="start">③ 500ml単位に切り上げる</text>
+<rect class="panel-good" x="0" y="216" width="128" height="44" rx="12"/>
+<text class="t t-b t-hi" x="64" y="245" text-anchor="middle" style="font-size:20px">2,500</text>
+<rect class="panel-good" x="136" y="216" width="128" height="44" rx="12"/>
+<text class="t t-b t-hi" x="200" y="245" text-anchor="middle" style="font-size:20px">2,000</text>
+<rect class="panel-good" x="272" y="216" width="128" height="44" rx="12"/>
+<text class="t t-b t-hi" x="336" y="245" text-anchor="middle" style="font-size:20px">1,500</text>
+<path class="arrow" d="M200 264 V276" marker-end="url(#arw)"/>
+<text class="t t-b" x="0" y="294" text-anchor="start">④ テント泊なら ＋1,000ml</text>
+<rect class="panel" x="0" y="300" width="400" height="44" rx="12"/>
+<text class="t-sm" x="14" y="327" text-anchor="start">炊事に使うぶんと翌朝のぶん。小屋泊は上乗せなし</text>
+</svg>
+<figcaption>登山の持ち物アプリ「山じたく」が水の量に使っている計算です。</figcaption>
+</figure>
 
-<h2 id="basis">土台は「体重×行動時間×5ml」</h2>
+<p>1日に失う水は、体重1kgあたり1時間で5ml、という置き方です。掛け算にしているのは、「1日2L」のような固定値では45kgの人と85kgの人が同じ量になり、3時間の里山と10時間の縦走も同じ量になるからです。体重を入れない場合は60kgとして計算され、行動時間は1〜14時間の範囲で指定します。</p>
 
-<p>1日に失う水は、体重1kgあたり1時間で5ml、という置き方をします。体重60kgの人が6時間歩くなら、60×6×5で1,800mlです。</p>
+<p>最後の丸めは四捨五入ではなく<strong>常に切り上げ</strong>です。丸めで足りなくなる方向には決して動きません。季節をかけたあとの差が500mlに満たないと、<strong>季節を変えても切り上げで同じ値になることがあります</strong>。</p>
 
-<p>この形にしている理由は、「1日2L」のような固定値だと合わない人が必ず出るからです。固定値では、45kgの人と85kgの人が同じ量になり、3時間の里山と10時間の縦走も同じ量になります。汗で出ていく量は体の大きさと動いた時間のどちらにも比例するので、掛け算の形でないと両方を拾えません。<strong>体重が2割違えば必要な水も2割違い、行動時間が倍なら水も倍</strong>になる、という素直な作りです。</p>
+<h2 id="season">この「季節」は暦の季節ではない</h2>
 
-<p>体重を入れない場合は60kgとして計算されます。自分の値を入れないうちは、平均的な体格の人の数字を見ていることになります。行動時間は「今日どれだけ歩くか」の見込みで、1〜14時間の範囲で指定します。</p>
+<p>標高が上がるほど山の季節は前にずれるので、倍率の判定は標高帯ごとに違う月割りで行われます。使われるのは出発日の月ひとつです。</p>
 
-<h2 id="season">季節で1.2倍・0.8倍する</h2>
-
-<p>掛け算で出した土台に、季節の補正をかけます。夏は1.2倍、春と秋は1.0倍（そのまま）、冬は0.8倍です。同じ人が同じ6時間を歩いても、汗の量が季節で変わるからです。先ほどの1,800mlは、夏なら2,160ml、冬なら1,440mlになります。</p>
-
-<p>ここで注意が要るのは、<strong>この「季節」が暦の季節ではない</strong>ことです。標高が上がるほど山の季節は前にずれるので、判定は標高帯ごとに違う月割りで行われます。同じ10月でも、低山ならまだ秋、2,000mの山ならもう秋の終わりで、翌月には冬に入ります。判定に使われるのは出発日の月ひとつです。</p>
-
+<div class="tablewrap">
 <table class="data">
 <caption>標高帯ごとの季節の割り当て（この季節に応じて補正がかかる）</caption>
 <thead>
@@ -155,37 +179,46 @@
 <tr><td>1500m以上（2500m以上も同じ）</td><td>6月のみ</td><td>7〜9月</td><td>10月のみ</td><td>11〜5月</td></tr>
 </tbody>
 </table>
+</div>
 
-<p>表の3行目が効きます。2,500m級の山では、1年のうち夏は7〜9月の3か月だけで、11月から5月までは冬です。<strong>6月の北アルプスは春であって夏ではない</strong>ので、水の補正は1.2倍ではなく1.0倍になります。逆の向きにずれることもあります。9月は1,000m以上のどの帯でもまだ夏で1.2倍ですが、1,000m未満の低山だけは秋に入って1.0倍です。</p>
+<p>3行目が効きます。2,500m級の山では夏は7〜9月の3か月だけで、11月から5月までは冬です。<strong>6月の北アルプスは春であって夏ではない</strong>ので、補正は1.2倍ではなく1.0倍になります。</p>
 
-<h2 id="round">500ml単位に切り上げる</h2>
+<h2 id="oneday">日数ぶんはまとめて持たない</h2>
 
-<p>補正まで済んだ数字は2,160mlのような半端な値になりますが、そんな量を測って持つ人はいません。実際に持つのは500mlや1Lのボトルなので、最後に500ml単位へ切り上げます。2,160mlなら2,500ml、1,440mlなら1,500mlです。</p>
+<figure class="fig">
+<svg viewBox="0 -4 400 280" role="img" aria-label="無理のない上限9.0kgのうち、3日ぶんの水6kgは3分の2を占めて防寒着も食料も入らない。1日ぶんの2000mlなら帯のごく一部で収まる">
+<defs><marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="currentColor" opacity=".5"/></marker></defs>
+<text class="t t-b bad-t" x="0" y="12" text-anchor="start">3日ぶんをまとめて担ぐと</text>
+<rect class="panel-bad" x="0" y="18" width="400" height="92" rx="12"/>
+<text class="t-sm" x="14" y="40" text-anchor="start">無理のない上限は体重の15%（60kgなら9.0kg）</text>
+<rect class="box" x="14" y="52" width="372" height="26" rx="6"/>
+<rect x="16" y="54" width="244" height="22" rx="4" fill="var(--bad2)" opacity=".5"/>
+<text class="t-sm t-b" x="138.0" y="70" text-anchor="middle" style="fill:var(--ink)">水 6,000ml＝6kg</text>
+<text class="t-sm" x="324.0" y="70" text-anchor="middle" style="fill:var(--ink)">残り</text>
+<text class="t-sm bad-t t-b" x="14" y="98" text-anchor="start">→ 水だけで上限の3分の2。防寒着も食料も入らない</text>
+<text class="t t-b t-hi" x="0" y="142" text-anchor="start">1日ぶんだけ持つ</text>
+<rect class="panel-good" x="0" y="148" width="400" height="74" rx="12"/>
+<text class="t-sm" x="14" y="172" text-anchor="start">水場や山小屋で汲み直せるので、日数は掛けない</text>
+<rect class="box" x="14" y="184" width="372" height="26" rx="6"/>
+<rect x="16" y="186" width="79" height="22" rx="4" fill="var(--hi)" opacity=".5"/>
+<text class="t-sm t-b t-hi" x="105" y="202" text-anchor="start">1日ぶん 2,000ml</text>
+<text class="t-sm" x="0" y="246" text-anchor="start">テント泊は上限が体重の25%（60kgなら15.0kg）に変わるが、</text>
+<text class="t-sm" x="0" y="266" text-anchor="start">それでも水6kgは上限の4割を占める。</text>
+</svg>
+<figcaption>装備を数百グラム削っても取り返せない差です。</figcaption>
+</figure>
 
-<p>四捨五入ではなく<strong>常に切り上げ</strong>である点が要点です。丸めで足りなくなる方向には決して動かない、という選び方をしています。</p>
-
-<p>この切り上げには副作用もあります。土台の差が500mlより小さいと、季節の違いが丸めに飲み込まれます。体重50kgで6時間なら、土台1,500mlに対して春秋は1,500ml、冬は1,200mlですが、切り上げるとどちらも1,500mlで同じです。<strong>季節を変えても数字が動かないのは、計算が効いていないのではなく、差が丸めの幅より小さいだけ</strong>です。</p>
-
-<p>下限は500mlと決まっています。ただし体重30kg・行動1時間という最小の組み合わせでも土台は150ml、切り上げで500mlになるので、実際の入力範囲では切り上げのほうが先に効きます。下限はゼロにならないための歯止めです。</p>
-
-<h2 id="oneday">日数ぶんをまとめては持たない</h2>
-
-<p>ここがいちばん結果を左右する判断です。出てくる数字は、2泊3日でも3泊4日でも<strong>1日ぶん</strong>で、日数を掛けません。水場や山小屋で汲み直すのが普通だからです。</p>
-
-<p>もし掛けてしまうとどうなるか。体重60kg・行動6時間・秋の2泊3日なら1日ぶんは2,000mlですが、3日ぶんを担ぐと6,000ml、つまり6kgです。日帰りと小屋泊で無理のない上限とされるのは体重の15%で、60kgなら9.0kg。<strong>水だけで上限の3分の2を使い切る</strong>計算になり、防寒着も食料も予備の行動食も入りません。装備を数百グラム削っても取り返せない差です。テントを担ぐ日は物差しそのものが変わって体重の25%（60kgなら15.0kg）になりますが、それでも水6kgは上限の4割を占めます。</p>
-
-<p>裏を返すと、この数字は「途中で汲める」ことを前提にしています。前提が崩れるルートでは自分で足す必要があります。前提を知らずに表だけ使うのが、いちばん危ない使い方です。</p>
+<p>出てくる数字は、2泊3日でも3泊4日でも<strong>1日ぶん</strong>で、日数を掛けません。図の1日ぶん2,000mlは、体重60kg・行動6時間・秋の値です。</p>
 
 <h2 id="tent">テント泊だけ1L足す</h2>
 
-<p>泊まり方で変わるのはテント泊だけで、1日ぶんに1,000mlを上乗せします。炊事に使うぶんと、翌朝のぶんです。小屋泊は食事も水も現地で得られる前提なので、上乗せはありません。</p>
-
-<p>体重60kg・行動6時間・10月・2,000m級で比べると、小屋泊は2,000ml、同じ条件のテント泊は3,000mlです。テント泊の無理のない上限は体重の25%（60kgなら15.0kg）と別の物差しになりますが、そのうち3kgが水ということになります。</p>
+<p>泊まり方で変わるのはテント泊だけで、1日ぶんに1,000mlを上乗せします。体重60kg・行動6時間・10月・2,000m級なら、小屋泊は2,000ml、テント泊は3,000mlです。テント泊の上限15.0kgのうち、3kgが水ということになります。</p>
 
 <h2 id="table">早見表</h2>
 
 <p>体重と行動時間、季節の組み合わせで、1日ぶんの量です。テント泊なら、この値に1,000mlを足してください。</p>
 
+<div class="tablewrap">
 <table class="data">
 <caption>1日ぶんの水の目安（切り上げ後・ml／テント泊は＋1,000ml）</caption>
 <thead>
@@ -210,29 +243,49 @@
 <tr><td>80kg</td><td>10時間</td><td>5,000</td><td>4,000</td><td>3,500</td></tr>
 </tbody>
 </table>
+</div>
 
-<p>表を横に見ると、夏と冬の差はおおむね500〜1,500mlです。縦に見ると、行動時間が4時間から8時間に倍になれば量もほぼ倍になります。<strong>体重と行動時間は掛け算なので同じだけ効きますが、出発してから変えられるのは行動時間のほうだけ</strong>です。同じ山でも行程を短く切れば、背負う水はおおむねその比で軽くなります。ただし500ml単位の切り上げがあるので、行動時間を半分にしても水がちょうど半分になるとは限りません。体重60kg・夏なら、8時間の3,000mlは4時間で1,500mlとちょうど半分になりますが、6時間の2,500mlは3時間でも1,500ml、6割までしか減りません。</p>
+<p>横に見ると夏と冬の差はおおむね500〜1,500ml、縦に見ると行動時間が4時間から8時間に倍になれば量もほぼ倍です。<strong>体重と行動時間は掛け算なので同じだけ効きますが、出発してから変えられるのは行動時間のほうだけ</strong>です。同じ山でも行程を短く切れば、背負う水はおおむねその比で軽くなります。</p>
 
 <h2 id="adjust">表のとおりでは足りない場面</h2>
 
-<p>この表は「1日ぶん」「途中で汲める」という2つの前提の上にあります。次のような場面では、前提が崩れるので自分で上乗せしてください。</p>
+<figure class="fig">
+<svg viewBox="0 -4 400 284" role="img" aria-label="早見表の数字は1日ぶんで途中で汲めることが前提。水場が使えない・完全な冬山・低山の夏では表のとおりでは足りず、自分で上乗せする">
+<defs><marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="currentColor" opacity=".5"/></marker></defs>
+<text class="t t-b" x="0" y="12" text-anchor="start">この数字が立っている前提</text>
+<rect class="pill" x="0" y="18" width="190" height="30" rx="15"/><text class="t-sm" x="95" y="38" text-anchor="middle">1日ぶん</text>
+<rect class="pill" x="210" y="18" width="190" height="30" rx="15"/><text class="t-sm" x="305" y="38" text-anchor="middle">途中で汲める</text>
+<path class="arrow" d="M200 52 V66" marker-end="url(#arw)"/>
+<text class="t-sm bad-t t-b" x="0" y="84" text-anchor="start">表のとおりでは足りない場面は、自分で上乗せする</text>
+<rect class="panel" x="0" y="94" width="400" height="54" rx="12"/>
+<text class="t t-b" x="14" y="118" text-anchor="start">水場が使えない</text>
+<text class="t-sm" x="14" y="138" text-anchor="start">涸れている。小屋の営業が終わって水場も閉まる</text>
+<rect class="panel" x="0" y="156" width="400" height="54" rx="12"/>
+<text class="t t-b" x="14" y="180" text-anchor="start">完全な冬山</text>
+<text class="t-sm" x="14" y="200" text-anchor="start">雪を溶かして作る。水ではなく燃料の量の問題</text>
+<rect class="panel" x="0" y="218" width="400" height="54" rx="12"/>
+<text class="t t-b" x="14" y="242" text-anchor="start">低山の夏</text>
+<text class="t-sm" x="14" y="262" text-anchor="start">気温が下がらず風も通らない。多めに持つ</text>
+</svg>
+<figcaption>前提を知らずに表だけ使うのが、いちばん危ない使い方です。</figcaption>
+</figure>
 
-<p><strong>水場が使えないとき。</strong>涸れていることも、山小屋が営業を終えていて水場もトイレも閉まっていることもあります。とくに秋から冬に変わる時期の高い山では、小屋が閉じるとエスケープ先ごと無くなります。出発の1〜2日前に、現地の小屋や自治体、登山記録で確かめるのが確実です。</p>
+<p>秋から冬に変わる時期の高い山では、小屋が閉じるとエスケープ先ごと無くなります。水場が使えるかどうかは、出発の1〜2日前に現地の小屋や自治体、登山記録で確かめてください。</p>
 
-<p><strong>完全な冬山。</strong>小屋は閉まり、水は雪を溶かして作ることになります。持つ水の量ではなく、燃料の量の問題に変わります。</p>
+<p>低山の夏は、表の中では1.2倍がかかった値です。それでも早朝に登り始め、暑い時間帯に行動を終える計画にするほうが確実です。</p>
 
-<p><strong>低山の夏。</strong>標高が低いぶん気温が下がらず、風も通りません。表の中では1.2倍がかかった値ですが、多めに持って早朝に登り始め、暑い時間帯に行動を終える計画にするほうが確実です。</p>
+<p>水だけを大量に飲むと低ナトリウム血症になります。汗をかいたら塩分タブレットや経口補水も口に入れてください。ボトルは1本にまとめず分けて持つと、落としたときに全滅しません。</p>
 
-<p>水と一緒に考えたいのが塩分です。水だけを大量に飲むと低ナトリウム血症になります。汗をかいたら塩分タブレットや経口補水も口に入れてください。ボトルは1本にまとめず分けて持つと、落としたときに全滅しません。テント泊で水場から汲むなら、浄水器と水を運ぶ袋も要ります。</p>
+<p>テント泊で水場から汲むなら、浄水器と水を運ぶ袋も要ります。</p>
 
 <div class="related">
-<p><strong>関連する記事</strong></p>
+<p>関連する記事</p>
 <ul>
-<li><a href="/guides/pack-weight.html">ザックの重さは体重の何％まで</a></li>
-<li><a href="/guides/hiking-gear-by-altitude.html">標高と季節で変わる登山の持ち物</a></li>
-<li><a href="/guides/meal-planning.html">献立が決まらないときに、何から決めるか</a></li>
-<li><a href="/yamajitaku/">山じたく</a></li>
-<li><a href="/guides/">暮らしの手引き</a></li>
+  <li><a href="/guides/pack-weight.html">ザックの重さは体重の何％まで</a></li>
+  <li><a href="/guides/hiking-gear-by-altitude.html">標高と季節で変わる登山の持ち物</a></li>
+  <li><a href="/guides/meal-planning.html">献立が決まらないときに、何から決めるか</a></li>
+  <li><a href="/yamajitaku/">山じたく</a></li>
+  <li><a href="/guides/">暮らしの手引き 一覧</a></li>
 </ul>
 </div>
 

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>買い物リストは、売り場の順に並べると速い｜tatsu456</title>
 <meta name="description" content="必要な量と買う量は違います。売り場の順に並べる意味と、店で売っている単位への切り上げ、そこで出る余りの考え方。">
-<link rel="stylesheet" href="/assets/style.css?v=20260831m">
+<link rel="stylesheet" href="/assets/style.css?v=20260831q">
 </head>
 <body>
 
@@ -113,27 +113,69 @@
 <h1>買い物リストは、売り場の順に並べると速い</h1>
 <p class="meta">最終更新 2026年8月31日</p>
 
-<p>三品ぶんのレシピを書き写した買い物リストは、たいてい「豚バラ肉、玉ねぎ、醤油、さば、キャベツ、牛乳、にんじん」のような並びになります。料理を思い出した順に書いたのだから当然です。ところが店の中は料理ごとには並んでいません。青果、精肉、鮮魚、乳製品、乾物と、売り場ごとにまとまっています。料理順のリストを上から追うと、青果売り場と精肉売り場を何度も往復することになります。</p>
-
-<p>もうひとつ、リストの数字にも食い違いがあります。レシピが求めるのは「大根300g」ですが、店に並んでいるのは「大根1本」です。300gの大根は売っていません。<strong>必要量と買う量は別のもの</strong>で、その差はそのまま冷蔵庫に残ります。</p>
-
-<p>この記事の数値は、献立から買い物リストを組み立てる実装（献立メーカー_EX）で実際に使っている食材データ299件から引いたものです。手書きのメモにも同じ考え方が使えます。</p>
-
-<div class="toc">
-  <ul>
-    <li><a href="#aisle">売り場の順とは、どんな順か</a></li>
-    <li><a href="#two-orders">同じ分類でも、並べ方は場面で変わる</a></li>
-    <li><a href="#roundup">必要量と買う量は違う</a></li>
-    <li><a href="#leftover">余りは「4割」を境に書き出す</a></li>
-    <li><a href="#seasoning">調味料を最初から外しておく</a></li>
-    <li><a href="#pack">売り場の単位の目安</a></li>
-  </ul>
-</div>
+<p class="card">
+<strong>料理を思い出した順のリストは、青果と精肉を何度も往復させます。</strong>
+売り場の順に並べ替え、必要量を切り上げて買う量に直し、余りだけ書き添える。上から取っていけば、店を一周で出られます。
+</p>
 
 <h2 id="aisle">売り場の順とは、どんな順か</h2>
 
-<p>食材は10の分類に振り分けられ、買い物リストはこの順で並びます。生鮮が先、日持ちする棚のものが後、という並びです。多くのスーパーが生鮮を店舗の外周に置き、乾物や缶詰を中央の棚に置いているので、この順に拾っていくと売り場をおおむね一筆書きで回れます。</p>
+<figure class="fig">
+<svg viewBox="0 -4 400 402" role="img" aria-label="料理を思い出した順のリストは分類があちこちに飛ぶ。野菜・肉・魚介・卵・乳製品・大豆製品・穀類・乾物と缶詰・調味料・その他の順に並べ替えると、売り場を1本の道として一周で回れる">
+<defs><marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="currentColor" opacity=".5"/></marker></defs>
+<text class="t t-b bad-t" x="0" y="12" text-anchor="start">料理を思い出した順</text>
+<rect class="panel-bad" x="0" y="18" width="400" height="80" rx="12"/>
+<rect class="pill" x="8" y="28" width="64" height="26" rx="13"/><text class="t-sm" x="40" y="46" text-anchor="middle">豚バラ肉</text>
+<rect class="pill" x="80" y="28" width="52" height="26" rx="13"/><text class="t-sm" x="106" y="46" text-anchor="middle">玉ねぎ</text>
+<rect class="pill" x="140" y="28" width="40" height="26" rx="13"/><text class="t-sm" x="160" y="46" text-anchor="middle">醤油</text>
+<rect class="pill" x="188" y="28" width="40" height="26" rx="13"/><text class="t-sm" x="208" y="46" text-anchor="middle">さば</text>
+<rect class="pill" x="8" y="64" width="64" height="26" rx="13"/><text class="t-sm" x="40" y="82" text-anchor="middle">キャベツ</text>
+<rect class="pill" x="80" y="64" width="40" height="26" rx="13"/><text class="t-sm" x="100" y="82" text-anchor="middle">牛乳</text>
+<rect class="pill" x="128" y="64" width="64" height="26" rx="13"/><text class="t-sm" x="160" y="82" text-anchor="middle">にんじん</text>
+<text class="t-sm" x="0" y="122" text-anchor="start">肉→野菜→調味料→魚介→野菜→乳製品→野菜</text>
+<text class="t-sm bad-t t-b" x="0" y="142" text-anchor="start">→ 青果と精肉を何度も往復する</text>
+<text class="t t-b t-hi" x="0" y="176" text-anchor="start">売り場の順に並べ替える</text>
+<rect class="panel" x="0" y="194" width="400" height="154" rx="14"/>
+<path d="M36 224 H356 Q372 224 372 240 V286 Q372 302 356 302 H36" fill="none" stroke="var(--accent)" stroke-width="7" stroke-linecap="round" opacity=".22"/>
+<circle cx="36" cy="224" r="13" fill="var(--accent)"/>
+<text class="t-on" x="36" y="228" text-anchor="middle" style="font-size:12px">1</text>
+<text class="t-sm t-b" x="36" y="255" text-anchor="middle">野菜</text>
+<circle cx="108" cy="224" r="13" fill="var(--accent)"/>
+<text class="t-on" x="108" y="228" text-anchor="middle" style="font-size:12px">2</text>
+<text class="t-sm t-b" x="108" y="255" text-anchor="middle">肉</text>
+<circle cx="180" cy="224" r="13" fill="var(--accent)"/>
+<text class="t-on" x="180" y="228" text-anchor="middle" style="font-size:12px">3</text>
+<text class="t-sm t-b" x="180" y="255" text-anchor="middle">魚介</text>
+<circle cx="252" cy="224" r="13" fill="var(--accent)"/>
+<text class="t-on" x="252" y="228" text-anchor="middle" style="font-size:12px">4</text>
+<text class="t-sm t-b" x="252" y="255" text-anchor="middle">卵</text>
+<circle cx="324" cy="224" r="13" fill="var(--accent)"/>
+<text class="t-on" x="324" y="228" text-anchor="middle" style="font-size:12px">5</text>
+<text class="t-sm t-b" x="324" y="255" text-anchor="middle">乳製品</text>
+<circle cx="324" cy="302" r="13" fill="var(--accent)"/>
+<text class="t-on" x="324" y="306" text-anchor="middle" style="font-size:12px">6</text>
+<text class="t-sm t-b" x="324" y="333" text-anchor="middle">大豆製品</text>
+<circle cx="252" cy="302" r="13" fill="var(--accent)"/>
+<text class="t-on" x="252" y="306" text-anchor="middle" style="font-size:12px">7</text>
+<text class="t-sm t-b" x="252" y="333" text-anchor="middle">穀類</text>
+<circle cx="180" cy="302" r="13" fill="var(--accent)"/>
+<text class="t-on" x="180" y="306" text-anchor="middle" style="font-size:12px">8</text>
+<text class="t-sm t-b" x="180" y="333" text-anchor="middle">乾物・缶詰</text>
+<circle cx="108" cy="302" r="13" fill="var(--accent)"/>
+<text class="t-on" x="108" y="306" text-anchor="middle" style="font-size:12px">9</text>
+<text class="t-sm t-b" x="108" y="333" text-anchor="middle">調味料</text>
+<circle cx="36" cy="302" r="13" fill="var(--accent)"/>
+<text class="t-on" x="36" y="306" text-anchor="middle" style="font-size:12px">10</text>
+<text class="t-sm t-b" x="36" y="333" text-anchor="middle">その他</text>
+<text class="t-sm" x="0" y="370" text-anchor="start">生鮮が先、日持ちする棚のものが後</text>
+<text class="t-sm t-hi t-b" x="0" y="390" text-anchor="start">→ 上から拾えば、店を一周で出られる</text>
+</svg>
+<figcaption>同じ分類の中は名前順です。分類さえまたがなければ、あとは同じ売り場の前で探すだけです。</figcaption>
+</figure>
 
+<p>この記事の数字は、献立から買い物リストを組み立てる実装（献立メーカー_EX）の食材データ299件から引いたものです。食材は10の分類に振り分けられ、買い物リストはこの順で並びます。多くのスーパーが生鮮を外周に、乾物や缶詰を中央の棚に置いているからです。</p>
+
+<div class="tablewrap">
 <table class="data">
   <thead>
     <tr><th>並び</th><th>分類</th><th>主な中身</th><th>登録数</th></tr>
@@ -151,33 +193,78 @@
     <tr><td>10</td><td>その他</td><td>どの分類にも当たらなかったもの</td><td>0件</td></tr>
   </tbody>
 </table>
+</div>
 
-<p>生のきのこ類は野菜に含まれます。しめじもしいたけも青果売り場にあるからです。一方、同じきのこでも干ししいたけときくらげは乾物・缶詰に入っています。分類の基準が生物学ではなく<strong>棚の位置</strong>だからです。同じ分類の中は名前順に並びます。分類さえまたがなければ、あとは同じ売り場の前で探すだけなので、中の順序は何でもかまいません。</p>
+<p>生のきのこ類は野菜、干ししいたけときくらげは乾物・缶詰です。分類の基準が生物学ではなく<strong>棚の位置</strong>だからです。</p>
 
-<p>最後の「その他」に登録は1件もありません。ここは分類表に名前が見つからなかった食材が落ちる先です。正体の分からないものを最後に置いておけば、それを探して店内をさまよう前に、ほかの買い物はすべて終わっています。</p>
-
-<h2 id="two-orders">同じ分類でも、並べ方は場面で変わる</h2>
-
-<p>同じ10分類が、食材から料理を探す画面では別の順で並びます。肉、魚介、野菜、卵、乳製品、大豆製品、穀類、乾物・缶詰、調味料、その他の順です。買い物リストとは先頭が入れ替わっています。</p>
-
-<p>問いが違うからです。買い物リストが答えるのは「次にどの棚へ行くか」で、答えは売り場の配置に従います。食材から料理を探すときの問いは「今日の主役は何か」で、答えはたいてい特売だった肉か魚です。同じデータでも、目的が変われば最適な順序も変わります。家のメモも同じで、冷蔵庫の在庫メモは主役の肉・魚から、買い物メモは青果から書き始めると、それぞれ読みやすくなります。</p>
+<p>「その他」に登録は1件もありません。正体の分からないものを最後に置けば、探してさまよう前にほかの買い物は終わります。</p>
 
 <h2 id="roundup">必要量と買う量は違う</h2>
 
-<p>買う数の決め方は単純です。<strong>必要量 ÷ 1単位の重さ を切り上げる。ただし最低1</strong>。大根が1200g要るなら2本、50gしか要らなくても1本です。</p>
+<figure class="fig">
+<svg viewBox="0 -4 400 292" role="img" aria-label="豚バラ肉100gを三品ぶん足すと合計300g。1パック200gで割って切り上げると2パックで済む。料理ごとに切り上げると1パックずつ3パックになり、200g多く買うことになる。規則は必要量を1単位の重さで割って切り上げる、ただし最低1">
+<defs><marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="currentColor" opacity=".5"/></marker></defs>
+<text class="t t-b" x="0" y="12" text-anchor="start">先に全部足してから、最後に一度だけ切り上げる</text>
+<rect class="panel-good" x="0" y="22" width="400" height="104" rx="12"/>
+<text class="t-sm t-b" x="12" y="42" text-anchor="start" style="fill:var(--ink)">豚バラ肉を100gずつ三品</text>
+<rect class="pill" x="12" y="52" width="60" height="28" rx="14"/><text class="t-sm" x="42" y="71" text-anchor="middle">100g</text>
+<text class="t-sm t-b" x="80" y="71" text-anchor="middle" style="fill:var(--ink)">＋</text>
+<rect class="pill" x="88" y="52" width="60" height="28" rx="14"/><text class="t-sm" x="118" y="71" text-anchor="middle">100g</text>
+<text class="t-sm t-b" x="156" y="71" text-anchor="middle" style="fill:var(--ink)">＋</text>
+<rect class="pill" x="164" y="52" width="60" height="28" rx="14"/><text class="t-sm" x="194" y="71" text-anchor="middle">100g</text>
+<text class="t-sm t-b" x="232" y="71" text-anchor="middle" style="fill:var(--ink)">＝</text>
+<text class="t t-b" x="244" y="71" text-anchor="start" style="fill:var(--ink)">合計300g</text>
+<text class="t-sm" x="12" y="108" text-anchor="start" style="fill:var(--ink)">1パック200gで割って切り上げる</text>
+<path class="arrow" d="M214 104 h58" marker-end="url(#arw)"/>
+<rect class="pill-hi" x="280" y="90" width="96" height="28" rx="14"/><text class="t-on" x="328" y="109" text-anchor="middle" font-size="14">2パック</text>
+<rect class="panel-bad" x="0" y="138" width="400" height="96" rx="12"/>
+<text class="t-sm t-b" x="12" y="158" text-anchor="start" style="fill:var(--ink)">料理ごとに切り上げると</text>
+<rect class="pill" x="12" y="168" width="64" height="28" rx="14"/><text class="t-sm" x="44" y="187" text-anchor="middle">1パック</text>
+<text class="t-sm t-b" x="84" y="187" text-anchor="middle" style="fill:var(--ink)">＋</text>
+<rect class="pill" x="92" y="168" width="64" height="28" rx="14"/><text class="t-sm" x="124" y="187" text-anchor="middle">1パック</text>
+<text class="t-sm t-b" x="164" y="187" text-anchor="middle" style="fill:var(--ink)">＋</text>
+<rect class="pill" x="172" y="168" width="64" height="28" rx="14"/><text class="t-sm" x="204" y="187" text-anchor="middle">1パック</text>
+<text class="t-sm t-b" x="244" y="187" text-anchor="middle" style="fill:var(--ink)">＝</text>
+<text class="t t-b" x="256" y="187" text-anchor="start" style="fill:var(--ink)">3パック</text>
+<text class="t-sm t-b" x="12" y="220" text-anchor="start" style="fill:var(--ink)">200g多く買うことになる</text>
+<text class="t t-b" x="0" y="258" text-anchor="start">必要量 ÷ 1単位の重さ を切り上げる。ただし最低1</text>
+<text class="t-sm" x="0" y="280" text-anchor="start">大根が1200g要るなら2本、50gしか要らなくても1本</text>
+</svg>
+<figcaption>1本余分に買えば冷蔵庫が少し狭くなるだけですが、足りなければその日の料理が作れません。</figcaption>
+</figure>
 
-<p>切り上げるのは、切り捨てが取り返しのつかない失敗になるからです。1本余分に買えば冷蔵庫が少し狭くなるだけですが、足りなければその日の料理が作れません。二種類の間違いの重さが違うので、丸め方も対称にはしません。</p>
+<p>レシピが求めるのは「大根300g」ですが、店に並んでいるのは「大根1本」です。その差はそのまま冷蔵庫に残ります。</p>
 
-<p>順序も大事です。<strong>先に全部足してから、最後に一度だけ切り上げます</strong>。豚バラ肉を100gずつ三品で使う献立なら、合計300gなので1パック200gの商品は2パック。料理ごとに切り上げると1品につき1パックで3パックになり、200g多く買うことになります。同じ食材が複数の料理に出てくるときほど、まとめてから丸める効果が効きます。人数を変えて作る場合は、レシピの人数に対する倍率を先に掛け、それから足します。</p>
-
-<p>売り場の単位が分からない食材は、単位をでっち上げず「約250g」と重さのまま書きます。知らない「1袋」より、量りのある売り場で判断できる重さのほうが役に立ちます。合計が1000g以上になるとkg表記に切り替わります。</p>
+<p>売り場の単位が分からない食材は、単位をでっち上げず「約250g」と重さのまま書きます。知らない「1袋」より、量りのある売り場で判断できるからです。</p>
 
 <h2 id="leftover">余りは「4割」を境に書き出す</h2>
 
-<p>買った量から必要量を引いた差が、余りです。ただし余りをすべて書き出すとリストが注意書きだらけになります。1パック200gのうち8g残るという話は、献立にも冷蔵庫にも影響しません。</p>
+<p>買った量から必要量を引いた差が余りです。1パック200gのうち8g残るという話は献立にも冷蔵庫にも影響しないので、全部は書き出しません。</p>
 
-<p>そこで<strong>1単位の40%以上が余るときだけ</strong>書き出します。しきい値が単位ごとの比例値になっているのが要点で、大根1本1000gなら400g、油揚げ1枚30gならわずか12gが境目です。小さい単位のものは小さい余りでも困るので、絶対量で線を引くと合いません。</p>
+<figure class="fig">
+<svg viewBox="0 -4 400 234" role="img" aria-label="大根1本1000gを買って300g使うと余りは700gで、1単位の7割にあたり、4割の境より右にあるので書き出される。境目は単位に比例し、大根1本1000gなら400g、油揚げ1枚30gなら12g">
+<defs><marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="currentColor" opacity=".5"/></marker></defs>
+<text class="t-sm" x="0" y="14" text-anchor="start">大根1本1000gを買って、300g使うとき</text>
+<text class="t t-b" x="280" y="38" text-anchor="middle">余り700g</text>
+<path class="arrow" d="M280 44 V62" marker-end="url(#arw)"/>
+<rect class="panel" x="0" y="68" width="160" height="32" rx="8"/>
+<rect class="box-hi" x="160" y="68" width="240" height="32" rx="8"/>
+<text class="t-sm t-b" x="80" y="89" text-anchor="middle">書き出さない</text>
+<text class="t-sm t-b t-hi" x="280" y="89" text-anchor="middle">書き出す</text>
+<text class="t-sm" x="0" y="118" text-anchor="start">0%</text>
+<text class="t-sm t-b" x="160" y="118" text-anchor="middle">40%</text>
+<text class="t-sm" x="400" y="118" text-anchor="end">100%</text>
+<text class="t t-b" x="0" y="148" text-anchor="start">境目は1単位に比例する</text>
+<text class="t-sm" x="0" y="172" text-anchor="start">大根 1本 1000g</text>
+<text class="t-sm t-b" x="400" y="172" text-anchor="end">境目は 400g</text>
+<text class="t-sm" x="0" y="194" text-anchor="start">油揚げ 1枚 30g</text>
+<text class="t-sm t-b" x="400" y="194" text-anchor="end">境目は 12g</text>
+<text class="t-sm t-b" x="0" y="222" text-anchor="start">→ 小さい単位のものは、小さい余りでも困る</text>
+</svg>
+<figcaption>余りが出ると分かるのは、まだ買う前です。使い切れない見込みなら、買った日のうちに切って凍らせます。</figcaption>
+</figure>
 
+<div class="tablewrap">
 <table class="data">
   <thead>
     <tr><th>食材</th><th>売り場の単位</th><th>必要量</th><th>買う量</th><th>余り</th><th>書き出す</th></tr>
@@ -193,25 +280,21 @@
     <tr><td>卵</td><td>1パック = 600g</td><td>120g</td><td>1パック</td><td>480g</td><td>する</td></tr>
   </tbody>
 </table>
+</div>
 
-<p>表の二行目に注意してください。700g使う大根でも300gは残ります。書かれていないことは「余らない」ではなく「気にしなくていい量」です。しきい値のあるルールは必ずこの取りこぼしを持つので、大根やキャベツのような大きい単位のものは、書き出されなくても半端が残る前提でいたほうが確実です。</p>
-
-<p>余りが出ると分かるのは、まだ買う前です。この時点で使い道を決めておくと無駄が減ります。使い切れない見込みなら、買った日のうちに切って凍らせるのが確実です。</p>
+<p>表の二行目に注意してください。700g使う大根でも300gは残ります。書き出されないのは「余らない」ではなく「気にしなくていい量」です。</p>
 
 <h2 id="seasoning">調味料を最初から外しておく</h2>
 
-<p>買い物リストは既定で、レシピ側で「調味料あつかい」と印を付けた材料を出しません。三日ぶんの献立を足し上げると「醤油 大さじ14」のような行ができますが、醤油は冷蔵庫のドアにあります。切らしていない前提のものを毎回リストに載せると、本当に買うべき行が埋もれます。</p>
+<p>買い物リストは既定で、レシピ側で「調味料あつかい」と印を付けた材料を出しません。三日ぶんの献立を足すと「醤油 大さじ14」の行ができますが、醤油は冷蔵庫のドアにあります。</p>
 
-<p>ここで効いているのは分類ではなく、材料一つひとつに付いたこの印です。両者は一致しません。分類が調味料でも印のない使われ方があるものは、リストに出てきます。紅しょうが、カレールー、ココナッツミルク、白ワイン、粉山椒、木の芽の6食材がそれにあたります。逆に、分類が調味料でなくても印が付いていれば消えます。片栗粉は穀類ですが、レシピに出てくる207回すべてに印が付いていて、既定では一度もリストに現れません。小麦粉は111回中99回、パン粉は27回中23回、乳製品のバターも179回中129回に印が付いています。<strong>線を引いているのは分類ではなく、そのレシピでの扱い</strong>です。</p>
+<p>効いているのは分類ではなく、材料一つひとつに付いたこの印です。分類が調味料でも印のない使われ方があるものは、紅しょうが・カレールー・ココナッツミルク・白ワイン・粉山椒・木の芽の6食材で、リストに出てきます。逆に片栗粉は穀類ですが、レシピに出てくる207回すべてに印が付いていて、既定では一度もリストに現れません。</p>
 
-<p>単位のデータのほうは、また別の切り方をしています。299件のうち売り場の単位を持つのは249件で、単位のない50件はすべて調味料分類です。逆に調味料57件のうち単位を持つのは7件で、ココナッツミルク1缶400g、紅しょうが1パック100g、赤唐辛子1袋10g、木の芽1パック5g、ソース1本500g、粉山椒1瓶10g、チリパウダー1瓶15gです。ソースのように、冷蔵庫のドアにある常備品も混じっています。単位の有無は一貫した基準というより、食材ごとの個別の判断に近いものです。</p>
-
-<p>手書きのリストでも同じです。調味料は献立から自動で導かず、棚を見て切れているものだけ足す。この一手間を分けるだけで、リストの行数は目に見えて減ります。</p>
+<p>手書きでも同じです。調味料は献立から導かず、棚を見て切れているものだけ足すと、行数は目に見えて減ります。</p>
 
 <h2 id="pack">売り場の単位の目安</h2>
 
-<p>必要量を買う量に直すには、1単位が何グラムかを知っている必要があります。よく使う食材の目安です。</p>
-
+<div class="tablewrap">
 <table class="data">
   <thead>
     <tr><th>分類</th><th>食材と単位</th><th>1単位の重さ</th></tr>
@@ -246,22 +329,18 @@
     <tr><td>乾物・缶詰</td><td>トマト缶 1缶</td><td>400g</td></tr>
   </tbody>
 </table>
+</div>
 
-<p>この表には、バターのようにレシピによって調味料あつかいが分かれるものも含めています。同じバターでも、印が付く回と付かない回があり、付かない回は既定のリストにそのまま出てきます。切らして買いに行くときには、やはり1単位の重さが必要になるからです。</p>
-
-<p>最小は木の芽1パックの5g、最大は米1袋の5000gで、1000倍の幅があります。「1パック」という言葉だけでは量が決まらないので、単位は必ず重さと対で覚えておく必要があります。</p>
-
-<p>単位の書き方にもひとつ注意点があります。単位は「本」「パック」「丁」のような裸の数え方にして、数字を含めないことです。表示は個数と単位名をそのままつなげて作るので、単位名を「5kg」にすると、1つ買うときに「15kg」という読めない行になります。数と単位はいつも分けて持つ、という原則です。</p>
-
-<p>売り場の順に並べ替え、必要量を切り上げて買う量に直し、余りだけ書き添える。この三つが済んだリストは、上から順に取っていけば店を一周で出られる形になっています。</p>
+<p>表に載せていないものまで含めると、最小は木の芽1パックの5g、最大は米1袋の5000gで、1000倍の幅があります。「1パック」という言葉だけでは量が決まりません。</p>
 
 <div class="related">
-  <ul>
-    <li><a href="/guides/meal-planning.html">献立が決まらないときに、何から決めるか</a></li>
-    <li><a href="/guides/freezing-vegetables.html">野菜の冷凍・解凍 早見表</a></li>
-    <li><a href="/guides/freezing-basics.html">冷凍に向く食材・向かない食材の分かれ目</a></li>
-    <li><a href="/guides/">暮らしの手引き</a></li>
-  </ul>
+<p>関連する記事</p>
+<ul>
+  <li><a href="/guides/meal-planning.html">献立が決まらないときに、何から決めるか</a></li>
+  <li><a href="/guides/freezing-vegetables.html">野菜の冷凍・解凍 早見表</a></li>
+  <li><a href="/guides/freezing-basics.html">冷凍に向く食材・向かない食材の分かれ目</a></li>
+  <li><a href="/guides/">暮らしの手引き 一覧</a></li>
+</ul>
 </div>
 
 <nav class="postnav" aria-label="前後の記事">

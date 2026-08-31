@@ -9,7 +9,7 @@ import os, re, sys
 ROOT = '/Users/taka/tatsu456.github.io'
 
 # スタイルシートの版。CSSを変えたらここを上げる（全ページのリンクに付く）
-CSS_VERSION = '20260831m'
+CSS_VERSION = '20260831q'
 
 APPS = [
     ('/yamajitaku/',     '山じたく',             '登山の持ち物チェックリスト'),
@@ -329,6 +329,20 @@ def apply(rel, page, section, trail):
 
     # スタイルシートの版を、生成のたびに現在の値へそろえる
     s = re.sub(r'(/assets/style\.css\?v=)[0-9a-z]+', r'\g<1>' + CSS_VERSION, s)
+
+    # 列の多い表がページごと横に流れないよう、表を横スクロールの包みに入れる。
+    # 何度流しても同じ結果になるよう、いったん全部ほどいてから包み直す。
+    while '<div class="tablewrap">' in s:
+        s2 = re.sub(r'\n?<div class="tablewrap">\s*(<table class="data">.*?</table>)\s*</div>',
+                    lambda m: '\n' + m.group(1), s, flags=re.S)
+        s2 = re.sub(r'\n?<div class="tablewrap">\s*(<div class="tablewrap">)', r'\n\1', s2)
+        s2 = re.sub(r'(</table>)\s*</div>\s*</div>', r'\1\n</div>', s2)
+        if s2 == s:
+            break
+        s = s2
+    s = re.sub(r'\n?(<table class="data">.*?</table>)',
+               lambda m: '\n<div class="tablewrap">\n' + m.group(1) + '\n</div>',
+               s, flags=re.S)
 
     # 余分な空行を整理
     s = re.sub(r'\n{4,}', '\n\n\n', s)
