@@ -607,3 +607,31 @@ body > hr {
 }
 
 code { font-size: .9em; }
+
+/* --- 言語切替 --- */
+
+.langswitch {
+  display: flex;
+  gap: .3rem;
+  margin: 1.2rem 0 0;
+  font-size: .84rem;
+}
+
+.langswitch a,
+.langswitch span {
+  padding: .25rem .7rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  text-decoration: none;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.langswitch a:hover { border-color: var(--accent); color: var(--accent); }
+
+.langswitch [aria-current="true"] {
+  background: var(--card);
+  border-color: var(--accent);
+  color: var(--text);
+  font-weight: 600;
+}
