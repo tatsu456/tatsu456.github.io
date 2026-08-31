@@ -4,7 +4,7 @@ import sys, os, re
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from apply_chrome import masthead, crumbs, footer, SCRIPT, GUIDES, ROOT
 
-VER = '20260829c'
+from apply_chrome import CSS_VERSION as VER
 
 PAGE = '''<!doctype html>
 <html lang="ja">

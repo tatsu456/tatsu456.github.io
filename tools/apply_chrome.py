@@ -8,6 +8,9 @@ import os, re, sys
 
 ROOT = '/Users/taka/tatsu456.github.io'
 
+# スタイルシートの版。CSSを変えたらここを上げる（全ページのリンクに付く）
+CSS_VERSION = '20260831j'
+
 APPS = [
     ('/yamajitaku/',     '山じたく',             '登山の持ち物チェックリスト'),
     ('/kondate/',        '献立メーカー_EX',      '晩ごはんの献立'),
@@ -323,6 +326,9 @@ def apply(rel, page, section, trail):
     s = re.sub(r'<footer class="sitefooter">.*?</footer>', '', s, flags=re.S)
     s = re.sub(r'<script>\s*\(function \(\) \{\s*var menus.*?</script>', '', s, flags=re.S)
     s = s.replace('</body>', footer() + '\n\n' + SCRIPT + '\n\n</body>')
+
+    # スタイルシートの版を、生成のたびに現在の値へそろえる
+    s = re.sub(r'(/assets/style\.css\?v=)[0-9a-z]+', r'\g<1>' + CSS_VERSION, s)
 
     # 余分な空行を整理
     s = re.sub(r'\n{4,}', '\n\n\n', s)
