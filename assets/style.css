@@ -672,18 +672,52 @@ code { font-size: .9em; }
 .menu-panel .submenu > summary:hover { background: var(--card); color: var(--accent); }
 .menu-panel .submenu > summary small { color: var(--muted); font-weight: 400; margin-left: .5em; }
 
-/* 分野の中の記事は一段下げる。
+/* 分野の中の記事。
    .menu-panel の flex は直接の子にしか効かないので、ここで block にする */
-.menu-panel .submenu > a {
+.menu-panel .sub-items > a {
   display: block;
   padding-left: 1.5rem;
   font-size: .85rem;
 }
 
-.menu-panel .submenu > a.sub-index {
+.menu-panel .sub-items > a.sub-index {
   color: var(--muted);
   font-size: .8rem;
 }
 
-.menu-panel .submenu > a.sub-index:hover { color: var(--accent); }
+.menu-panel .sub-items > a.sub-index:hover { color: var(--accent); }
 .menu-panel .submenu + .submenu { border-top: 1px solid var(--line); margin-top: .2rem; padding-top: .2rem; }
+
+/* --- 広い画面では、分野と記事を横に並べる --- */
+
+/* パネルの外へ張り出すと画面幅によっては画面外に出るため、
+   パネル自体を広げて中で2段組にする。幅はこちらで決められるので破綻しない。 */
+@media (min-width: 940px) {
+  .menu-panel { position: relative; }
+
+  /* どれか分野を開いているときだけ広げる */
+  .menu-panel:has(.submenu[open]) { width: 32rem; }
+
+  .menu-panel:has(.submenu[open]) > a,
+  .menu-panel:has(.submenu[open]) > hr,
+  .menu-panel:has(.submenu[open]) > .submenu { width: 12.5rem; }
+
+  .menu-panel .sub-items {
+    position: absolute;
+    left: 13.2rem;
+    top: .4rem;
+    right: .4rem;
+    max-height: calc(100vh - 6rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding-left: .6rem;
+    border-left: 1px solid var(--line);
+  }
+
+  /* 横に並べるときは字下げが不要 */
+  .menu-panel .sub-items > a { padding-left: .62rem; }
+
+  /* 開いている分野を、右の一覧とつながって見えるようにする */
+  .menu-panel .submenu[open] > summary { background: var(--card); color: var(--accent); }
+}
+

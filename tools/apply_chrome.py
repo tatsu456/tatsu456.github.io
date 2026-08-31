@@ -107,10 +107,12 @@ def masthead(page, section):
             here = page == url or any(page == h for h, _ in rows)
             out.append(f'        <details class="submenu"{" open" if here else ""}>')
             out.append(f'          <summary>{title}<small>{len(rows)}本</small></summary>')
-            out.append(f'          <a class="sub-index" href="{url}"{cur(url, page)}>'
+            out.append(f'          <div class="sub-items">')
+            out.append(f'            <a class="sub-index" href="{url}"{cur(url, page)}>'
                        f'{title}の記事一覧</a>')
             for href, name in rows:
-                out.append(f'          <a href="{href}"{cur(href, page)}>{name}</a>')
+                out.append(f'            <a href="{href}"{cur(href, page)}>{name}</a>')
+            out.append('          </div>')
             out.append('        </details>')
         return '\n'.join(out)
 
@@ -200,6 +202,14 @@ SCRIPT = '''<script>
   menus.forEach(function (m) {
     m.addEventListener('toggle', function () {
       if (m.open) menus.forEach(function (o) { if (o !== m) o.open = false; });
+    });
+  });
+
+  // 分野の折りたたみ。広い画面では右に張り出すので、同時に開くと重なる。
+  var subs = Array.prototype.slice.call(document.querySelectorAll('.masthead .submenu'));
+  subs.forEach(function (s) {
+    s.addEventListener('toggle', function () {
+      if (s.open) subs.forEach(function (o) { if (o !== s) o.open = false; });
     });
   });
   document.addEventListener('click', function (e) {
