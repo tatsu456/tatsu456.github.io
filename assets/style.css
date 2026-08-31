@@ -635,3 +635,55 @@ code { font-size: .9em; }
   color: var(--text);
   font-weight: 600;
 }
+
+/* --- プルダウンの中の折りたたみ（分野） --- */
+
+.menu-panel .submenu > summary {
+  display: block;
+  padding: .48rem .62rem;
+  border-radius: 8px;
+  font-size: .875rem;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+  list-style: none;
+  line-height: 1.5;
+}
+
+.menu-panel .submenu > summary::-webkit-details-marker { display: none; }
+
+.menu-panel .submenu > summary::after {
+  content: "";
+  display: inline-block;
+  width: .32em; height: .32em;
+  margin-left: .45em;
+  vertical-align: .14em;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg) translateY(-.06em);
+  opacity: .5;
+}
+
+.menu-panel .submenu[open] > summary::after {
+  transform: rotate(225deg) translateY(-.16em);
+  opacity: .75;
+}
+
+.menu-panel .submenu > summary:hover { background: var(--card); color: var(--accent); }
+.menu-panel .submenu > summary small { color: var(--muted); font-weight: 400; margin-left: .5em; }
+
+/* 分野の中の記事は一段下げる。
+   .menu-panel の flex は直接の子にしか効かないので、ここで block にする */
+.menu-panel .submenu > a {
+  display: block;
+  padding-left: 1.5rem;
+  font-size: .85rem;
+}
+
+.menu-panel .submenu > a.sub-index {
+  color: var(--muted);
+  font-size: .8rem;
+}
+
+.menu-panel .submenu > a.sub-index:hover { color: var(--accent); }
+.menu-panel .submenu + .submenu { border-top: 1px solid var(--line); margin-top: .2rem; padding-top: .2rem; }

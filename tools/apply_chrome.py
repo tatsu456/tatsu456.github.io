@@ -96,15 +96,22 @@ def masthead(page, section):
         return ' data-current' if section == sec else ''
 
     def grouped_guides(page):
-        """分野の見出しを、その分野の一覧ページへのリンクにする。"""
+        """分野を折りたたみにして、既定では分野名だけが並ぶようにする。
+
+        24本を平らに並べると縦に長くなりすぎるため、分野ごとの <details> に畳む。
+        いま開いているページを含む分野だけは開いた状態で出す。
+        """
         out = []
         for label, rows in GUIDE_GROUPS:
             url, title = GUIDE_CATEGORIES[label]
-            out.append(f'        <hr>')
-            out.append(f'      <a href="{url}"{cur(url, page)}><strong>{title}</strong>'
-                       f'<small>{len(rows)}本の記事</small></a>')
+            here = page == url or any(page == h for h, _ in rows)
+            out.append(f'        <details class="submenu"{" open" if here else ""}>')
+            out.append(f'          <summary>{title}<small>{len(rows)}本</small></summary>')
+            out.append(f'          <a class="sub-index" href="{url}"{cur(url, page)}>'
+                       f'{title}の記事一覧</a>')
             for href, name in rows:
-                out.append(f'      <a href="{href}"{cur(href, page)}>{name}</a>')
+                out.append(f'          <a href="{href}"{cur(href, page)}>{name}</a>')
+            out.append('        </details>')
         return '\n'.join(out)
 
     return f'''<header class="masthead">
