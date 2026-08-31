@@ -690,7 +690,14 @@ code { font-size: .9em; }
   display: block;
   padding-left: 1.5rem;
   font-size: .85rem;
+  /* 2行に折り返す記事名があるので、余白だけでは切れ目が分からない。
+     1本ずつ線で区切り、角丸をやめて行として読ませる */
+  border-radius: 0;
+  padding-top: .52rem;
+  padding-bottom: .52rem;
 }
+
+.menu-panel .sub-items > a + a { border-top: 1px solid var(--line); }
 
 .menu-panel .sub-items > a.sub-index {
   color: var(--muted);
@@ -719,7 +726,7 @@ code { font-size: .9em; }
      一覧の下のほうが切れて読めない。 */
   .menu-panel:has(.submenu[open]) {
     width: 32rem;
-    height: min(27rem, calc(100vh - 5rem));
+    height: min(28.5rem, calc(100vh - 5rem));
   }
 
   .menu-panel:has(.submenu[open]) > a,
