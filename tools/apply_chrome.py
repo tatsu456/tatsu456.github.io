@@ -30,10 +30,16 @@ GUIDE_GROUPS = [
     ]),
     ('ぬか床', [
         ('/guides/nukadoko-troubleshooting.html', 'ぬか床の症状別・原因と手当て'),
+        ('/guides/nukazuke-timing.html',          'ぬか漬けの漬け時間は、野菜と季節で変わる'),
     ]),
     ('登山', [
         ('/guides/hiking-gear-by-altitude.html', '標高と季節で変わる登山の持ち物'),
         ('/guides/pack-weight.html',             'ザックの重さは体重の何％まで'),
+    ]),
+    ('くらしの段取り', [
+        ('/guides/meal-planning.html',           '献立が決まらないときに、何から決めるか'),
+        ('/guides/splitting-bills.html',         '割り勘の計算は、足す順序で金額が変わる'),
+        ('/guides/counting-situations.html',     '数え間違いが起きる場面と、その防ぎ方'),
     ]),
 ]
 
@@ -198,6 +204,14 @@ PAGES = {
         [('/guides/', '暮らしの手引き'), (None, '冷凍焼けを防ぐ、冷凍庫の使い方')]),
     'guides/pack-weight.html': ('/guides/pack-weight.html', 'guides',
         [('/guides/', '暮らしの手引き'), (None, 'ザックの重さは体重の何％まで')]),
+    'guides/nukazuke-timing.html': ('/guides/nukazuke-timing.html', 'guides',
+        [('/guides/', '暮らしの手引き'), (None, 'ぬか漬けの漬け時間は、野菜と季節で変わる')]),
+    'guides/meal-planning.html': ('/guides/meal-planning.html', 'guides',
+        [('/guides/', '暮らしの手引き'), (None, '献立が決まらないときに、何から決めるか')]),
+    'guides/splitting-bills.html': ('/guides/splitting-bills.html', 'guides',
+        [('/guides/', '暮らしの手引き'), (None, '割り勘の計算は、足す順序で金額が変わる')]),
+    'guides/counting-situations.html': ('/guides/counting-situations.html', 'guides',
+        [('/guides/', '暮らしの手引き'), (None, '数え間違いが起きる場面と、その防ぎ方')]),
 
     'counter1234/index.html': ('/counter1234/', 'apps', [(None, 'Counter1234')]),
     'counter1234/privacy.html': ('/counter1234/privacy.html', 'support',

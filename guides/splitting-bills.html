@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>割り勘の計算は、足す順序で金額が変わる｜tatsu456</title>
+<meta name="description" content="外税・チップ・カード手数料・両替手数料は、足す順序で1人あたりの金額が変わります。途中で丸めない理由と、誰が誰にいくら払うかの決め方。">
+<link rel="stylesheet" href="/assets/style.css?v=20260829c">
+</head>
+<body>
+
+<header class="masthead">
+<div class="masthead-inner">
+  <a class="brand" href="/">tatsu456</a>
+  <nav class="mainnav" aria-label="サイト内メニュー">
+    <a href="/">ホーム</a>
+    <details class="menu">
+      <summary>アプリ</summary>
+      <div class="menu-panel">
+      <a href="/counter1234/">Counter1234<small>カウンターと記録</small></a>
+      <a href="/kondate/">献立メーカー_EX<small>晩ごはんの献立</small></a>
+      <a href="/splitbill/">SplitBill_EX<small>多通貨の割り勘</small></a>
+      <a href="/nukadoko-diary/">ぬか床日記<small>混ぜたか覚えておかなくていい</small></a>
+      <a href="/yamajitaku/">山じたく<small>登山の持ち物チェックリスト</small></a>
+      <a href="/reitou/">冷凍図鑑<small>切り方から解凍まで</small></a>
+      </div>
+    </details>
+    <details class="menu" data-current>
+      <summary>暮らしの手引き</summary>
+      <div class="menu-panel">
+        <a href="/guides/">記事の一覧</a>
+        <p class="grp">冷凍保存</p>
+      <a href="/guides/freezing-basics.html">冷凍に向く食材・向かない食材の分かれ目</a>
+      <a href="/guides/freezing-vegetables.html">野菜の冷凍・解凍 早見表</a>
+      <a href="/guides/freezing-meat.html">肉の冷凍と解凍</a>
+      <a href="/guides/freezing-seafood.html">魚介の冷凍と解凍</a>
+      <a href="/guides/freezing-staples.html">ごはん・パン・麺の冷凍</a>
+      <a href="/guides/freezing-dishes.html">作りおきと料理の冷凍</a>
+      <a href="/guides/freezer-care.html">冷凍焼けを防ぐ、冷凍庫の使い方</a>
+        <p class="grp">ぬか床</p>
+      <a href="/guides/nukadoko-troubleshooting.html">ぬか床の症状別・原因と手当て</a>
+      <a href="/guides/nukazuke-timing.html">ぬか漬けの漬け時間は、野菜と季節で変わる</a>
+        <p class="grp">登山</p>
+      <a href="/guides/hiking-gear-by-altitude.html">標高と季節で変わる登山の持ち物</a>
+      <a href="/guides/pack-weight.html">ザックの重さは体重の何％まで</a>
+        <p class="grp">くらしの段取り</p>
+      <a href="/guides/meal-planning.html">献立が決まらないときに、何から決めるか</a>
+      <a href="/guides/splitting-bills.html" aria-current="page">割り勘の計算は、足す順序で金額が変わる</a>
+      <a href="/guides/counting-situations.html">数え間違いが起きる場面と、その防ぎ方</a>
+      </div>
+    </details>
+    <details class="menu">
+      <summary>サポート</summary>
+      <div class="menu-panel">
+        <a href="/#contact">お問い合わせ</a>
+        <hr>
+        <p class="grp">プライバシーポリシー</p>
+      <a href="/privacy-policy.html">献立メーカー_EX</a>
+      <a href="/counter1234/privacy.html">Counter1234</a>
+      <a href="/splitbill/privacy.html">SplitBill_EX</a>
+      <a href="/nukadoko-diary/privacy.html">ぬか床日記</a>
+      <a href="/yamajitaku/privacy.html">山じたく</a>
+      <a href="/reitou/privacy.html">冷凍図鑑</a>
+        <hr>
+        <a href="/reitou/terms.html">利用規約（冷凍図鑑）</a>
+      </div>
+    </details>
+  </nav>
+</div>
+</header>
+
+<nav class="crumbs" aria-label="現在の位置">
+  <a href="/">ホーム</a>
+  <span class="sep">›</span>
+  <a href="/guides/">暮らしの手引き</a>
+  <span class="sep">›</span>
+  <span aria-current="page">割り勘の計算は、足す順序で金額が変わる</span>
+</nav>
+
+
+<h1>割り勘の計算は、足す順序で金額が変わる</h1>
+<p class="meta">最終更新 2026年8月31日</p>
+
+<p>会計を終えて、その場で1人分を出す。ところがレシートの合計と数十円ずれる、同じ数字を入れたのに別のアプリだと答えが違う、精算のあとで1人だけ端数を多く払っている——割り勘でよく起きるこの手のずれは、計算間違いではなく<strong>足す順序の違い</strong>であることがほとんどです。</p>
+
+<p>税、チップ、カード手数料、自分用の買い物、誰かの立て替え。会計に混ざるこれらを「どの土台に、どの順で乗せるか」で結果は変わります。ここでは割り勘アプリ SplitBill_EX の計算式を材料に、順序が効く場面と効かない場面を切り分けます。式そのものの話なので、電卓や表計算で割り勘する場合にもそのまま当てはまります。</p>
+
+<div class="toc">
+<p><a href="#order">同じ料率でも、どこに乗せるかで答えが変わる</a><br>
+<a href="#exclusion">自分用の買い物を抜くと、その分の税も一緒に抜ける</a><br>
+<a href="#loan">立て替えは頭数で割らない</a><br>
+<a href="#who-pays">誰が誰に払うかは、金額が決まっても一通りではない</a><br>
+<a href="#rounding">途中で丸めないほうが、最後に合う</a><br>
+<a href="#rates">為替は入力した時点で固まらない</a><br>
+<a href="#table">早見表</a></p>
+</div>
+
+<h2 id="order">同じ料率でも、どこに乗せるかで答えが変わる</h2>
+
+<p>1,000円の会計に外税10%とチップ20%が付くとします。税もチップも税抜きの1,000円に並べて掛ければ、100円と200円で合計1,300円。チップを税込みの1,100円に重ねると220円になり、合計は1,320円です。料率はどちらも同じなのに、20円ずれます。</p>
+
+<p>このアプリは前者、つまり<strong>税とチップを同じ土台に並べて掛け、チップには税をかけない</strong>方式です。一方で「クレカ（換金）手数料」だけは、<strong>税とチップを両方乗せたあとの合計</strong>に掛けます。カード会社が実際に請求する順序に合わせているためで、チップなしの1,000円・外税10%・カード3%なら、3%は1,100円に掛かって33円、合計1,133円。チップが付いていれば、その手数料はチップ分にも掛かります。なお、カード手数料と両替手数料は同じ土台に同じように掛かり、明細でも1行で届くことが多いため、このアプリでは1項目に統合されています。</p>
+
+<p>ここで大事なのは、<strong>パーセント同士なら順序は結果を変えない</strong>ということです。10%を掛けてから3%を掛けても、3%を掛けてから10%を掛けても1,133円。掛け算は順番を入れ替えても同じだからです。金額が動くのは二つの場合だけです。ひとつは土台をずらしたとき(先ほどの1,300円と1,320円)、もうひとつは<strong>定額が混ざったとき</strong>です。</p>
+
+<p>定額の手数料は、土台がいくらであっても金額が変わりません。5,000円・外税10%・カード定額300円なら、税を計算したあとに300円を足して5,800円。もし300円を先に足してから税を計算すると、300円にも税が掛かって5,830円になります。定額は最後に足すのが実際の請求に近く、この方式では定額の手数料に税が掛かることはありません。</p>
+
+<h2 id="exclusion">自分用の買い物を抜くと、その分の税も一緒に抜ける</h2>
+
+<p>同じレシートに、自分だけが買った土産が混ざっている。そのぶんを割り勘から外すのは当然ですが、ここに落とし穴があります。<strong>外した瞬間、その品は税の計算からも抜ける</strong>からです。</p>
+
+<p>5,000円の会計、外税10%、自分用の買い物が1,000円だとします。まず1,000円を引き、残り4,000円に10%を掛けるので、割り勘の対象は4,400円、2人なら1人2,200円。ここに外した1,000円をそのまま足すと、支払総額は5,400円になります。ところが実際のレシートは5,000円の10%増しで5,500円。差の100円は、外した1,000円に本来かかっていた税です。</p>
+
+<p>だからこの手の除外欄には「その品にかかる税やサービス料」を入れ直す欄が付いています。加算率に10%と入れると外した分は1,100円になり、支払総額は5,500円でレシートと一致します。<strong>同じ10%を二度打つ</strong>のは冗長に見えますが、外した品と共有分で税率やサービス料が違う場面(酒だけ税率が違う、持ち帰りだけ軽減される)があるため、別々に持つ必要があります。表計算で自作するときも同じで、除外分は「税込みの実額」で引くのが安全です。</p>
+
+<p>なお、除外額を打ち間違えて会計より大きくしても、割り勘の対象は0で止まります。マイナスの割り勘が生まれないようにするための処理です。</p>
+
+<h2 id="loan">立て替えは頭数で割らない</h2>
+
+<p>「電車代を立て替えた」「先にホテル代を払った」といったお金は、割り勘の計算を一切通りません。貸した人にそのまま足し、借りた人からそのまま引くだけです。10米ドルを立て替えて日本円で精算し、1ドル150円なら、貸した人に+1,500円、借りた人に−1,500円が動きます。人数では割りません。</p>
+
+<p>理屈は単純で、立て替えは<strong>「割り方の話」ではなく「すでに動いたお金の付け替え」</strong>だからです。小計にも税にも触らせない位置に置くことで、税や手数料の土台を汚さずに済みます。立て替えにも加算率を付けられ、計算式は除外分とまったく同じです(1,000円の立て替えに10%なら1,100円、500円に8%なら540円が動きます)。</p>
+
+<h2 id="who-pays">誰が誰に払うかは、金額が決まっても一通りではない</h2>
+
+<p>全員の過不足が出たあと、送金を減らす定番のやり方が「いちばん多く受け取る人と、いちばん多く払う人を突き合わせる」方法です。差し引きして残った側を次の相手に回します。素直で人が読んで納得しやすい反面、<strong>最少の送金件数であることが保証された手順ではありません</strong>。</p>
+
+<p>そして、金額が同点で並ぶと組み合わせが決まりません。+2,000が2人、−2,000が2人という状況で同じ計算を8回走らせると、支払い2件・各2,000円という結果は毎回同じでも、誰が誰に払うかは5回と3回に分かれました。並べ替えの決め手が金額しかないためです。</p>
+
+<p>実用上の判断としては、<strong>合計と件数が同じなら、誰が誰に払うかは好きに決めてよい</strong>と考えて差し支えありません。アプリが出した相手と手元のメモが食い違っても、どちらかが間違っているとは限らないということです。</p>
+
+<h2 id="rounding">途中で丸めないほうが、最後に合う</h2>
+
+<p>1,000円を3人で割ると333.33333333333333333333333333333333333。3倍しても1,000円には戻りません。だからこの計算では途中で一切丸めず、丸めるのは<strong>送金1件ごとと、画面表示やCSV書き出しといった出力のときだけ</strong>で、方式は四捨五入です。表計算で1人分を四捨五入してから人数倍すると合計が合わなくなるのは、これと逆のことをしているからです。</p>
+
+<p>小さすぎる差は送金にしません。しきい値は精算通貨の最小単位の半分で、米ドルなら0.005、円なら0.5です。+0.004ドルと−0.004ドルのずれは、送金0件として消えます。</p>
+
+<p>もうひとつ、金額を小数として持つと壊れる、という問題があります。1234.56という値は保存と読み出しを経ると1234.5599999999997952のような値に化けることがあり、旅行1回分の会計を重ねるとずれが表に出ます。金額は小数ではなく文字列として持ち、10進数のまま計算するのが対策です。</p>
+
+<h2 id="rates">為替は入力した時点で固まらない</h2>
+
+<p>海外での割り勘は、明細を現地通貨のまま保存し、精算のたびに換算します。つまり<strong>レートが変われば過去の明細の円換算も変わります</strong>。レートの取得は起動時に1回と、設定画面の更新ボタンだけ。取得に失敗しても計算は止まらず、前回取れた値で続け、表示だけが「最新」から「保存済みレート」に下がります。一度も取得できていなければ「内蔵レート」で動きます。</p>
+
+<p>レートが本当に焼き付くのは最終精算で締めた瞬間ですが、締めた記録を復元するときは、手元が「内蔵レート」のときだけ保存されたレートに戻り、それ以外は今日のレートが優先されます。旅行中の割り勘では、<strong>いつのレートで締めたのかを金額と一緒に書き残す</strong>のが安全です。</p>
+
+<h2 id="table">早見表</h2>
+
+<table class="data">
+<tr><th>条件</th><th>出る答え</th><th>順序や条件を変えたら</th><th>なぜ</th></tr>
+<tr><td>1,000／外税10%／チップ20%</td><td>1,300</td><td>1,320(チップを税込1,100に重ねた場合)</td><td>税とチップを同じ土台に並べるか、重ねるかの違い</td></tr>
+<tr><td>1,000／外税10%／チップなし／カード3%</td><td>1,133(3%は税とチップを乗せた1,100に掛かる＝33)</td><td>1,133(カードを先に掛けても同額)</td><td>パーセント同士は掛け算なので順序で変わらない</td></tr>
+<tr><td>5,000／外税10%／カード定額300</td><td>5,800(5,000＋税500＋300)</td><td>5,830(300を税の前に足した場合)</td><td>定額は土台を無視するので、先に足すと課税対象が増える</td></tr>
+<tr><td>5,000／外税10%／除外1,000／加算率0%</td><td>支払総額 5,400</td><td>実際のレシートは 5,500</td><td>除外を先に引くので、外した1,000に税が掛からない</td></tr>
+<tr><td>5,000／外税10%／除外1,000／加算率10%</td><td>支払総額 5,500／割り勘対象 4,400／1人 2,200</td><td>レシート 5,500 と一致</td><td>外した分の税を除外側で入れ直したため</td></tr>
+<tr><td>会計1,000／除外5,000(打ち間違い)</td><td>割り勘対象 0／1人 0</td><td>制限がなければ負の割り勘対象</td><td>除外額は会計額で頭打ちにしている</td></tr>
+<tr><td>10米ドルを立て替え／精算は円／1ドル150円</td><td>貸した人 +1,500／借りた人 −1,500</td><td>頭数では割られない</td><td>立て替えは割り勘の計算を通らない付け替え</td></tr>
+<tr><td>1,000を立て替え／加算率10%</td><td>1,100 が動く</td><td>除外分とまったく同じ式</td><td>立て替えと除外は同じ加算のしかた</td></tr>
+<tr><td>+0.004米ドルと−0.004米ドル</td><td>送金 0 件</td><td>円ならしきい値は0.5円</td><td>最小単位の半分未満は送金にしない</td></tr>
+<tr><td>1,000を3人で割る</td><td>333.33333333333333333333333333333333333</td><td>3倍しても1,000には戻らない</td><td>途中は丸めず、送金1件ごとと出力時だけ丸める</td></tr>
+<tr><td>+2,000／+2,000／−2,000／−2,000</td><td>送金2件・各2,000(毎回同じ)</td><td>誰が誰に払うかは実行ごとに入れ替わる(8回中5回と3回)</td><td>並べ替えの決め手が金額だけで、同点の順位が決まらない</td></tr>
+</table>
+
+<p>割り勘でもめる原因の多くは、金額そのものではなく「どの土台に乗せたか」の食い違いです。税とチップを並べたのか重ねたのか、除外した品の税を入れ直したのか、立て替えを割ってしまっていないか。この三つを揃えれば、誰が計算しても同じ数字になります。</p>
+
+<div class="related">
+<p><a href="/splitbill/">SplitBill_EX</a>／<a href="/guides/">暮らしのガイド一覧</a>／<a href="/counter1234/">Counter1234</a>／<a href="/kondate/">献立メーカー_EX</a></p>
+</div>
+
+<nav class="postnav" aria-label="前後の記事">
+  <a class="prev" href="/guides/meal-planning.html"><span class="lbl">前の記事</span>献立が決まらないときに、何から決めるか</a>
+  <a class="next" href="/guides/counting-situations.html"><span class="lbl">次の記事</span>数え間違いが起きる場面と、その防ぎ方</a>
+</nav>
+
+
+<footer class="sitefooter">
+<div class="sitefooter-inner">
+  <div>
+    <h2>アプリ</h2>
+    <ul>
+      <li><a href="/counter1234/">Counter1234</a></li>
+      <li><a href="/kondate/">献立メーカー_EX</a></li>
+      <li><a href="/splitbill/">SplitBill_EX</a></li>
+      <li><a href="/nukadoko-diary/">ぬか床日記</a></li>
+      <li><a href="/yamajitaku/">山じたく</a></li>
+      <li><a href="/reitou/">冷凍図鑑</a></li>
+    </ul>
+  </div>
+  <div>
+    <h2>暮らしの手引き</h2>
+    <ul>
+      <li><a href="/guides/">記事の一覧</a></li>
+      <li><a href="/guides/freezing-basics.html">冷凍に向く食材・向かない食材の分かれ目</a></li>
+      <li><a href="/guides/freezing-vegetables.html">野菜の冷凍・解凍 早見表</a></li>
+      <li><a href="/guides/freezing-meat.html">肉の冷凍と解凍</a></li>
+      <li><a href="/guides/freezing-seafood.html">魚介の冷凍と解凍</a></li>
+      <li><a href="/guides/freezing-staples.html">ごはん・パン・麺の冷凍</a></li>
+      <li><a href="/guides/freezing-dishes.html">作りおきと料理の冷凍</a></li>
+      <li><a href="/guides/freezer-care.html">冷凍焼けを防ぐ、冷凍庫の使い方</a></li>
+      <li><a href="/guides/nukadoko-troubleshooting.html">ぬか床の症状別・原因と手当て</a></li>
+      <li><a href="/guides/nukazuke-timing.html">ぬか漬けの漬け時間は、野菜と季節で変わる</a></li>
+      <li><a href="/guides/hiking-gear-by-altitude.html">標高と季節で変わる登山の持ち物</a></li>
+      <li><a href="/guides/pack-weight.html">ザックの重さは体重の何％まで</a></li>
+      <li><a href="/guides/meal-planning.html">献立が決まらないときに、何から決めるか</a></li>
+      <li><a href="/guides/splitting-bills.html">割り勘の計算は、足す順序で金額が変わる</a></li>
+      <li><a href="/guides/counting-situations.html">数え間違いが起きる場面と、その防ぎ方</a></li>
+    </ul>
+  </div>
+  <div>
+    <h2>サポート</h2>
+    <ul>
+      <li><a href="/#contact">お問い合わせ</a></li>
+      <li><a href="/privacy-policy.html">プライバシーポリシー</a></li>
+      <li><a href="/reitou/terms.html">利用規約（冷凍図鑑）</a></li>
+    </ul>
+  </div>
+  <div class="copy">© 2026 tatsu456　iOSアプリを作っています。</div>
+</div>
+</footer>
+
+<script>
+(function () {
+  var menus = Array.prototype.slice.call(document.querySelectorAll('.masthead .menu'));
+  menus.forEach(function (m) {
+    m.addEventListener('toggle', function () {
+      if (m.open) menus.forEach(function (o) { if (o !== m) o.open = false; });
+    });
+  });
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('.masthead .menu')) menus.forEach(function (m) { m.open = false; });
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') menus.forEach(function (m) { m.open = false; });
+  });
+})();
+</script>
+
+</body>
+</html>
