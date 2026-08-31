@@ -721,3 +721,62 @@ code { font-size: .9em; }
   .menu-panel .submenu[open] > summary { background: var(--card); color: var(--accent); }
 }
 
+
+/* --- 記事中の図 --- */
+
+.fig {
+  margin: 1.8rem 0;
+  text-align: center;
+}
+
+.fig svg {
+  width: 100%;
+  height: auto;
+  max-width: 34rem;
+  overflow: visible;
+}
+
+.fig figcaption {
+  margin-top: .6rem;
+  font-size: .85rem;
+  color: var(--muted);
+  text-align: left;
+}
+
+/* 図の中で使う色。ダーク／ライトのどちらでも読める */
+.fig { --ink: var(--text); --sub: var(--muted); --line2: var(--line); --hi: var(--accent); }
+.fig .box { fill: var(--card); stroke: var(--line2); stroke-width: 1.5; }
+.fig .box-hi { fill: var(--card); stroke: var(--hi); stroke-width: 2; }
+.fig .t { fill: var(--ink); font-size: 13px; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif; }
+.fig .t-sm { fill: var(--sub); font-size: 11px; font-family: inherit; }
+.fig .t-hi { fill: var(--hi); font-weight: 700; }
+.fig .arrow { stroke: var(--sub); stroke-width: 1.5; fill: none; }
+.fig .bad { stroke: #c0392b; }
+.fig .bad-t { fill: #c0392b; }
+
+@media (prefers-color-scheme: dark) {
+  .fig .bad { stroke: #e8796b; }
+  .fig .bad-t { fill: #e8796b; }
+}
+
+/* 手順の番号つき見出し */
+.step {
+  display: flex;
+  align-items: baseline;
+  gap: .6rem;
+  margin: 2.4rem 0 .4rem;
+}
+
+.step .no {
+  flex: none;
+  width: 1.7rem; height: 1.7rem;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-size: .82rem;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+}
+
+.step h2 { margin: 0; font-size: 1.15rem; }
