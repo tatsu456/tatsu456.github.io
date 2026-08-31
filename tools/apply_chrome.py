@@ -9,7 +9,7 @@ import os, re, sys
 ROOT = '/Users/taka/tatsu456.github.io'
 
 # スタイルシートの版。CSSを変えたらここを上げる（全ページのリンクに付く）
-CSS_VERSION = '20260831j'
+CSS_VERSION = '20260831m'
 
 APPS = [
     ('/yamajitaku/',     '山じたく',             '登山の持ち物チェックリスト'),

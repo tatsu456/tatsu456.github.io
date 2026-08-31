@@ -732,7 +732,7 @@ code { font-size: .9em; }
 .fig svg {
   width: 100%;
   height: auto;
-  max-width: 34rem;
+  max-width: 30rem;
   overflow: visible;
 }
 
@@ -744,11 +744,51 @@ code { font-size: .9em; }
 }
 
 /* 図の中で使う色。ダーク／ライトのどちらでも読める */
-.fig { --ink: var(--text); --sub: var(--muted); --line2: var(--line); --hi: var(--accent); }
+.fig {
+  --ink: var(--text);
+  --sub: var(--muted);
+  --line2: var(--line);
+  --hi: var(--accent);
+  --cool: #4a86c8;      /* 冷たさ・氷 */
+  --cool-soft: #dceaf7;
+  --warn: #c8862f;      /* 注意 */
+  --warn-soft: #f7ecd8;
+  --bad2: #c0392b;      /* うまくいかない側 */
+  --bad-soft: #f7dedb;
+  --good-soft: #dcefe2;
+  --panel: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  .fig {
+    --cool: #7fb4e0;
+    --cool-soft: #1c2b38;
+    --warn: #d7a558;
+    --warn-soft: #322818;
+    --bad2: #e8796b;
+    --bad-soft: #38211e;
+    --good-soft: #1a2b20;
+    --panel: #1e1e1e;
+  }
+}
+
+.fig .panel { fill: var(--panel); stroke: var(--line2); stroke-width: 1; }
+.fig .panel-bad { fill: var(--bad-soft); stroke: none; }
+.fig .panel-good { fill: var(--good-soft); stroke: none; }
+.fig .cell { fill: var(--cool-soft); stroke: var(--cool); stroke-width: 2; }
+.fig .cell-broken { fill: var(--bad-soft); stroke: var(--bad2); stroke-width: 2; stroke-dasharray: 7 5; }
+.fig .ice { stroke: var(--cool); stroke-width: 2; stroke-linecap: round; fill: none; }
+.fig .ice-big { stroke: var(--bad2); stroke-width: 2.6; stroke-linecap: round; fill: none; }
+.fig .drop { fill: var(--cool); opacity: .55; }
+.fig .t-b { font-weight: 700; }
+.fig .pill { fill: var(--card); stroke: var(--line2); stroke-width: 1; }
+.fig .pill-hi { fill: var(--hi); stroke: none; }
+.fig .t-on { fill: #fff; font-weight: 700; }
+.fig .dia { fill: var(--card); stroke: var(--sub); stroke-width: 1.5; }
 .fig .box { fill: var(--card); stroke: var(--line2); stroke-width: 1.5; }
 .fig .box-hi { fill: var(--card); stroke: var(--hi); stroke-width: 2; }
-.fig .t { fill: var(--ink); font-size: 13px; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif; }
-.fig .t-sm { fill: var(--sub); font-size: 11px; font-family: inherit; }
+.fig .t { fill: var(--ink); font-size: 15px; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif; }
+.fig .t-sm { fill: var(--sub); font-size: 13px; font-family: inherit; }
 .fig .t-hi { fill: var(--hi); font-weight: 700; }
 .fig .arrow { stroke: var(--sub); stroke-width: 1.5; fill: none; }
 .fig .bad { stroke: #c0392b; }

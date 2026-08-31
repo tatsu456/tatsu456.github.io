@@ -6,3 +6,6 @@ NOTES.local.md
 # 生成スクリプトの副産物
 __pycache__/
 *.pyc
+
+# ローカル確認用のサーバ設定（公開サイトには不要）
+.claude/
