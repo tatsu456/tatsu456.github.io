@@ -31,20 +31,41 @@ GUIDE_GROUPS = [
     ('ぬか床', [
         ('/guides/nukadoko-troubleshooting.html', 'ぬか床の症状別・原因と手当て'),
         ('/guides/nukazuke-timing.html',          'ぬか漬けの漬け時間は、野菜と季節で変わる'),
+        ('/guides/ferment-intervals.html',        '発酵食品ごとに、世話の間隔はこれだけ違う'),
+        ('/guides/ferment-storage.html',          '発酵食品を常温・冷暗所・冷蔵庫のどこに置くか'),
     ]),
     ('登山', [
         ('/guides/hiking-gear-by-altitude.html', '標高と季節で変わる登山の持ち物'),
         ('/guides/pack-weight.html',             'ザックの重さは体重の何％まで'),
+        ('/guides/hiking-water.html',            '登山に水をどれだけ持つか'),
+        ('/guides/hiking-advisories.html',       '山で先に知っておきたい注意は、条件で変わる'),
     ]),
     ('くらしの段取り', [
         ('/guides/meal-planning.html',           '献立が決まらないときに、何から決めるか'),
+        ('/guides/shopping-list.html',           '買い物リストは、売り場の順に並べると速い'),
+        ('/guides/food-cost.html',               '献立の材料費は、何で決まるか'),
         ('/guides/splitting-bills.html',         '割り勘の計算は、足す順序で金額が変わる'),
+        ('/guides/currency-rates.html',          '旅行の割り勘で、為替レートをいつ確定させるか'),
+        ('/guides/lending-excluding.html',       '割り勘から外すもの、立て替えたもの'),
         ('/guides/counting-situations.html',     '数え間違いが起きる場面と、その防ぎ方'),
+        ('/guides/counting-record.html',         '数えたあとに、記録をどう残すか'),
+        ('/guides/counting-inventory.html',      '棚卸しの段取り'),
     ]),
 ]
 
+# 分野ごとの一覧ページ。パンくずの中間階層になる
+GUIDE_CATEGORIES = {
+    '冷凍保存':       ('/guides/freezing/', '冷凍保存'),
+    'ぬか床':         ('/guides/nukadoko/', 'ぬか床と発酵'),
+    '登山':           ('/guides/hiking/',   '登山'),
+    'くらしの段取り': ('/guides/living/',   'くらしの段取り'),
+}
+
 # 平坦なリスト（フッターやページ定義で使う）
 GUIDES = [row for _, rows in GUIDE_GROUPS for row in rows]
+
+# 記事 → 所属カテゴリ（パンくずに使う）
+GUIDE_OF = {href: label for label, rows in GUIDE_GROUPS for href, _ in rows}
 
 # アプリの並びに合わせる
 POLICIES = [
@@ -75,9 +96,13 @@ def masthead(page, section):
         return ' data-current' if section == sec else ''
 
     def grouped_guides(page):
+        """分野の見出しを、その分野の一覧ページへのリンクにする。"""
         out = []
         for label, rows in GUIDE_GROUPS:
-            out.append(f'        <p class="grp">{label}</p>')
+            url, title = GUIDE_CATEGORIES[label]
+            out.append(f'        <hr>')
+            out.append(f'      <a href="{url}"{cur(url, page)}><strong>{title}</strong>'
+                       f'<small>{len(rows)}本の記事</small></a>')
             for href, name in rows:
                 out.append(f'      <a href="{href}"{cur(href, page)}>{name}</a>')
         return '\n'.join(out)
@@ -213,6 +238,26 @@ PAGES = {
         [('/guides/', '暮らしの手引き'), (None, '割り勘の計算は、足す順序で金額が変わる')]),
     'guides/counting-situations.html': ('/guides/counting-situations.html', 'guides',
         [('/guides/', '暮らしの手引き'), (None, '数え間違いが起きる場面と、その防ぎ方')]),
+    'guides/ferment-intervals.html': ('/guides/ferment-intervals.html', 'guides',
+        [('/guides/', '暮らしの手引き'), (None, '発酵食品ごとに、世話の間隔はこれだけ違う')]),
+    'guides/ferment-storage.html': ('/guides/ferment-storage.html', 'guides',
+        [('/guides/', '暮らしの手引き'), (None, '発酵食品を常温・冷暗所・冷蔵庫のどこに置くか')]),
+    'guides/hiking-water.html': ('/guides/hiking-water.html', 'guides',
+        [('/guides/', '暮らしの手引き'), (None, '登山に水をどれだけ持つか')]),
+    'guides/hiking-advisories.html': ('/guides/hiking-advisories.html', 'guides',
+        [('/guides/', '暮らしの手引き'), (None, '山で先に知っておきたい注意は、条件で変わる')]),
+    'guides/counting-record.html': ('/guides/counting-record.html', 'guides',
+        [('/guides/', '暮らしの手引き'), (None, '数えたあとに、記録をどう残すか')]),
+    'guides/counting-inventory.html': ('/guides/counting-inventory.html', 'guides',
+        [('/guides/', '暮らしの手引き'), (None, '棚卸しの段取り')]),
+    'guides/shopping-list.html': ('/guides/shopping-list.html', 'guides',
+        [('/guides/', '暮らしの手引き'), (None, '買い物リストは、売り場の順に並べると速い')]),
+    'guides/food-cost.html': ('/guides/food-cost.html', 'guides',
+        [('/guides/', '暮らしの手引き'), (None, '献立の材料費は、何で決まるか')]),
+    'guides/currency-rates.html': ('/guides/currency-rates.html', 'guides',
+        [('/guides/', '暮らしの手引き'), (None, '旅行の割り勘で、為替レートをいつ確定させるか')]),
+    'guides/lending-excluding.html': ('/guides/lending-excluding.html', 'guides',
+        [('/guides/', '暮らしの手引き'), (None, '割り勘から外すもの、立て替えたもの')]),
 
     'counter1234/index.html': ('/counter1234/', 'apps', [(None, 'Counter1234')]),
     'counter1234/privacy.html': ('/counter1234/privacy.html', 'support',
@@ -271,9 +316,20 @@ def apply(rel, page, section, trail):
     return False
 
 
+def guide_trail(page):
+    """手引きの記事は、分野の一覧ページを挟んだ4階層にする。"""
+    label = GUIDE_OF.get(page)
+    if label is None:
+        return None
+    cat_url, cat_title = GUIDE_CATEGORIES[label]
+    title = dict(GUIDES)[page]
+    return [('/guides/', '暮らしの手引き'), (cat_url, cat_title), (None, title)]
+
+
 if __name__ == '__main__':
     n = 0
     for rel, (page, section, trail) in PAGES.items():
+        trail = guide_trail(page) or trail
         p = os.path.join(ROOT, rel)
         if not os.path.exists(p):
             print(f'  skip (未作成): {rel}')

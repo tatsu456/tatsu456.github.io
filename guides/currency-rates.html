@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>旅行の割り勘で、為替レートをいつ確定させるか｜tatsu456</title>
+<meta name="description" content="旅行中に動く為替レートを、どの時点の値で精算するか。レートをいつ取得していつ固定するのか、取れなかったときはどうなるのか。">
+<link rel="stylesheet" href="/assets/style.css?v=20260829c">
+</head>
+<body>
+
+<header class="masthead">
+<div class="masthead-inner">
+  <a class="brand" href="/">tatsu456</a>
+  <nav class="mainnav" aria-label="サイト内メニュー">
+    <a href="/">ホーム</a>
+    <details class="menu">
+      <summary>アプリ</summary>
+      <div class="menu-panel">
+      <a href="/yamajitaku/">山じたく<small>登山の持ち物チェックリスト</small></a>
+      <a href="/kondate/">献立メーカー_EX<small>晩ごはんの献立</small></a>
+      <a href="/reitou/">冷凍図鑑<small>切り方から解凍まで</small></a>
+      <a href="/nukadoko-diary/">ぬか床日記<small>混ぜたか覚えておかなくていい</small></a>
+      <a href="/splitbill/">SplitBill_EX<small>多通貨の割り勘</small></a>
+      <a href="/counter1234/">Counter1234<small>カウンターと記録</small></a>
+      </div>
+    </details>
+    <details class="menu" data-current>
+      <summary>暮らしの手引き</summary>
+      <div class="menu-panel">
+        <a href="/guides/">記事の一覧</a>
+        <hr>
+      <a href="/guides/freezing/"><strong>冷凍保存</strong><small>7本の記事</small></a>
+      <a href="/guides/freezing-basics.html">冷凍に向く食材・向かない食材の分かれ目</a>
+      <a href="/guides/freezing-vegetables.html">野菜の冷凍・解凍 早見表</a>
+      <a href="/guides/freezing-meat.html">肉の冷凍と解凍</a>
+      <a href="/guides/freezing-seafood.html">魚介の冷凍と解凍</a>
+      <a href="/guides/freezing-staples.html">ごはん・パン・麺の冷凍</a>
+      <a href="/guides/freezing-dishes.html">作りおきと料理の冷凍</a>
+      <a href="/guides/freezer-care.html">冷凍焼けを防ぐ、冷凍庫の使い方</a>
+        <hr>
+      <a href="/guides/nukadoko/"><strong>ぬか床と発酵</strong><small>4本の記事</small></a>
+      <a href="/guides/nukadoko-troubleshooting.html">ぬか床の症状別・原因と手当て</a>
+      <a href="/guides/nukazuke-timing.html">ぬか漬けの漬け時間は、野菜と季節で変わる</a>
+      <a href="/guides/ferment-intervals.html">発酵食品ごとに、世話の間隔はこれだけ違う</a>
+      <a href="/guides/ferment-storage.html">発酵食品を常温・冷暗所・冷蔵庫のどこに置くか</a>
+        <hr>
+      <a href="/guides/hiking/"><strong>登山</strong><small>4本の記事</small></a>
+      <a href="/guides/hiking-gear-by-altitude.html">標高と季節で変わる登山の持ち物</a>
+      <a href="/guides/pack-weight.html">ザックの重さは体重の何％まで</a>
+      <a href="/guides/hiking-water.html">登山に水をどれだけ持つか</a>
+      <a href="/guides/hiking-advisories.html">山で先に知っておきたい注意は、条件で変わる</a>
+        <hr>
+      <a href="/guides/living/"><strong>くらしの段取り</strong><small>9本の記事</small></a>
+      <a href="/guides/meal-planning.html">献立が決まらないときに、何から決めるか</a>
+      <a href="/guides/shopping-list.html">買い物リストは、売り場の順に並べると速い</a>
+      <a href="/guides/food-cost.html">献立の材料費は、何で決まるか</a>
+      <a href="/guides/splitting-bills.html">割り勘の計算は、足す順序で金額が変わる</a>
+      <a href="/guides/currency-rates.html" aria-current="page">旅行の割り勘で、為替レートをいつ確定させるか</a>
+      <a href="/guides/lending-excluding.html">割り勘から外すもの、立て替えたもの</a>
+      <a href="/guides/counting-situations.html">数え間違いが起きる場面と、その防ぎ方</a>
+      <a href="/guides/counting-record.html">数えたあとに、記録をどう残すか</a>
+      <a href="/guides/counting-inventory.html">棚卸しの段取り</a>
+      </div>
+    </details>
+    <details class="menu">
+      <summary>サポート</summary>
+      <div class="menu-panel">
+        <a href="/#contact">お問い合わせ</a>
+        <hr>
+        <p class="grp">プライバシーポリシー</p>
+      <a href="/yamajitaku/privacy.html">山じたく</a>
+      <a href="/privacy-policy.html">献立メーカー_EX</a>
+      <a href="/reitou/privacy.html">冷凍図鑑</a>
+      <a href="/nukadoko-diary/privacy.html">ぬか床日記</a>
+      <a href="/splitbill/privacy.html">SplitBill_EX</a>
+      <a href="/counter1234/privacy.html">Counter1234</a>
+        <hr>
+        <a href="/reitou/terms.html">利用規約（冷凍図鑑）</a>
+      </div>
+    </details>
+  </nav>
+</div>
+</header>
+
+<nav class="crumbs" aria-label="現在の位置">
+  <a href="/">ホーム</a>
+  <span class="sep">›</span>
+  <a href="/guides/">暮らしの手引き</a>
+  <span class="sep">›</span>
+  <a href="/guides/living/">くらしの段取り</a>
+  <span class="sep">›</span>
+  <span aria-current="page">旅行の割り勘で、為替レートをいつ確定させるか</span>
+</nav>
+
+
+<h1>旅行の割り勘で、為替レートをいつ確定させるか</h1>
+<p class="meta">最終更新 2026年8月31日</p>
+
+<p>五日間の旅行で、初日の宿は現地通貨、二日目の食事は同行者のカードでドル建て、最終日の土産はまた別の通貨。帰ってきて「じゃあ精算しよう」となったとき、最初に引っかかるのは金額ではなくレートです。旅行中ずっと為替は動いています。初日のレートで割るのか、帰国した日のレートで割るのか、それともカードの明細が届くまで待つのか。</p>
+
+<p>この問いに絶対の正解はありませんが、「どこで止めれば全員に説明がつくか」という選び方はあります。多通貨の割り勘アプリ SplitBill_EX の実装を読み、レートをいつ取り、いつ止め、取れなかったときに何を使っているかを、理屈ごと追いかけます。</p>
+
+<div class="toc">
+<p><a href="#itsu">動くレートを、どの時点で止めるか</a>／<a href="#usd">レート表は「1米ドルあたり」で持つ</a>／<a href="#torenai">取れなかったときに何を使うか</a>／<a href="#shimeru">確定するのは「締めた」瞬間</a>／<a href="#hyo">引くための表</a></p>
+</div>
+
+<h2 id="itsu">動くレートを、どの時点で止めるか</h2>
+
+<p>やり方は大きく二つです。ひとつは、支払いを記録するたびにその日のレートで自国通貨に直して控えておく方式。もうひとつは、支払いは現地通貨のまま記録しておき、精算するときに<strong>一本のレートでまとめて換算する</strong>方式です。</p>
+
+<p>SplitBill_EX は後者です。一件の支払いに保存されるのは、金額と通貨コード、日付や支払った人、それに手数料・税・チップ・個別の貸し借りといった明細で、<strong>レートを書き込む欄だけがありません</strong>。換算はそのつど手元のレート表を使って行われ、結果が支払いの記録に焼き付くことはありません。お会計の入力画面でも、1人あたりの額や貸し借りは精算通貨に換算されて表示されますが、残るのは元の通貨のままの金額です。</p>
+
+<p>なぜ一本にまとめるのか。割り勘が答えるべき問いは「誰が誰にいくら渡すか」という一つだけです。同じレート表で全件を換算すれば、誰がどの日に立て替えたかという偶然が結果に入り込みません。支払いごとに違う日のレートを当てると、たまたま自国通貨が弱い日に立て替えた人だけが有利、あるいは不利になります。誰がどの日に財布を出したかは、本来その人の手柄でも失点でもありません。</p>
+
+<p>ただし、表を一本にしても金額が動かなくなるわけではありません。通貨ごとに動き方が違えば、表を新しくするたびに送金額そのものは変わります。だからどこかで表を一つに決めて止める必要があり、その話は後半に出てきます。</p>
+
+<p>逆の言い分もあります。日ごとに換算したほうが、実際に財布から出ていった自国通貨には近い。ただしカードで払った分は、カード会社が独自の時点と条件で請求してくるので、どうやっても一致しません。そこを追いかけるより、<strong>レートと手数料を分ける</strong>ほうが破綻しません。実装でも、為替手数料とカード手数料は「レート」ではなく手数料の行として扱われ、税やチップを足したあとの金額に乗ります。手数料は率や額として説明できますが、レートは説明のしようがないからです。</p>
+
+<h2 id="usd">レート表は「1米ドルあたり」で持つ</h2>
+
+<p>保持しているレート表は「1米ドルが各通貨で何単位か」という形です。円からユーロのような組み合わせも、いったん米ドルを経由し、金額を元通貨のレートで割ってから先の通貨のレートを掛けて求めます。</p>
+
+<p>この形にする理由は表の大きさです。扱う通貨は30。直接のペアで持つなら 30×29 で870通りの数字を毎回取りに行くことになりますが、米ドル基準なら30個で足ります。</p>
+
+<p>代わりに、すべての換算が米ドルを一度通ります。ここで効いてくるのが数値の型で、レートは小数の二進表現を持ち込まない Decimal で扱われ、取得した値もいったん文字列を経由して変換されます。157 が 157.00000000000003 のような値になると、往復させたときに元へ戻らず、換算のたびに端の桁がずれていくためです。テストでは、100米ドルを円に直して戻すと元の100に戻ることを確かめています。</p>
+
+<p>もうひとつ、表に載っていない通貨コードが来たときは、金額をそのまま素通しします。換算できないことを理由に誰かの支払いを0にするほうが、換算されないまま残るよりはるかに危ないからです。</p>
+
+<h2 id="torenai">取れなかったときに何を使うか</h2>
+
+<p>レートは起動時に一度だけ、open.er-api.com の米ドル基準の一覧に問い合わせて取得します。打ち切りは8秒。端末のキャッシュは使わず取り直し、接続が戻るのを待つ設定も切ってあります。割り勘の画面は、開いた瞬間に使えないと意味がないからです。レートが少し古くても計算そのものは始められます。</p>
+
+<p>自動で取り直す仕組みはこれ以外にありません。設定画面に手動の更新ボタンがあるだけです。裏を返せば、宿に戻って電波が安定したときに一度押しておく、という運用が素直に効きます。</p>
+
+<p>受け取った応答は素通ししません。HTTPが200番台であること、応答が成功を名乗っていること、扱う30通貨のうち値が正のものだけを採ったうえで、米ドルが含まれ、5通貨以上そろっていること。ひとつでも欠ければ<strong>丸ごと捨てて前の表を使い続けます</strong>。半分だけ更新すると、通貨ごとに取得時点の違う表ができあがるからです。混ざった表は、特定の二通貨の間だけ狂うという、いちばん気づきにくい壊れ方をします。</p>
+
+<p>結果として、レートの出所は三段になります。この起動で取れた「最新」、前回までに取れていた「保存済み」、一度も取れていないときの「内蔵」です。内蔵は30通貨ぶんの概算値をアプリ自身が持っているもので、1米ドルが157円、0.92ユーロ、16,200ルピアといった水準です。取得時刻を持たないので、画面の更新時刻は「—」になります。</p>
+
+<p>細かいところでは、一度「最新」だった表は、次の取得に失敗した時点で「保存済み」に落とされます。数字も取得時刻も変わらず、ラベルだけが変わる。この起動で取れた数字ではない、というのは数字を見ても分からないからです。内蔵レートは、次回のために持ち越すレート表としては保存されません。取得できた値ではない概算を、最新のレートとして残さないためです。ただし内蔵レートのまま精算を締めた場合、その値は精算の記録の一部として残ります。</p>
+
+<h2 id="shimeru">確定するのは「締めた」瞬間</h2>
+
+<p>旅行中、金額は固定されません。支払いを足すたび、レートを更新するたび、精算額はそのときのレートで全件が計算し直されます。止まるのは、精算を締めたときです。</p>
+
+<p>締めると、参加者・支払い・通貨の設定・<strong>そのときのレート表・確定した送金額</strong>がひとまとまりで保存されます。過去の精算の画面は、その送金額をそのまま表示するだけで再計算しません。CSVに書き出すときも、そこに保存されたレート表を使います。半年後に開いても同じ数字が出るのは、そのためです。</p>
+
+<p>過去の精算を復元して続きを入力するときだけ、例外があります。手元のレートが内蔵の概算しかない場合に限り、保存されていたレートを採ります。これから足す支払いは今のレートで換算されるべきですが、手元に概算しかないなら、当時実際に取得できた値のほうが確からしいからです。</p>
+
+<p>共有機能で複数人が同じ部屋にいる場合、レート表は共有されません。流れるのは人・支払い・設定と、確定した精算です。締める前は端末ごとに末尾の数字が違うことがあり、確定した数字は締めた人の端末のレートで作られて全員に配られます。実務的な結論はひとつで、<strong>締める操作は一人が、電波のあるところで、更新してから行う</strong>ことです。</p>
+
+<p>端数の話も同じ場所で決まります。送金額は精算通貨の小数桁で四捨五入され、最小単位の半分に満たない残りは送金になりません。円・ウォン・ドン・ルピアは小数桁を持たない扱いなので、円で締めれば1円未満は出ません。締める通貨は、全員が実際に手渡しや送金でやり取りする通貨にしておくのが安全です。</p>
+
+<h2 id="hyo">引くための表</h2>
+
+<table class="data">
+<caption>レートの出所と、その扱い</caption>
+<tr><th>出所</th><th>そうなる条件</th><th>端末に保存</th><th>画面の見え方</th></tr>
+<tr><td>最新</td><td>この起動、または更新ボタンで取得に成功した</td><td>される</td><td>「最新」と、取得からの経過時間</td></tr>
+<tr><td>保存済み</td><td>今回は取れず、前回までに取れた表を使っている。取得に失敗すると最新から降格する</td><td>される</td><td>「保存済みレート」と、取得からの経過時間</td></tr>
+<tr><td>内蔵</td><td>一度も取得に成功していない。30通貨の概算値</td><td>されない</td><td>「内蔵レート」と、更新時刻は「—」</td></tr>
+</table>
+
+<table class="data">
+<caption>場面ごとに、どの時点のレートで計算されるか</caption>
+<tr><th>場面</th><th>使われるレート</th></tr>
+<tr><td>お会計を入力している最中</td><td>いま端末が持っている表。換算後の額は表示されるだけで、記録には残らない</td></tr>
+<tr><td>旅行中に途中経過を見る</td><td>いま端末が持っている表。更新すればその場で全件が計算し直される</td></tr>
+<tr><td>精算を締める</td><td>締めた端末がそのとき持っている表。人・支払い・設定・レート・送金額ごと保存される</td></tr>
+<tr><td>過去の精算を開く</td><td>計算し直さない。保存された送金額をそのまま表示</td></tr>
+<tr><td>過去の精算をCSVに出す</td><td>その精算に一緒に保存されているレート表</td></tr>
+<tr><td>過去の精算を復元して続ける</td><td>いまのレート。手元が内蔵レートのときだけ、保存されていたレートを採る</td></tr>
+<tr><td>オフラインで締める</td><td>直前に取得できた表。「最新」でないことはバッジに出る</td></tr>
+</table>
+
+<p>アプリを使わない場合でも、判断の順序は同じです。支払いは現地通貨のまま控えておく。手数料はレートに混ぜず別の行にする。締める日を決めて、その日のレートを一本に決め、決めた値を全員が見える形で書き残す。書き残しさえすれば、あとで為替がどう動いても、精算をやり直す理由はなくなります。</p>
+
+<div class="related">
+<p><a href="/guides/splitting-bills.html">割り勘の計算は、足す順序で金額が変わる</a>／<a href="/splitbill/">SplitBill_EX</a>／<a href="/guides/">暮らしの手引き</a></p>
+</div>
+
+<nav class="postnav" aria-label="前後の記事">
+  <a class="prev" href="/guides/splitting-bills.html"><span class="lbl">前の記事</span>割り勘の計算は、足す順序で金額が変わる</a>
+  <a class="next" href="/guides/lending-excluding.html"><span class="lbl">次の記事</span>割り勘から外すもの、立て替えたもの</a>
+</nav>
+
+
+<footer class="sitefooter">
+<div class="sitefooter-inner">
+  <div>
+    <h2>アプリ</h2>
+    <ul>
+      <li><a href="/yamajitaku/">山じたく</a></li>
+      <li><a href="/kondate/">献立メーカー_EX</a></li>
+      <li><a href="/reitou/">冷凍図鑑</a></li>
+      <li><a href="/nukadoko-diary/">ぬか床日記</a></li>
+      <li><a href="/splitbill/">SplitBill_EX</a></li>
+      <li><a href="/counter1234/">Counter1234</a></li>
+    </ul>
+  </div>
+  <div>
+    <h2>暮らしの手引き</h2>
+    <ul>
+      <li><a href="/guides/">記事の一覧</a></li>
+      <li><a href="/guides/freezing-basics.html">冷凍に向く食材・向かない食材の分かれ目</a></li>
+      <li><a href="/guides/freezing-vegetables.html">野菜の冷凍・解凍 早見表</a></li>
+      <li><a href="/guides/freezing-meat.html">肉の冷凍と解凍</a></li>
+      <li><a href="/guides/freezing-seafood.html">魚介の冷凍と解凍</a></li>
+      <li><a href="/guides/freezing-staples.html">ごはん・パン・麺の冷凍</a></li>
+      <li><a href="/guides/freezing-dishes.html">作りおきと料理の冷凍</a></li>
+      <li><a href="/guides/freezer-care.html">冷凍焼けを防ぐ、冷凍庫の使い方</a></li>
+      <li><a href="/guides/nukadoko-troubleshooting.html">ぬか床の症状別・原因と手当て</a></li>
+      <li><a href="/guides/nukazuke-timing.html">ぬか漬けの漬け時間は、野菜と季節で変わる</a></li>
+      <li><a href="/guides/ferment-intervals.html">発酵食品ごとに、世話の間隔はこれだけ違う</a></li>
+      <li><a href="/guides/ferment-storage.html">発酵食品を常温・冷暗所・冷蔵庫のどこに置くか</a></li>
+      <li><a href="/guides/hiking-gear-by-altitude.html">標高と季節で変わる登山の持ち物</a></li>
+      <li><a href="/guides/pack-weight.html">ザックの重さは体重の何％まで</a></li>
+      <li><a href="/guides/hiking-water.html">登山に水をどれだけ持つか</a></li>
+      <li><a href="/guides/hiking-advisories.html">山で先に知っておきたい注意は、条件で変わる</a></li>
+      <li><a href="/guides/meal-planning.html">献立が決まらないときに、何から決めるか</a></li>
+      <li><a href="/guides/shopping-list.html">買い物リストは、売り場の順に並べると速い</a></li>
+      <li><a href="/guides/food-cost.html">献立の材料費は、何で決まるか</a></li>
+      <li><a href="/guides/splitting-bills.html">割り勘の計算は、足す順序で金額が変わる</a></li>
+      <li><a href="/guides/currency-rates.html">旅行の割り勘で、為替レートをいつ確定させるか</a></li>
+      <li><a href="/guides/lending-excluding.html">割り勘から外すもの、立て替えたもの</a></li>
+      <li><a href="/guides/counting-situations.html">数え間違いが起きる場面と、その防ぎ方</a></li>
+      <li><a href="/guides/counting-record.html">数えたあとに、記録をどう残すか</a></li>
+      <li><a href="/guides/counting-inventory.html">棚卸しの段取り</a></li>
+    </ul>
+  </div>
+  <div>
+    <h2>サポート</h2>
+    <ul>
+      <li><a href="/#contact">お問い合わせ</a></li>
+      <li><a href="/privacy-policy.html">プライバシーポリシー</a></li>
+      <li><a href="/reitou/terms.html">利用規約（冷凍図鑑）</a></li>
+    </ul>
+  </div>
+  <div class="copy">© 2026 tatsu456　iOSアプリを作っています。</div>
+</div>
+</footer>
+
+<script>
+(function () {
+  var menus = Array.prototype.slice.call(document.querySelectorAll('.masthead .menu'));
+  menus.forEach(function (m) {
+    m.addEventListener('toggle', function () {
+      if (m.open) menus.forEach(function (o) { if (o !== m) o.open = false; });
+    });
+  });
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('.masthead .menu')) menus.forEach(function (m) { m.open = false; });
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') menus.forEach(function (m) { m.open = false; });
+  });
+})();
+</script>
+
+</body>
+</html>

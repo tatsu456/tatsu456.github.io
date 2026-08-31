@@ -16,7 +16,37 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://tatsu456.github.io/guides/counting-inventory.html</loc>
+    <lastmod>2026-08-31</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tatsu456.github.io/guides/counting-record.html</loc>
+    <lastmod>2026-08-31</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://tatsu456.github.io/guides/counting-situations.html</loc>
+    <lastmod>2026-08-31</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tatsu456.github.io/guides/currency-rates.html</loc>
+    <lastmod>2026-08-31</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tatsu456.github.io/guides/ferment-intervals.html</loc>
+    <lastmod>2026-08-31</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tatsu456.github.io/guides/ferment-storage.html</loc>
+    <lastmod>2026-08-31</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tatsu456.github.io/guides/food-cost.html</loc>
     <lastmod>2026-08-31</lastmod>
     <priority>0.6</priority>
   </url>
@@ -56,12 +86,42 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://tatsu456.github.io/guides/freezing/</loc>
+    <lastmod>2026-08-31</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tatsu456.github.io/guides/hiking-advisories.html</loc>
+    <lastmod>2026-08-31</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://tatsu456.github.io/guides/hiking-gear-by-altitude.html</loc>
     <lastmod>2026-08-31</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://tatsu456.github.io/guides/hiking-water.html</loc>
+    <lastmod>2026-08-31</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tatsu456.github.io/guides/hiking/</loc>
+    <lastmod>2026-08-31</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://tatsu456.github.io/guides/</loc>
+    <lastmod>2026-08-31</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tatsu456.github.io/guides/lending-excluding.html</loc>
+    <lastmod>2026-08-31</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tatsu456.github.io/guides/living/</loc>
     <lastmod>2026-08-31</lastmod>
     <priority>0.8</priority>
   </url>
@@ -76,12 +136,22 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://tatsu456.github.io/guides/nukadoko/</loc>
+    <lastmod>2026-08-31</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://tatsu456.github.io/guides/nukazuke-timing.html</loc>
     <lastmod>2026-08-31</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://tatsu456.github.io/guides/pack-weight.html</loc>
+    <lastmod>2026-08-31</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tatsu456.github.io/guides/shopping-list.html</loc>
     <lastmod>2026-08-31</lastmod>
     <priority>0.6</priority>
   </url>
