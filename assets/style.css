@@ -523,3 +523,87 @@ table.data th { background: var(--card); font-weight: 600; }
 /* アプリ一覧のカード内に置くときは、少し詰めて他のリンクと並べる */
 .app .appstore { margin: .9rem 0 .2rem; }
 .app .appstore a { padding: .6rem 1.15rem; font-size: .9rem; }
+
+/* --- アプリ一覧のカード（トップページ） --- */
+
+.lead { font-size: 1.03rem; }
+
+.app-body { margin: .9rem 0 0; font-size: .95rem; }
+.app-body p { margin: .55rem 0; }
+
+.app-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem .9rem;
+  margin: .9rem 0 0;
+  padding-top: .8rem;
+  border-top: 1px solid var(--line);
+  font-size: .87rem;
+}
+
+.app-links .sep { color: var(--muted); }
+
+/* --- スクリーンショット --- */
+
+.shots {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 14px;
+  margin: 1.4rem 0;
+}
+
+.shots a { display: block; line-height: 0; }
+
+.shots img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+}
+
+/* iPad など横長の並び */
+.shots.wide { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+
+/* --- 本文中の素のテーブル（プライバシーポリシー等） --- */
+
+.wrap table,
+main table,
+body > table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: .88rem;
+  margin: 1rem 0;
+  display: block;
+  overflow-x: auto;
+}
+
+body > table th,
+body > table td {
+  border: 1px solid var(--line);
+  padding: .55rem .7rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+body > table th { background: var(--card); font-weight: 600; white-space: nowrap; }
+
+/* --- 注意書きの囲み --- */
+
+.note {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: .9rem 1.1rem;
+  margin: 1.2rem 0;
+  font-size: .95rem;
+}
+
+/* --- 文書の区切り（1ページに2本のポリシーを載せる場合） --- */
+
+body > hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 4rem 0 2.5rem;
+}
+
+code { font-size: .9em; }
