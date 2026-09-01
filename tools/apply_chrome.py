@@ -153,11 +153,12 @@ def masthead(page, section):
 </header>'''
 
 
-def crumbs(trail):
-    """trail: [(href|None, label), ...] 末尾は現在地"""
+def crumbs(trail, lang='ja'):
+    """trail: [(href|None, label), ...] 末尾は現在地。lang='en' で英語ページ用の見出しにする"""
     if not trail:
         return ''
-    parts = ['<nav class="crumbs" aria-label="現在の位置">', '  <a href="/">ホーム</a>']
+    aria, home = ('Breadcrumb', 'Home') if lang == 'en' else ('現在の位置', 'ホーム')
+    parts = [f'<nav class="crumbs" aria-label="{aria}">', f'  <a href="/">{home}</a>']
     for href, label in trail:
         parts.append('  <span class="sep">›</span>')
         if href:
@@ -194,7 +195,7 @@ def footer():
       <li><a href="/reitou/terms.html">利用規約（冷凍図鑑）</a></li>
     </ul>
   </div>
-  <div class="copy">© 2026 tatsu456　iOSアプリを作っています。</div>
+  <div class="copy">© 2026 tatsu456　アプリを作っています。</div>
 </div>
 </footer>'''
 
@@ -230,6 +231,22 @@ PAGES = {
     'index.html': ('/', 'home', []),
 
     'guides/index.html': ('/guides/', 'guides', [(None, '暮らしの手引き')]),
+
+    # 英語ページ。共通ヘッダーは日本語のままだが、パンくずだけ英語にする
+    'counter1234/en/index.html': ('/counter1234/', 'apps',
+        [('/counter1234/', 'Counter1234'), (None, 'English')], 'en'),
+    'splitbill/en/index.html': ('/splitbill/', 'apps',
+        [('/splitbill/', 'SplitBill_EX'), (None, 'English')], 'en'),
+
+    # 分野ページ。ここが対象から漏れていて、CSSの版もアプリの並びも古いままだった
+    'guides/freezing/index.html': ('/guides/freezing/', 'guides',
+        [('/guides/', '暮らしの手引き'), (None, '冷凍保存')]),
+    'guides/nukadoko/index.html': ('/guides/nukadoko/', 'guides',
+        [('/guides/', '暮らしの手引き'), (None, 'ぬか床と発酵')]),
+    'guides/hiking/index.html': ('/guides/hiking/', 'guides',
+        [('/guides/', '暮らしの手引き'), (None, '登山')]),
+    'guides/living/index.html': ('/guides/living/', 'guides',
+        [('/guides/', '暮らしの手引き'), (None, 'くらしの段取り')]),
     'guides/freezing-basics.html': ('/guides/freezing-basics.html', 'guides',
         [('/guides/', '暮らしの手引き'), (None, '冷凍に向く食材・向かない食材の分かれ目')]),
     'guides/freezing-vegetables.html': ('/guides/freezing-vegetables.html', 'guides',
@@ -299,13 +316,13 @@ PAGES = {
 }
 
 
-def apply(rel, page, section, trail):
+def apply(rel, page, section, trail, lang='ja'):
     path = os.path.join(ROOT, rel)
     s = open(path, encoding='utf-8').read()
     before = s
 
     block = masthead(page, section)
-    c = crumbs(trail)
+    c = crumbs(trail, lang)
     if c:
         block += '\n\n' + c
 
@@ -365,13 +382,15 @@ def guide_trail(page):
 
 if __name__ == '__main__':
     n = 0
-    for rel, (page, section, trail) in PAGES.items():
+    for rel, entry in PAGES.items():
+        page, section, trail = entry[0], entry[1], entry[2]
+        lang = entry[3] if len(entry) > 3 else 'ja'
         trail = guide_trail(page) or trail
         p = os.path.join(ROOT, rel)
         if not os.path.exists(p):
             print(f'  skip (未作成): {rel}')
             continue
-        if apply(rel, page, section, trail):
+        if apply(rel, page, section, trail, lang):
             n += 1
             print(f'  ✓ {rel}')
     print(f'\n{n} ページ更新')
