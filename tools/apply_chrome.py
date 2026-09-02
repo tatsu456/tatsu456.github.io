@@ -11,6 +11,18 @@ ROOT = '/Users/taka/tatsu456.github.io'
 # スタイルシートの版。CSSを変えたらここを上げる（全ページのリンクに付く）
 CSS_VERSION = '20260831u'
 
+# Google アナリティクス（GA4）の測定ID。tatsu456.github.io 用のウェブストリーム。
+GA_ID = 'G-MMGJW4XELK'
+
+GA_SNIPPET = f'''<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){{ dataLayer.push(arguments); }}
+  gtag('js', new Date());
+  gtag('config', '{GA_ID}');
+</script>'''
+
 APPS = [
     ('/yamajitaku/',     '山じたく',             '登山の持ち物チェックリスト'),
     ('/kondate/',        '献立メーカー_EX',      '晩ごはんの献立'),
@@ -346,6 +358,25 @@ def apply(rel, page, section, trail, lang='ja'):
 
     # スタイルシートの版を、生成のたびに現在の値へそろえる
     s = re.sub(r'(/assets/style\.css\?v=)[0-9a-z]+', r'\g<1>' + CSS_VERSION, s)
+
+    # Google アナリティクスのタグを <head> の先頭（charset の直後）へ。
+    # 既存の分は消してから入れ直すので、IDを変えても二重に積まれない。
+    # 2つの <script> にまたがる。コメント付きの組と、はぐれた分の
+    # どちらも消えるまで繰り返す（壊れた状態からでも収束するように）
+    while True:
+        s2 = re.sub(
+            r'<!-- Google tag \(gtag\.js\) -->\s*'
+            r'<script[^>]*></script>\s*'
+            r'<script>.*?</script>\n*',
+            '', s, flags=re.S)
+        s2 = re.sub(
+            r'<script>\s*window\.dataLayer.*?gtag\(\'config\'.*?</script>\n*',
+            '', s2, flags=re.S)
+        if s2 == s:
+            break
+        s = s2
+    s = s.replace('<meta charset="utf-8">',
+                  '<meta charset="utf-8">\n' + GA_SNIPPET, 1)
 
     # 列の多い表がページごと横に流れないよう、表を横スクロールの包みに入れる。
     # 何度流しても同じ結果になるよう、いったん全部ほどいてから包み直す。
