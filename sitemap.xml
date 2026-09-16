@@ -171,6 +171,21 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://tatsu456.github.io/nukadoko-diary/en/</loc>
+    <lastmod>2026-08-31</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tatsu456.github.io/nukadoko-diary/</loc>
+    <lastmod>2026-08-31</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tatsu456.github.io/nukadoko-diary/privacy.html</loc>
+    <lastmod>2026-08-16</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://tatsu456.github.io/privacy-policy.html</loc>
     <lastmod>2026-08-31</lastmod>
     <priority>0.6</priority>
