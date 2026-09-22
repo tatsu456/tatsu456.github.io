@@ -25,6 +25,8 @@ GA_SNIPPET = f'''<!-- Google tag (gtag.js) -->
 
 APPS = [
     ('/yamajitaku/',     '山じたく',             '登山の持ち物チェックリスト'),
+    ('/albumdiet/',      'アルバムダイエット',   '写真と動画を小さくして容量確保'),
+    ('/ablooplay/',      'ABループレイ',         'ABリピートとゆっくり再生'),
     ('/kondate/',        '献立メーカー_EX',      '晩ごはんの献立'),
     ('/reitou/',         '冷凍図鑑',             '切り方から解凍まで'),
     ('/nukadoko-diary/', 'ぬか床日記',           '混ぜたか覚えておかなくていい'),
@@ -85,6 +87,8 @@ GUIDE_OF = {href: label for label, rows in GUIDE_GROUPS for href, _ in rows}
 # アプリの並びに合わせる
 POLICIES = [
     ('/yamajitaku/privacy.html',      '山じたく'),
+    ('/albumdiet/privacy.html',       'アルバムダイエット'),
+    ('/ablooplay/privacy.html',       'ABループレイ'),
     ('/privacy-policy.html',          '献立メーカー_EX'),
     ('/reitou/privacy.html',          '冷凍図鑑'),
     ('/nukadoko-diary/privacy.html',  'ぬか床日記'),
@@ -315,6 +319,12 @@ PAGES = {
     'splitbill/index.html': ('/splitbill/', 'apps', [(None, 'SplitBill_EX')]),
     'splitbill/privacy.html': ('/splitbill/privacy.html', 'support',
         [('/splitbill/', 'SplitBill_EX'), (None, 'プライバシーポリシー')]),
+    'albumdiet/index.html': ('/albumdiet/', 'apps', [(None, 'アルバムダイエット')]),
+    'albumdiet/privacy.html': ('/albumdiet/privacy.html', 'support',
+        [('/albumdiet/', 'アルバムダイエット'), (None, 'プライバシーポリシー')]),
+    'ablooplay/index.html': ('/ablooplay/', 'apps', [(None, 'ABループレイ')]),
+    'ablooplay/privacy.html': ('/ablooplay/privacy.html', 'support',
+        [('/ablooplay/', 'ABループレイ'), (None, 'プライバシーポリシー')]),
     'yamajitaku/index.html': ('/yamajitaku/', 'apps', [(None, '山じたく')]),
     'yamajitaku/privacy.html': ('/yamajitaku/privacy.html', 'support',
         [('/yamajitaku/', '山じたく'), (None, 'プライバシーポリシー')]),

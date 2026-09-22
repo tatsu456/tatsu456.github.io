@@ -22,6 +22,8 @@
 | ぬか床日記 | ぬか床の世話を記録し、症状から手当てを引く | [詳細](https://tatsu456.github.io/nukadoko-diary/) |
 | 山じたく | 標高と季節から登山の持ち物を組み立てる | [詳細](https://tatsu456.github.io/yamajitaku/) |
 | 冷凍図鑑 | 食材の冷凍・解凍の図鑑 | [詳細](https://tatsu456.github.io/reitou/) |
+| アルバムダイエット | 写真と動画を小さくして空き容量を取り戻す | [詳細](https://tatsu456.github.io/albumdiet/) |
+| ABループレイ | 聞きたい数秒をくりかえす。ゆっくりでも音程はそのまま | [詳細](https://tatsu456.github.io/ablooplay/) |
 
 ## 暮らしの手引き
 
