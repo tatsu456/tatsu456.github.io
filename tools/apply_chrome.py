@@ -9,7 +9,7 @@ import os, re, sys
 ROOT = '/Users/taka/tatsu456.github.io'
 
 # スタイルシートの版。CSSを変えたらここを上げる（全ページのリンクに付く）
-CSS_VERSION = '20260831u'
+CSS_VERSION = '20260922a'
 
 # Google アナリティクス（GA4）の測定ID。tatsu456.github.io 用のウェブストリーム。
 GA_ID = 'G-MMGJW4XELK'
@@ -216,7 +216,8 @@ def footer():
 </footer>'''
 
 
-SCRIPT = '''<script>
+SCRIPT = '''<!-- ここから下は tools/apply_chrome.py が入れ直す -->
+<script>
 (function () {
   var menus = Array.prototype.slice.call(document.querySelectorAll('.masthead .menu'));
   menus.forEach(function (m) {
@@ -239,7 +240,140 @@ SCRIPT = '''<script>
     if (e.key === 'Escape') menus.forEach(function (m) { m.open = false; });
   });
 })();
-</script>'''
+</script>
+
+<script>
+(function () {
+  // スクリーンショットは、ページを離れずに大きく見られるようにする。
+  // リンクのままだと画像のURLへ飛ぶので、ブラウザの戻るでしか帰れず、
+  // 隣の画面と見比べることもできない。閉じるボタンと前後の送りを出す。
+  // ここが動かないときは、これまでどおりリンクとして開く。
+  var groups = Array.prototype.slice.call(document.querySelectorAll('.shots'));
+  if (!groups.length || !document.body) return;
+
+  var links = [];     // いま開いている並び。ページに複数あっても混ざらない
+  var at = 0;
+  var opener = null;  // 閉じたときに、押した絵へ戻す
+
+  var box = document.createElement('div');
+  box.className = 'lightbox';
+  box.hidden = true;
+  box.setAttribute('role', 'dialog');
+  box.setAttribute('aria-modal', 'true');
+  box.setAttribute('aria-label', '画面を大きく見る');
+  box.innerHTML =
+    '<button type="button" class="lightbox-btn lightbox-close" aria-label="閉じる">\u00d7</button>' +
+    '<img class="lightbox-image" alt="">' +
+    '<button type="button" class="lightbox-btn lightbox-prev" aria-label="前の画面">\u2039</button>' +
+    '<button type="button" class="lightbox-btn lightbox-next" aria-label="次の画面">\u203a</button>' +
+    '<p class="lightbox-bar"><span class="lightbox-caption"></span>' +
+    '<span class="lightbox-count"></span></p>';
+  document.body.appendChild(box);
+
+  var image = box.querySelector('.lightbox-image');
+  var caption = box.querySelector('.lightbox-caption');
+  var count = box.querySelector('.lightbox-count');
+  var btnClose = box.querySelector('.lightbox-close');
+  var btnPrev = box.querySelector('.lightbox-prev');
+  var btnNext = box.querySelector('.lightbox-next');
+
+  function show(n) {
+    at = (n + links.length) % links.length;
+    var link = links[at];
+    var thumb = link.querySelector('img');
+    var text = thumb ? (thumb.getAttribute('alt') || '') : '';
+    image.src = link.getAttribute('href');
+    image.alt = text;
+    caption.textContent = text;
+    var many = links.length > 1;
+    count.textContent = many ? (at + 1) + ' / ' + links.length : '';
+    btnPrev.hidden = !many;
+    btnNext.hidden = !many;
+    // 隣のぶんを先に読ませる。送るたびに白くなるのを避ける。
+    if (many) {
+      [1, -1].forEach(function (d) {
+        var ahead = new Image();
+        ahead.src = links[(at + d + links.length) % links.length].getAttribute('href');
+      });
+    }
+  }
+
+  function open(group, n, from) {
+    links = Array.prototype.slice.call(group.querySelectorAll('a'));
+    opener = from || null;
+    box.hidden = false;
+    document.body.classList.add('lightbox-open');
+    show(n);
+    btnClose.focus();
+  }
+
+  function shut() {
+    box.hidden = true;
+    image.removeAttribute('src');
+    document.body.classList.remove('lightbox-open');
+    if (opener) { opener.focus(); opener = null; }
+  }
+
+  groups.forEach(function (group) {
+    Array.prototype.slice.call(group.querySelectorAll('a')).forEach(function (link, n) {
+      link.addEventListener('click', function (e) {
+        // 新しいタブで開きたい人の邪魔はしない
+        if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+        e.preventDefault();
+        open(group, n, link);
+      });
+    });
+  });
+
+  btnClose.addEventListener('click', shut);
+  btnPrev.addEventListener('click', function () { show(at - 1); });
+  btnNext.addEventListener('click', function () { show(at + 1); });
+
+  // 画像やボタン以外を押したら閉じる
+  box.addEventListener('click', function (e) {
+    if (e.target === image || e.target.closest('.lightbox-btn')) return;
+    shut();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (box.hidden) return;
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      shut();
+    } else if (e.key === 'ArrowLeft' && links.length > 1) {
+      e.preventDefault();
+      show(at - 1);
+    } else if (e.key === 'ArrowRight' && links.length > 1) {
+      e.preventDefault();
+      show(at + 1);
+    } else if (e.key === 'Tab') {
+      // 開いているあいだは、閉じる・前へ・次へ の中だけを回す
+      var stops = [btnClose, btnPrev, btnNext].filter(function (b) { return !b.hidden; });
+      var i = stops.indexOf(document.activeElement);
+      e.preventDefault();
+      stops[(i + (e.shiftKey ? -1 : 1) + stops.length) % stops.length].focus();
+    }
+  });
+
+  // 指で左右になぞっても送れる。狭い画面では矢印より先にこちらを使う。
+  var fromX = null;
+  var fromY = null;
+  box.addEventListener('touchstart', function (e) {
+    if (e.touches.length !== 1) { fromX = null; return; }
+    fromX = e.touches[0].clientX;
+    fromY = e.touches[0].clientY;
+  }, { passive: true });
+  box.addEventListener('touchend', function (e) {
+    if (fromX === null || links.length < 2) { fromX = null; return; }
+    var end = e.changedTouches[0];
+    var dx = end.clientX - fromX;
+    var dy = end.clientY - fromY;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) show(at + (dx < 0 ? 1 : -1));
+    fromX = null;
+  }, { passive: true });
+})();
+</script>
+<!-- ここまで -->'''
 
 
 # ページ定義: 相対パス -> (現在地の絶対パス, セクション, パンくずtrail)
@@ -363,6 +497,9 @@ def apply(rel, page, section, trail, lang='ja'):
     # 旧フッターを共通フッターへ
     s = re.sub(r'<footer>.*?</footer>', '', s, flags=re.S)
     s = re.sub(r'<footer class="sitefooter">.*?</footer>', '', s, flags=re.S)
+    s = re.sub(r'<!-- ここから下は tools/apply_chrome\.py が入れ直す -->.*?<!-- ここまで -->',
+               '', s, flags=re.S)
+    # 目印を付ける前に入れたぶん（スクリプトが1つだけの形）
     s = re.sub(r'<script>\s*\(function \(\) \{\s*var menus.*?</script>', '', s, flags=re.S)
     s = s.replace('</body>', footer() + '\n\n' + SCRIPT + '\n\n</body>')
 

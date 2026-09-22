@@ -846,3 +846,103 @@ code { font-size: .9em; }
 }
 
 .step h2 { margin: 0; font-size: 1.15rem; }
+
+/* --- スクリーンショットを大きく見る --- */
+
+/* 素のままだと画像のURLへ飛んでしまい、ブラウザの戻るでしかページに
+   帰れない。ページを離れずに開き、閉じるボタンと前後の送りを出す。
+   JavaScript が動かないときは、これまでどおりリンクとして開く。 */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, .88);
+  padding: 72px 12px 92px;
+}
+
+.lightbox[hidden] { display: none; }
+
+.lightbox-image {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 14px 44px rgba(0, 0, 0, .55);
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.lightbox-btn {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .16);
+  color: #fff;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.lightbox-btn:hover { background: rgba(255, 255, 255, .3); }
+.lightbox-btn:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+.lightbox-btn[hidden] { display: none; }
+
+.lightbox-close {
+  top: calc(14px + env(safe-area-inset-top));
+  right: calc(14px + env(safe-area-inset-right));
+}
+
+/* 画面が狭いうちは、前後の送りを下の帯に並べる。左右の端に置くと、
+   縦長のスクリーンショットに重なって画像を隠してしまう。 */
+.lightbox-prev,
+.lightbox-next { bottom: calc(14px + env(safe-area-inset-bottom)); }
+.lightbox-prev { left: calc(14px + env(safe-area-inset-left)); }
+.lightbox-next { right: calc(14px + env(safe-area-inset-right)); }
+
+.lightbox-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 16px 72px calc(20px + env(safe-area-inset-bottom));
+  text-align: center;
+  color: rgba(255, 255, 255, .92);
+  font-size: .86rem;
+  line-height: 1.5;
+}
+
+.lightbox-count {
+  display: block;
+  color: rgba(255, 255, 255, .6);
+  font-size: .78rem;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (min-width: 700px) {
+  .lightbox { padding: 80px 88px; }
+  .lightbox-prev,
+  .lightbox-next {
+    top: 50%;
+    bottom: auto;
+    transform: translateY(-50%);
+  }
+  .lightbox-prev { left: 20px; }
+  .lightbox-next { right: 20px; }
+  .lightbox-bar { padding-left: 16px; padding-right: 16px; }
+}
+
+/* 開いているあいだ、後ろのページは動かさない */
+body.lightbox-open { overflow: hidden; }
