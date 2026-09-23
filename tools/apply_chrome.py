@@ -67,6 +67,7 @@ GUIDE_GROUPS = [
         ('/guides/counting-situations.html',     '数え間違いが起きる場面と、その防ぎ方'),
         ('/guides/counting-record.html',         '数えたあとに、記録をどう残すか'),
         ('/guides/counting-inventory.html',      '棚卸しの段取り'),
+        ('/guides/iphone-storage.html',          'iPhone の容量がいっぱいになったら、何から片付けるか'),
     ]),
 ]
 
@@ -445,6 +446,8 @@ PAGES = {
         [('/guides/', '暮らしの手引き'), (None, '旅行の割り勘で、為替レートをいつ確定させるか')]),
     'guides/lending-excluding.html': ('/guides/lending-excluding.html', 'guides',
         [('/guides/', '暮らしの手引き'), (None, '割り勘から外すもの、立て替えたもの')]),
+    'guides/iphone-storage.html': ('/guides/iphone-storage.html', 'guides',
+        [('/guides/', '暮らしの手引き'), (None, 'iPhone の容量がいっぱいになったら、何から片付けるか')]),
 
     'counter1234/index.html': ('/counter1234/', 'apps', [(None, 'Counter1234')]),
     'counter1234/privacy.html': ('/counter1234/privacy.html', 'support',
