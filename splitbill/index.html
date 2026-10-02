@@ -16,7 +16,7 @@
 <link rel="alternate" hreflang="ja" href="https://tatsu456.github.io/splitbill/">
 <link rel="alternate" hreflang="en" href="https://tatsu456.github.io/splitbill/en/">
 <link rel="alternate" hreflang="x-default" href="https://tatsu456.github.io/splitbill/">
-<link rel="stylesheet" href="/assets/style.css?v=20260922a">
+<link rel="stylesheet" href="/assets/style.css?v=20261002a">
 </head>
 <body>
 
@@ -112,6 +112,7 @@
       </div>
     </details>
   </nav>
+  <div class="langsel" role="group" aria-label="言語 / Language"><span lang="ja" aria-current="true">日本語</span><a href="/splitbill/en/" lang="en" hreflang="en">English</a></div>
 </div>
 </header>
 
@@ -125,10 +126,6 @@
 <h1>SplitBill_EX</h1>
 <p class="tagline">手数料も税もチップも入れたまま、精算する。</p>
 
-<p class="langswitch">
-  <span aria-current="true">日本語</span>
-  <a href="/splitbill/en/">English</a>
-</p>
 
 <p class="appstore">
   <a href="https://apps.apple.com/jp/app/id6796218290">App Store でダウンロード（無料）</a>
@@ -293,6 +290,10 @@ SplitBill_EX は、その全部を入れたまま「最終的に誰が誰にい�
   // ここが動かないときは、これまでどおりリンクとして開く。
   var groups = Array.prototype.slice.call(document.querySelectorAll('.shots'));
   if (!groups.length || !document.body) return;
+  var en = document.documentElement.lang === 'en';
+  var words = en
+    ? { dialog: 'Screenshot', close: 'Close', prev: 'Previous screen', next: 'Next screen' }
+    : { dialog: '画面を大きく見る', close: '閉じる', prev: '前の画面', next: '次の画面' };
 
   var links = [];     // いま開いている並び。ページに複数あっても混ざらない
   var at = 0;
@@ -303,12 +304,12 @@ SplitBill_EX は、その全部を入れたまま「最終的に誰が誰にい�
   box.hidden = true;
   box.setAttribute('role', 'dialog');
   box.setAttribute('aria-modal', 'true');
-  box.setAttribute('aria-label', '画面を大きく見る');
+  box.setAttribute('aria-label', words.dialog);
   box.innerHTML =
-    '<button type="button" class="lightbox-btn lightbox-close" aria-label="閉じる">×</button>' +
+    '<button type="button" class="lightbox-btn lightbox-close" aria-label="' + words.close + '">×</button>' +
     '<img class="lightbox-image" alt="">' +
-    '<button type="button" class="lightbox-btn lightbox-prev" aria-label="前の画面">‹</button>' +
-    '<button type="button" class="lightbox-btn lightbox-next" aria-label="次の画面">›</button>' +
+    '<button type="button" class="lightbox-btn lightbox-prev" aria-label="' + words.prev + '">‹</button>' +
+    '<button type="button" class="lightbox-btn lightbox-next" aria-label="' + words.next + '">›</button>' +
     '<p class="lightbox-bar"><span class="lightbox-caption"></span>' +
     '<span class="lightbox-count"></span></p>';
   document.body.appendChild(box);

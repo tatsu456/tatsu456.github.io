@@ -9,7 +9,7 @@ import os, re, sys
 ROOT = '/Users/taka/tatsu456.github.io'
 
 # スタイルシートの版。CSSを変えたらここを上げる（全ページのリンクに付く）
-CSS_VERSION = '20260922a'
+CSS_VERSION = '20261002a'
 
 # Google アナリティクス（GA4）の測定ID。tatsu456.github.io 用のウェブストリーム。
 GA_ID = 'G-MMGJW4XELK'
@@ -98,11 +98,67 @@ POLICIES = [
 ]
 
 
+# 英語ページ。ヘッダーとフッターも英語にする。
+# 山じたく・献立・冷凍図鑑はアプリが日本語だけなので、副題でそう断る
+APPS_EN = [
+    ('/yamajitaku/en/',     'Yamajitaku',        'Hiking packing list (Japanese only)'),
+    ('/albumdiet/en/',      'Album Diet',        'Shrink photos and videos, free up space'),
+    ('/ablooplay/en/',      'ABLooplay',         'A-B repeat and slow playback'),
+    ('/kondate/en/',        'Kondate Maker_EX',  'Dinner menu planner (Japanese only)'),
+    ('/reitou/en/',         'Reitou Zukan',      'How to freeze 181 foods (Japanese only)'),
+    ('/nukadoko-diary/en/', 'Nuka Diary',        'Care log for your nuka pot'),
+    ('/splitbill/en/',      'SplitBill_EX',      'Multi-currency bill splitting'),
+    ('/counter1234/en/',    'Counter1234',       'Count without looking'),
+]
+
+POLICIES_EN = [
+    ('/yamajitaku/en/privacy.html',      'Yamajitaku'),
+    ('/albumdiet/en/privacy.html',       'Album Diet'),
+    ('/ablooplay/en/privacy.html',       'ABLooplay'),
+    ('/kondate/en/privacy.html',         'Kondate Maker_EX'),
+    ('/reitou/en/privacy.html',          'Reitou Zukan'),
+    ('/nukadoko-diary/en/privacy.html',  'Nuka Diary'),
+    ('/splitbill/en/privacy.html',       'SplitBill_EX'),
+    ('/counter1234/en/privacy.html',     'Counter1234'),
+]
+
+# 日本語ページ → 英語ページ。右上の言語の切り替えと hreflang に使う。
+# 対になる英語ページが無いページ（手引きなど）では、切り替えは英語のトップへ向ける
+EN_OF = {
+    '/': '/en/',
+    '/privacy-policy.html': '/kondate/en/privacy.html',
+    '/reitou/terms.html': '/reitou/en/terms.html',
+}
+for _href, _name, _sub in APPS:
+    EN_OF[_href] = _href + 'en/'
+for _href, _name in POLICIES:
+    if _href != '/privacy-policy.html':
+        EN_OF[_href] = _href.replace('/privacy.html', '/en/privacy.html')
+JA_OF = {en: ja for ja, en in EN_OF.items()}
+
+
+def lang_selector(page, lang):
+    """右上の言語の切り替え。いま見ている言語は押せない印にする。"""
+    if lang == 'en':
+        ja, en = JA_OF.get(page, '/'), page
+    else:
+        ja, en = page, EN_OF.get(page, '/en/')
+    def item(code, label, href):
+        if code == lang:
+            return f'<span lang="{code}" aria-current="true">{label}</span>'
+        return f'<a href="{href}" lang="{code}" hreflang="{code}">{label}</a>'
+    return ('  <div class="langsel" role="group" aria-label="言語 / Language">'
+            + item('ja', '日本語', ja) + item('en', 'English', en) + '</div>')
+
+
 def cur(href, page):
     return ' aria-current="page"' if href == page else ''
 
 
-def masthead(page, section):
+def masthead(page, section, lang='ja'):
+    if lang == 'en':
+        return masthead_en(page, section)
+
     def items(rows, withsub=True):
         out = []
         for row in rows:
@@ -166,6 +222,48 @@ def masthead(page, section):
       </div>
     </details>
   </nav>
+{lang_selector(page, 'ja')}
+</div>
+</header>'''
+
+
+def masthead_en(page, section):
+    """英語ページのヘッダー。手引きの記事は日本語だけなので、メニューには出さない。"""
+    def items(rows):
+        out = []
+        for row in rows:
+            href, name = row[0], row[1]
+            sub = f'<small>{row[2]}</small>' if len(row) > 2 else ''
+            out.append(f'      <a href="{href}"{cur(href, page)}>{name}{sub}</a>')
+        return '\n'.join(out)
+
+    def openattr(sec):
+        return ' data-current' if section == sec else ''
+
+    return f'''<header class="masthead">
+<div class="masthead-inner">
+  <a class="brand" href="/en/">tatsu456</a>
+  <nav class="mainnav" aria-label="Site menu">
+    <a href="/en/"{cur('/en/', page)}>Home</a>
+    <details class="menu"{openattr('apps')}>
+      <summary>Apps</summary>
+      <div class="menu-panel">
+{items(APPS_EN)}
+      </div>
+    </details>
+    <details class="menu"{openattr('support')}>
+      <summary>Support</summary>
+      <div class="menu-panel">
+        <a href="/en/#contact">Contact</a>
+        <hr>
+        <p class="grp">Privacy policies</p>
+{items(POLICIES_EN)}
+        <hr>
+        <a href="/reitou/en/terms.html"{cur('/reitou/en/terms.html', page)}>Terms of Use (Reitou Zukan)</a>
+      </div>
+    </details>
+  </nav>
+{lang_selector(page, 'en')}
 </div>
 </header>'''
 
@@ -174,8 +272,9 @@ def crumbs(trail, lang='ja'):
     """trail: [(href|None, label), ...] 末尾は現在地。lang='en' で英語ページ用の見出しにする"""
     if not trail:
         return ''
-    aria, home = ('Breadcrumb', 'Home') if lang == 'en' else ('現在の位置', 'ホーム')
-    parts = [f'<nav class="crumbs" aria-label="{aria}">', f'  <a href="/">{home}</a>']
+    aria, home, top = (('Breadcrumb', 'Home', '/en/') if lang == 'en'
+                       else ('現在の位置', 'ホーム', '/'))
+    parts = [f'<nav class="crumbs" aria-label="{aria}">', f'  <a href="{top}">{home}</a>']
     for href, label in trail:
         parts.append('  <span class="sep">›</span>')
         if href:
@@ -186,7 +285,10 @@ def crumbs(trail, lang='ja'):
     return '\n'.join(parts)
 
 
-def footer():
+def footer(lang='ja'):
+    if lang == 'en':
+        return footer_en()
+
     def lis(rows, withsub=False):
         return '\n'.join(f'      <li><a href="{r[0]}">{r[1]}</a></li>' for r in rows)
     return f'''<footer class="sitefooter">
@@ -213,6 +315,36 @@ def footer():
     </ul>
   </div>
   <div class="copy">© 2026 tatsu456　アプリを作っています。</div>
+</div>
+</footer>'''
+
+
+def footer_en():
+    def lis(rows):
+        return '\n'.join(f'      <li><a href="{r[0]}">{r[1]}</a></li>' for r in rows)
+    return f'''<footer class="sitefooter">
+<div class="sitefooter-inner">
+  <div>
+    <h2>Apps</h2>
+    <ul>
+{lis(APPS_EN)}
+    </ul>
+  </div>
+  <div>
+    <h2>Privacy policies</h2>
+    <ul>
+{lis(POLICIES_EN)}
+    </ul>
+  </div>
+  <div>
+    <h2>Support</h2>
+    <ul>
+      <li><a href="/en/#contact">Contact</a></li>
+      <li><a href="/reitou/en/terms.html">Terms of Use (Reitou Zukan)</a></li>
+      <li><a href="/guides/" hreflang="ja">Guides (in Japanese)</a></li>
+    </ul>
+  </div>
+  <div class="copy">© 2026 tatsu456 — I make small apps.</div>
 </div>
 </footer>'''
 
@@ -251,6 +383,10 @@ SCRIPT = '''<!-- ここから下は tools/apply_chrome.py が入れ直す -->
   // ここが動かないときは、これまでどおりリンクとして開く。
   var groups = Array.prototype.slice.call(document.querySelectorAll('.shots'));
   if (!groups.length || !document.body) return;
+  var en = document.documentElement.lang === 'en';
+  var words = en
+    ? { dialog: 'Screenshot', close: 'Close', prev: 'Previous screen', next: 'Next screen' }
+    : { dialog: '画面を大きく見る', close: '閉じる', prev: '前の画面', next: '次の画面' };
 
   var links = [];     // いま開いている並び。ページに複数あっても混ざらない
   var at = 0;
@@ -261,12 +397,12 @@ SCRIPT = '''<!-- ここから下は tools/apply_chrome.py が入れ直す -->
   box.hidden = true;
   box.setAttribute('role', 'dialog');
   box.setAttribute('aria-modal', 'true');
-  box.setAttribute('aria-label', '画面を大きく見る');
+  box.setAttribute('aria-label', words.dialog);
   box.innerHTML =
-    '<button type="button" class="lightbox-btn lightbox-close" aria-label="閉じる">\u00d7</button>' +
+    '<button type="button" class="lightbox-btn lightbox-close" aria-label="' + words.close + '">\u00d7</button>' +
     '<img class="lightbox-image" alt="">' +
-    '<button type="button" class="lightbox-btn lightbox-prev" aria-label="前の画面">\u2039</button>' +
-    '<button type="button" class="lightbox-btn lightbox-next" aria-label="次の画面">\u203a</button>' +
+    '<button type="button" class="lightbox-btn lightbox-prev" aria-label="' + words.prev + '">\u2039</button>' +
+    '<button type="button" class="lightbox-btn lightbox-next" aria-label="' + words.next + '">\u203a</button>' +
     '<p class="lightbox-bar"><span class="lightbox-caption"></span>' +
     '<span class="lightbox-count"></span></p>';
   document.body.appendChild(box);
@@ -383,11 +519,7 @@ PAGES = {
 
     'guides/index.html': ('/guides/', 'guides', [(None, '暮らしの手引き')]),
 
-    # 英語ページ。共通ヘッダーは日本語のままだが、パンくずだけ英語にする
-    'counter1234/en/index.html': ('/counter1234/', 'apps',
-        [('/counter1234/', 'Counter1234'), (None, 'English')], 'en'),
-    'splitbill/en/index.html': ('/splitbill/', 'apps',
-        [('/splitbill/', 'SplitBill_EX'), (None, 'English')], 'en'),
+    # 英語ページ（ヘッダー・パンくず・フッターも英語）。下の EN_PAGES から足す
 
     # 分野ページ。ここが対象から漏れていて、CSSの版もアプリの並びも古いままだった
     'guides/freezing/index.html': ('/guides/freezing/', 'guides',
@@ -475,12 +607,43 @@ PAGES = {
 }
 
 
-def apply(rel, page, section, trail, lang='ja'):
-    path = os.path.join(ROOT, rel)
+SITE = 'https://tatsu456.github.io'
+
+
+def hreflang_links(page, lang):
+    """日本語と英語の対があるページにだけ、互いを指す hreflang を付ける。"""
+    ja = page if lang == 'ja' else JA_OF.get(page)
+    en = EN_OF.get(page) if lang == 'ja' else page
+    if not ja or not en:
+        return ''
+    # 対の相手がまだ無い（英語版を作っていない）ときは付けない
+    if not (os.path.exists(local_file(ja)) and os.path.exists(local_file(en))):
+        return ''
+    return (f'<link rel="alternate" hreflang="ja" href="{SITE}{ja}">\n'
+            f'<link rel="alternate" hreflang="en" href="{SITE}{en}">\n'
+            f'<link rel="alternate" hreflang="x-default" href="{SITE}{ja}">')
+
+
+def local_file(href):
+    """公開パスから手元のファイルへ。/nukadoko-diary/ は別リポジトリ。"""
+    rel = href.lstrip('/')
+    if rel.endswith('/') or rel == '':
+        rel += 'index.html'
+    if rel.startswith('nukadoko-diary/'):
+        return os.path.join(NUKADOKO_ROOT, rel[len('nukadoko-diary/'):])
+    return os.path.join(ROOT, rel)
+
+
+# /nukadoko-diary/ を配信している別リポジトリ（tatsu456/nukadoko-diary）の手元
+NUKADOKO_ROOT = os.path.expanduser('~/nukadoko-diary')
+
+
+def apply(rel, page, section, trail, lang='ja', root=ROOT):
+    path = os.path.join(root, rel)
     s = open(path, encoding='utf-8').read()
     before = s
 
-    block = masthead(page, section)
+    block = masthead(page, section, lang)
     c = crumbs(trail, lang)
     if c:
         block += '\n\n' + c
@@ -494,6 +657,16 @@ def apply(rel, page, section, trail, lang='ja'):
     s = re.sub(r'<nav class="crumbs"[^>]*>.*?</nav>', '', s, flags=re.S)
     s = s.replace('<body>', '<body>\n\n' + block, 1)
 
+    # 言語の切り替えはヘッダーの右上に移した。本文に置いていた分は外す
+    s = re.sub(r'\n?<p class="langswitch">.*?</p>\n?', '\n', s, flags=re.S)
+
+    # ページの言語と、対になるページへの hreflang
+    s = re.sub(r'<html lang="[a-z-]+">', f'<html lang="{lang}">', s, count=1)
+    s = re.sub(r'<link rel="alternate" hreflang="[^"]+" href="[^"]*">\n?', '', s)
+    links = hreflang_links(page, lang)
+    if links:
+        s = re.sub(r'(\n<link rel="stylesheet")', '\n' + links + r'\1', s, count=1)
+
     # パンくずと重複する戻りリンクを外す
     s = re.sub(r'\n?<p class="note"><a href="\.\./">← アプリ一覧</a></p>\n?', '\n', s)
 
@@ -504,7 +677,7 @@ def apply(rel, page, section, trail, lang='ja'):
                '', s, flags=re.S)
     # 目印を付ける前に入れたぶん（スクリプトが1つだけの形）
     s = re.sub(r'<script>\s*\(function \(\) \{\s*var menus.*?</script>', '', s, flags=re.S)
-    s = s.replace('</body>', footer() + '\n\n' + SCRIPT + '\n\n</body>')
+    s = s.replace('</body>', footer(lang) + '\n\n' + SCRIPT + '\n\n</body>')
 
     # スタイルシートの版を、生成のたびに現在の値へそろえる
     s = re.sub(r'(/assets/style\.css\?v=)[0-9a-z]+', r'\g<1>' + CSS_VERSION, s)
@@ -551,6 +724,34 @@ def apply(rel, page, section, trail, lang='ja'):
     return False
 
 
+def en_pages():
+    """英語ページの定義。アプリごとに説明とプライバシーポリシー、冷凍図鑑は利用規約も。"""
+    pages = {'en/index.html': ('/en/', 'home', [], 'en')}
+    for href, name, _ in APPS_EN:
+        if href.startswith('/nukadoko-diary/'):
+            continue  # 別リポジトリ。NUKADOKO_PAGES で扱う
+        rel = href.lstrip('/') + 'index.html'
+        pages[rel] = (href, 'apps', [(None, name)], 'en')
+        pol = href + 'privacy.html'
+        pages[pol.lstrip('/')] = (pol, 'support', [(href, name), (None, 'Privacy Policy')], 'en')
+    pages['reitou/en/terms.html'] = ('/reitou/en/terms.html', 'support',
+        [('/reitou/en/', 'Reitou Zukan'), (None, 'Terms of Use')], 'en')
+    return pages
+
+
+PAGES.update(en_pages())
+
+# 別リポジトリ（/nukadoko-diary/）のページ。NUKADOKO_ROOT からの相対パス
+NUKADOKO_PAGES = {
+    'index.html': ('/nukadoko-diary/', 'apps', [(None, 'ぬか床日記')], 'ja'),
+    'privacy.html': ('/nukadoko-diary/privacy.html', 'support',
+        [('/nukadoko-diary/', 'ぬか床日記'), (None, 'プライバシーポリシー')], 'ja'),
+    'en/index.html': ('/nukadoko-diary/en/', 'apps', [(None, 'Nuka Diary')], 'en'),
+    'en/privacy.html': ('/nukadoko-diary/en/privacy.html', 'support',
+        [('/nukadoko-diary/en/', 'Nuka Diary'), (None, 'Privacy Policy')], 'en'),
+}
+
+
 def guide_trail(page):
     """手引きの記事は、分野の一覧ページを挟んだ4階層にする。"""
     label = GUIDE_OF.get(page)
@@ -574,4 +775,13 @@ if __name__ == '__main__':
         if apply(rel, page, section, trail, lang):
             n += 1
             print(f'  ✓ {rel}')
+    # 別リポジトリのぬか床日記。--nukadoko を付けたときだけ書き換える
+    if '--nukadoko' in sys.argv:
+        for rel, (page, section, trail, lang) in NUKADOKO_PAGES.items():
+            if not os.path.exists(os.path.join(NUKADOKO_ROOT, rel)):
+                print(f'  skip (未作成): nukadoko-diary/{rel}')
+                continue
+            if apply(rel, page, section, trail, lang, root=NUKADOKO_ROOT):
+                n += 1
+                print(f'  ✓ nukadoko-diary/{rel}')
     print(f'\n{n} ページ更新')

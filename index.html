@@ -14,7 +14,10 @@
 <title>tatsu456｜作っているアプリ</title>
 <meta name="google-site-verification" content="hijARBSbs9uz0SgHKDs1Ll9zPAkO9Z9c4pixnyehnvg">
 <meta name="description" content="tatsu456（Takayuki Takemoto）が開発しているアプリの紹介ページです。自分が欲しくて作ったアプリを、ついでに公開しています。数える、割り勘を出す、献立を決める、ぬか床を記録する。ひとつのことだけを引き受けるアプリです。">
-<link rel="stylesheet" href="/assets/style.css?v=20260922a">
+<link rel="alternate" hreflang="ja" href="https://tatsu456.github.io/">
+<link rel="alternate" hreflang="en" href="https://tatsu456.github.io/en/">
+<link rel="alternate" hreflang="x-default" href="https://tatsu456.github.io/">
+<link rel="stylesheet" href="/assets/style.css?v=20261002a">
 </head>
 <body>
 
@@ -110,6 +113,7 @@
       </div>
     </details>
   </nav>
+  <div class="langsel" role="group" aria-label="言語 / Language"><span lang="ja" aria-current="true">日本語</span><a href="/en/" lang="en" hreflang="en">English</a></div>
 </div>
 </header>
 
@@ -254,7 +258,7 @@ Takayuki Takemoto と申します。アプリを作っています。
     目で見ながら決められます。
     </p>
     <p>
-    速さは 0.5 倍から 2 倍まで、音の高さは変わりません。くりかえしの合間には 0.5 秒の休みが
+    速さは 0.5 倍から 2 倍まで、音の高さは変わりません。くりかえしの合間には休み（はじめは 0.5 秒）が
     入るので、聞いたすぐあとに自分でも言ってみられます。語学の発音練習にも、楽器の耳コピにも。
     ふだんの音楽プレイヤーとしても使えて、
     曲に書かれている情報からアーティストとアルバムで並べ、その情報をアプリの中から直せます。
@@ -534,6 +538,10 @@ Takayuki Takemoto<br>
   // ここが動かないときは、これまでどおりリンクとして開く。
   var groups = Array.prototype.slice.call(document.querySelectorAll('.shots'));
   if (!groups.length || !document.body) return;
+  var en = document.documentElement.lang === 'en';
+  var words = en
+    ? { dialog: 'Screenshot', close: 'Close', prev: 'Previous screen', next: 'Next screen' }
+    : { dialog: '画面を大きく見る', close: '閉じる', prev: '前の画面', next: '次の画面' };
 
   var links = [];     // いま開いている並び。ページに複数あっても混ざらない
   var at = 0;
@@ -544,12 +552,12 @@ Takayuki Takemoto<br>
   box.hidden = true;
   box.setAttribute('role', 'dialog');
   box.setAttribute('aria-modal', 'true');
-  box.setAttribute('aria-label', '画面を大きく見る');
+  box.setAttribute('aria-label', words.dialog);
   box.innerHTML =
-    '<button type="button" class="lightbox-btn lightbox-close" aria-label="閉じる">×</button>' +
+    '<button type="button" class="lightbox-btn lightbox-close" aria-label="' + words.close + '">×</button>' +
     '<img class="lightbox-image" alt="">' +
-    '<button type="button" class="lightbox-btn lightbox-prev" aria-label="前の画面">‹</button>' +
-    '<button type="button" class="lightbox-btn lightbox-next" aria-label="次の画面">›</button>' +
+    '<button type="button" class="lightbox-btn lightbox-prev" aria-label="' + words.prev + '">‹</button>' +
+    '<button type="button" class="lightbox-btn lightbox-next" aria-label="' + words.next + '">›</button>' +
     '<p class="lightbox-bar"><span class="lightbox-caption"></span>' +
     '<span class="lightbox-count"></span></p>';
   document.body.appendChild(box);

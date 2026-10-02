@@ -13,7 +13,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>肉の冷凍と解凍｜tatsu456</title>
 <meta name="description" content="鶏・豚・牛・ひき肉・加工肉の13品目について、部位と形で変わる保存期間の目安と、冷蔵・レンジ・凍ったまま加熱の使い分けをまとめました。ワット数と重量の読み方も。">
-<link rel="stylesheet" href="/assets/style.css?v=20260922a">
+<link rel="stylesheet" href="/assets/style.css?v=20261002a">
 </head>
 <body>
 
@@ -109,6 +109,7 @@
       </div>
     </details>
   </nav>
+  <div class="langsel" role="group" aria-label="言語 / Language"><span lang="ja" aria-current="true">日本語</span><a href="/en/" lang="en" hreflang="en">English</a></div>
 </div>
 </header>
 
@@ -458,6 +459,10 @@
   // ここが動かないときは、これまでどおりリンクとして開く。
   var groups = Array.prototype.slice.call(document.querySelectorAll('.shots'));
   if (!groups.length || !document.body) return;
+  var en = document.documentElement.lang === 'en';
+  var words = en
+    ? { dialog: 'Screenshot', close: 'Close', prev: 'Previous screen', next: 'Next screen' }
+    : { dialog: '画面を大きく見る', close: '閉じる', prev: '前の画面', next: '次の画面' };
 
   var links = [];     // いま開いている並び。ページに複数あっても混ざらない
   var at = 0;
@@ -468,12 +473,12 @@
   box.hidden = true;
   box.setAttribute('role', 'dialog');
   box.setAttribute('aria-modal', 'true');
-  box.setAttribute('aria-label', '画面を大きく見る');
+  box.setAttribute('aria-label', words.dialog);
   box.innerHTML =
-    '<button type="button" class="lightbox-btn lightbox-close" aria-label="閉じる">×</button>' +
+    '<button type="button" class="lightbox-btn lightbox-close" aria-label="' + words.close + '">×</button>' +
     '<img class="lightbox-image" alt="">' +
-    '<button type="button" class="lightbox-btn lightbox-prev" aria-label="前の画面">‹</button>' +
-    '<button type="button" class="lightbox-btn lightbox-next" aria-label="次の画面">›</button>' +
+    '<button type="button" class="lightbox-btn lightbox-prev" aria-label="' + words.prev + '">‹</button>' +
+    '<button type="button" class="lightbox-btn lightbox-next" aria-label="' + words.next + '">›</button>' +
     '<p class="lightbox-bar"><span class="lightbox-caption"></span>' +
     '<span class="lightbox-count"></span></p>';
   document.body.appendChild(box);

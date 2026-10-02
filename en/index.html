@@ -1,0 +1,613 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MMGJW4XELK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  gtag('js', new Date());
+  gtag('config', 'G-MMGJW4XELK');
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>tatsu456 — apps I make</title>
+<meta name="description" content="The apps made by tatsu456 (Takayuki Takemoto). I build apps I want for myself and publish them along the way. Counting, splitting a bill, deciding on dinner, keeping a log of a nuka bed — each app takes on one job only.">
+<link rel="alternate" hreflang="ja" href="https://tatsu456.github.io/">
+<link rel="alternate" hreflang="en" href="https://tatsu456.github.io/en/">
+<link rel="alternate" hreflang="x-default" href="https://tatsu456.github.io/">
+<link rel="stylesheet" href="/assets/style.css?v=20261002a">
+</head>
+<body>
+
+<header class="masthead">
+<div class="masthead-inner">
+  <a class="brand" href="/en/">tatsu456</a>
+  <nav class="mainnav" aria-label="Site menu">
+    <a href="/en/" aria-current="page">Home</a>
+    <details class="menu">
+      <summary>Apps</summary>
+      <div class="menu-panel">
+      <a href="/yamajitaku/en/">Yamajitaku<small>Hiking packing list (Japanese only)</small></a>
+      <a href="/albumdiet/en/">Album Diet<small>Shrink photos and videos, free up space</small></a>
+      <a href="/ablooplay/en/">ABLooplay<small>A-B repeat and slow playback</small></a>
+      <a href="/kondate/en/">Kondate Maker_EX<small>Dinner menu planner (Japanese only)</small></a>
+      <a href="/reitou/en/">Reitou Zukan<small>How to freeze 181 foods (Japanese only)</small></a>
+      <a href="/nukadoko-diary/en/">Nuka Diary<small>Care log for your nuka pot</small></a>
+      <a href="/splitbill/en/">SplitBill_EX<small>Multi-currency bill splitting</small></a>
+      <a href="/counter1234/en/">Counter1234<small>Count without looking</small></a>
+      </div>
+    </details>
+    <details class="menu">
+      <summary>Support</summary>
+      <div class="menu-panel">
+        <a href="/en/#contact">Contact</a>
+        <hr>
+        <p class="grp">Privacy policies</p>
+      <a href="/yamajitaku/en/privacy.html">Yamajitaku</a>
+      <a href="/albumdiet/en/privacy.html">Album Diet</a>
+      <a href="/ablooplay/en/privacy.html">ABLooplay</a>
+      <a href="/kondate/en/privacy.html">Kondate Maker_EX</a>
+      <a href="/reitou/en/privacy.html">Reitou Zukan</a>
+      <a href="/nukadoko-diary/en/privacy.html">Nuka Diary</a>
+      <a href="/splitbill/en/privacy.html">SplitBill_EX</a>
+      <a href="/counter1234/en/privacy.html">Counter1234</a>
+        <hr>
+        <a href="/reitou/en/terms.html">Terms of Use (Reitou Zukan)</a>
+      </div>
+    </details>
+  </nav>
+  <div class="langsel" role="group" aria-label="言語 / Language"><a href="/" lang="ja" hreflang="ja">日本語</a><span lang="en" aria-current="true">English</span></div>
+</div>
+</header>
+
+
+<h1>tatsu456</h1>
+<p class="tagline">The apps I make, and how I think about them.</p>
+
+<p class="lead">
+My name is Takayuki Takemoto, and I make apps.
+Mostly, though, I build what I want for my own use,
+and once it is finished I publish it as well — that is the order it goes in.
+This site collects the descriptions of the apps I have published that way,
+along with each one's privacy policy and where to get in touch.
+</p>
+
+<p>
+Because of how they come about, there is nothing flashy about them. Counting things,
+working out how much each person owes, deciding what to have for dinner tonight,
+recording the days I stirred the nuka bed (nukadoko).
+Each one takes on a small part of everyday life where I felt that
+"a tool just for this would help, but it isn't worth going out of my way to look for one."
+If you get stuck in the same places, I would be glad if you used them.
+</p>
+
+<h2>Rules I keep when making them</h2>
+
+<p>
+I put keeping these three rules ahead of making more apps.
+Knowing them before you read about the apps should save you some time.
+</p>
+
+<div class="card">
+<p><strong>Do one thing only.</strong>
+Adding features usually makes it take longer to get from opening the app to what you came for.
+Even when someone tells me "it can't do this," I sometimes leave it out if it isn't the app's main purpose.</p>
+
+<p><strong>Keep what you enter on your device, as far as possible.</strong>
+As a rule, records, notes and photos are stored only on the device you use.
+None of the apps asks you to create an account.
+Where an app does communicate with the outside, its privacy policy says what it sends and where.</p>
+
+<p><strong>Make sure there is never a day it stops working.</strong>
+I avoid building things that depend on a server as much as I can, so that it is unlikely
+a service will be shut down for my own reasons and leave you unable to read your records.
+The apps work on a plane and on top of a mountain.</p>
+</div>
+
+<h2 id="guides">Guides (in Japanese)</h2>
+
+<p>
+Some of what I looked into while making the apps is useful even to people who don't use them,
+so I have written it up as articles: what to go by when freezing food, pickling times in a nuka bed,
+how to put your gear together from a mountain's altitude, the order in which fees apply when splitting a bill,
+and more — 25 articles in four areas. <strong>They are written in Japanese only.</strong>
+</p>
+
+<p><a href="/guides/" hreflang="ja">See the list of articles (Japanese) →</a></p>
+
+<h2 id="apps">Apps</h2>
+
+<!-- ───────────── Yamajitaku ───────────── -->
+<section class="app">
+  <div class="app-head">
+    <img src="/assets/icon-yamajitaku.png" alt="Yamajitaku icon">
+    <div>
+      <p class="app-name">Yamajitaku — hiking packing checklist <span class="status">Available</span> <span class="status">Japanese only</span></p>
+      <p class="app-sub">Builds what you need for that mountain from its altitude and the season</p>
+    </div>
+  </div>
+  <div class="app-body">
+    <p>
+    Reusing the same packing list every time can be dangerous.
+    Even on the same mountain, what you should carry is different in June, when snow still lies,
+    and around the first snowfall in October.
+    Yamajitaku builds the list from the altitude and the time of year,
+    and warns you when your trip falls at a change of season.
+    </p>
+    <p>
+    The weather forecast is on the same screen too.
+    It does not use your location (GPS); a mountain's coordinates come from the app's built-in data or are entered by hand.
+    </p>
+    <p>
+    <strong>The app's screens and content are in Japanese only, and it is sold on the Japanese App Store only.</strong>
+    </p>
+  </div>
+  <p class="appstore">
+    <a href="https://apps.apple.com/jp/app/id6800543409">Download on the Japanese App Store (free)</a>
+  </p>
+  <p class="app-links">
+    <a href="https://apps.apple.com/jp/app/id6800543409">App Store (Japan)</a><span class="sep">·</span>
+    <a href="/yamajitaku/en/">About Yamajitaku</a><span class="sep">·</span>
+    <a href="/yamajitaku/en/privacy.html">Privacy policy</a>
+  </p>
+</section>
+
+<!-- ───────────── Album Diet ───────────── -->
+<section class="app">
+  <div class="app-head">
+    <img src="/assets/icon-albumdiet.png" alt="Album Diet icon">
+    <div>
+      <p class="app-name">Album Diet <span class="status">Available</span></p>
+      <p class="app-sub">Shrink your photos and videos in bulk and win back free space on your iPhone</p>
+    </div>
+  </div>
+  <div class="app-body">
+    <p>
+    An app for when your iPhone runs out of storage and you would rather not delete your memories to fix it.
+    It re-creates photos and videos at a smaller size, cutting the space they take
+    while leaving how they look almost unchanged.
+    </p>
+    <p>
+    One tap picks out only the items that would actually get smaller with the current settings,
+    and shows you the number first — "About 3.2 GB will be freed." You decide whether to go ahead after seeing it.
+    It can also tidy up bursts by keeping just one shot from each, trim the unwanted start and end off videos,
+    and clear out similar photos, old screenshots and the motion part of Live Photos in one go.
+    It makes no network connections at all.
+    </p>
+  </div>
+  <p class="appstore">
+    <a href="https://apps.apple.com/app/id6814331989">Download on the App Store (free)</a>
+  </p>
+  <p class="app-links">
+    <a href="https://apps.apple.com/app/id6814331989">App Store</a><span class="sep">·</span>
+    <a href="/albumdiet/en/">About Album Diet</a><span class="sep">·</span>
+    <a href="/albumdiet/en/privacy.html">Privacy policy</a>
+  </p>
+</section>
+
+<!-- ───────────── ABLooplay ───────────── -->
+<section class="app">
+  <div class="app-head">
+    <img src="/assets/icon-ablooplay.png" alt="ABLooplay icon">
+    <div>
+      <p class="app-name">ABLooplay <span class="status">Available</span></p>
+      <p class="app-sub">From here to there, as many times as you like. Slow it down and the pitch stays the same</p>
+    </div>
+  </div>
+  <div class="app-body">
+    <p>
+    An app for repeating the few seconds you can't catch until you can.
+    Press A and B as you listen, and just the part between them plays over and over.
+    A waveform is shown, so you can see where a vocal line or a line of dialogue starts
+    while you set the points.
+    </p>
+    <p>
+    Speed goes from 0.5× to 2×, and the pitch does not change. A short pause (0.5 seconds by default) comes
+    between repeats, so you can try saying it yourself right after you hear it.
+    For pronunciation practice in a language, or for learning a part on your instrument by ear.
+    It also works as an everyday music player: songs are sorted by artist and album
+    using the information stored in them, and you can correct that information inside the app.
+    Basic practice is free, and there are no ads. Automatic splitting by sentence, any number of sections
+    and the equalizer are part of Pro (an in-app purchase).
+    The only time it goes online is when you search for or download podcasts.
+    </p>
+  </div>
+  <p class="appstore">
+    <a href="https://apps.apple.com/app/id6814716798">Download on the App Store (free)</a>
+  </p>
+  <p class="app-links">
+    <a href="https://apps.apple.com/app/id6814716798">App Store</a><span class="sep">·</span>
+    <a href="/ablooplay/en/">About ABLooplay</a><span class="sep">·</span>
+    <a href="/ablooplay/en/privacy.html">Privacy policy</a>
+  </p>
+</section>
+
+<!-- ───────────── Kondate Maker_EX ───────────── -->
+<section class="app">
+  <div class="app-head">
+    <img src="/assets/icon-kondate.png" alt="Kondate Maker_EX icon">
+    <div>
+      <p class="app-name">Kondate Maker_EX — dinner menus <span class="status">Available</span> <span class="status">Japanese only</span></p>
+      <p class="app-sub">Pick a meal shape such as ichiju-sansai, and a menu comes together from what's in season and ingredient costs</p>
+    </div>
+  </div>
+  <div class="app-body">
+    <p>
+    I think the reason a menu is hard to decide on is that there are too many choices.
+    In this app you first decide on a "shape," such as ichiju-sansai (one soup, three dishes)
+    or ichiju-nisai (one soup, two dishes).
+    Once the shape is set, all that is left is filling it in.
+    </p>
+    <p>
+    Keep a dish you like and redraw only the rest.
+    Plan several days at once and a shopping list is made at the same time,
+    along with a rough guide to the ingredient cost and the cost ratio.
+    It has 1,500 recipes built in and works offline.
+    </p>
+    <p>
+    <strong>The app's screens and content are in Japanese only.</strong>
+    </p>
+  </div>
+  <p class="appstore">
+    <a href="https://apps.apple.com/app/id6797272114">Download on the App Store (free)</a>
+  </p>
+  <p class="app-links">
+    <a href="https://apps.apple.com/app/id6797272114">App Store</a><span class="sep">·</span>
+    <a href="/kondate/en/">About Kondate Maker_EX</a><span class="sep">·</span>
+    <a href="/kondate/en/privacy.html">Privacy policy</a>
+  </p>
+</section>
+
+<!-- ───────────── Reitou Zukan ───────────── -->
+<section class="app">
+  <div class="app-head">
+    <img src="/assets/icon-reitou.png" alt="Reitou Zukan icon">
+    <div>
+      <p class="app-name">Reitou Zukan <span class="status">Available</span> <span class="status">Japanese only</span></p>
+      <p class="app-sub">An illustrated guide to how to cut each food, how to freeze it, and how to thaw it</p>
+    </div>
+  </div>
+  <div class="app-body">
+    <p>
+    You are standing in front of food you bought in bulk. Can this be frozen?
+    Raw, or boiled first? Thaw it in the fridge, or cook it straight from frozen?
+    I used to search for each of these separately every time; now they can be looked up for 181 foods.
+    </p>
+    <p>
+    Every step comes with an illustration.
+    For foods that don't freeze well, it also explains why.
+    </p>
+    <p>
+    <strong>The app's screens and content are in Japanese only.</strong>
+    </p>
+  </div>
+  <p class="appstore">
+    <a href="https://apps.apple.com/app/id6801762341">Download on the App Store (free)</a>
+  </p>
+  <p class="app-links">
+    <a href="https://apps.apple.com/app/id6801762341">App Store</a><span class="sep">·</span>
+    <a href="/reitou/en/">About Reitou Zukan</a><span class="sep">·</span>
+    <a href="/reitou/en/privacy.html">Privacy policy</a><span class="sep">·</span>
+    <a href="/reitou/en/terms.html">Terms of Use</a>
+  </p>
+</section>
+
+<!-- ───────────── Nuka Diary ───────────── -->
+<section class="app">
+  <div class="app-head">
+    <img src="/assets/icon-nukadoko.png" alt="Nuka Diary icon">
+    <div>
+      <p class="app-name">Nuka Diary <span class="status">Available</span></p>
+      <p class="app-sub">You don't have to remember whether you stirred it</p>
+    </div>
+  </div>
+  <div class="app-body">
+    <p>
+    A nukadoko — a bed of fermenting rice bran used for pickling — gives back as much care as you put into it.
+    The hard part is not the stirring itself, but remembering
+    whether you have already stirred it today.
+    Nuka Diary takes over that job of remembering. Open it, tap once, and you're done.
+    </p>
+    <p>
+    "It smells like paint thinner." "There's a white film on top." "It's gone too sour."
+    Pick the symptom and you get the cause and the fix as numbered steps.
+    The estimated time until your pickles are ready changes with the day's weather and where you keep the bed.
+    </p>
+  </div>
+  <p class="appstore">
+    <a href="https://apps.apple.com/app/id6798459101">Download on the App Store (free)</a>
+  </p>
+  <p class="app-links">
+    <a href="https://apps.apple.com/app/id6798459101">App Store</a><span class="sep">·</span>
+    <a href="/nukadoko-diary/en/">About Nuka Diary</a><span class="sep">·</span>
+    <a href="/nukadoko-diary/en/privacy.html">Privacy policy</a>
+  </p>
+</section>
+
+<!-- ───────────── SplitBill_EX ───────────── -->
+<section class="app">
+  <div class="app-head">
+    <img src="/assets/icon-splitbill.png" alt="SplitBill_EX icon">
+    <div>
+      <p class="app-name">SplitBill_EX — multi-currency bill splitting <span class="status">Available</span></p>
+      <p class="app-sub">Card fees, tax and tip all included — it shows only who pays whom, and how much</p>
+    </div>
+  </div>
+  <div class="app-body">
+    <p>
+    Splitting the bill on a trip abroad or a group trip is a chore because the amounts
+    don't come down to simple division.
+    The currency is different, a card fee is added, tax and tip come on top separately,
+    and what's more, someone has paid for everyone.
+    </p>
+    <p>
+    SplitBill_EX calculates tax, tip and card fees
+    in the order the card company actually bills them.
+    Share a room ID and everyone on the trip can share the bills in real time.
+    What you get at the end is just a list of who pays whom, and how much.
+    </p>
+  </div>
+  <p class="appstore">
+    <a href="https://apps.apple.com/app/id6796218290">Download on the App Store (free)</a>
+  </p>
+  <p class="app-links">
+    <a href="https://apps.apple.com/app/id6796218290">App Store</a><span class="sep">·</span>
+    <a href="/splitbill/en/">About SplitBill_EX</a><span class="sep">·</span>
+    <a href="/splitbill/en/privacy.html">Privacy policy</a>
+  </p>
+</section>
+
+<!-- ───────────── Counter1234 ───────────── -->
+<section class="app">
+  <div class="app-head">
+    <img src="/assets/icon-counter1234.png" alt="Counter1234 icon">
+    <div>
+      <p class="app-name">Counter1234 <span class="status">Available</span></p>
+      <p class="app-sub">A counter you can use without looking at the screen</p>
+    </div>
+  </div>
+  <div class="app-body">
+    <p>
+    Counting stock, counting traffic, counting laps.
+    At times like these, the biggest problem is that you can't press anything without looking at the screen.
+    Counter1234 counts with the volume buttons,
+    so you can keep your eyes on what you are doing, or even keep the phone in your pocket.
+    </p>
+    <p>
+    Counts can be saved under a name, and the records can be exported as CSV.
+    You can also switch to a full-screen view that shows just the number, large.
+    </p>
+  </div>
+  <p class="appstore">
+    <a href="https://apps.apple.com/app/id6789396006">Download on the App Store (free)</a>
+  </p>
+  <p class="app-links">
+    <a href="https://apps.apple.com/app/id6789396006">App Store</a><span class="sep">·</span>
+    <a href="/counter1234/en/">About Counter1234</a><span class="sep">·</span>
+    <a href="/counter1234/en/privacy.html">Privacy policy</a>
+  </p>
+</section>
+
+<h2 id="contact">Contact</h2>
+<p>
+Bugs, an app that isn't working properly, requests for how you would like something to work —
+you can send any of these here. I run this on my own, so a reply may take some time,
+but I read every message.
+</p>
+<p>
+<a href="mailto:tatlink002@gmail.com">tatlink002@gmail.com</a>
+</p>
+
+<h2>Operator</h2>
+<p>
+Takayuki Takemoto<br>
+Contact: <a href="mailto:tatlink002@gmail.com">tatlink002@gmail.com</a>
+</p>
+
+
+<footer class="sitefooter">
+<div class="sitefooter-inner">
+  <div>
+    <h2>Apps</h2>
+    <ul>
+      <li><a href="/yamajitaku/en/">Yamajitaku</a></li>
+      <li><a href="/albumdiet/en/">Album Diet</a></li>
+      <li><a href="/ablooplay/en/">ABLooplay</a></li>
+      <li><a href="/kondate/en/">Kondate Maker_EX</a></li>
+      <li><a href="/reitou/en/">Reitou Zukan</a></li>
+      <li><a href="/nukadoko-diary/en/">Nuka Diary</a></li>
+      <li><a href="/splitbill/en/">SplitBill_EX</a></li>
+      <li><a href="/counter1234/en/">Counter1234</a></li>
+    </ul>
+  </div>
+  <div>
+    <h2>Privacy policies</h2>
+    <ul>
+      <li><a href="/yamajitaku/en/privacy.html">Yamajitaku</a></li>
+      <li><a href="/albumdiet/en/privacy.html">Album Diet</a></li>
+      <li><a href="/ablooplay/en/privacy.html">ABLooplay</a></li>
+      <li><a href="/kondate/en/privacy.html">Kondate Maker_EX</a></li>
+      <li><a href="/reitou/en/privacy.html">Reitou Zukan</a></li>
+      <li><a href="/nukadoko-diary/en/privacy.html">Nuka Diary</a></li>
+      <li><a href="/splitbill/en/privacy.html">SplitBill_EX</a></li>
+      <li><a href="/counter1234/en/privacy.html">Counter1234</a></li>
+    </ul>
+  </div>
+  <div>
+    <h2>Support</h2>
+    <ul>
+      <li><a href="/en/#contact">Contact</a></li>
+      <li><a href="/reitou/en/terms.html">Terms of Use (Reitou Zukan)</a></li>
+      <li><a href="/guides/" hreflang="ja">Guides (in Japanese)</a></li>
+    </ul>
+  </div>
+  <div class="copy">© 2026 tatsu456 — I make small apps.</div>
+</div>
+</footer>
+
+<!-- ここから下は tools/apply_chrome.py が入れ直す -->
+<script>
+(function () {
+  var menus = Array.prototype.slice.call(document.querySelectorAll('.masthead .menu'));
+  menus.forEach(function (m) {
+    m.addEventListener('toggle', function () {
+      if (m.open) menus.forEach(function (o) { if (o !== m) o.open = false; });
+    });
+  });
+
+  // 分野の折りたたみ。広い画面では右に張り出すので、同時に開くと重なる。
+  var subs = Array.prototype.slice.call(document.querySelectorAll('.masthead .submenu'));
+  subs.forEach(function (s) {
+    s.addEventListener('toggle', function () {
+      if (s.open) subs.forEach(function (o) { if (o !== s) o.open = false; });
+    });
+  });
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('.masthead .menu')) menus.forEach(function (m) { m.open = false; });
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') menus.forEach(function (m) { m.open = false; });
+  });
+})();
+</script>
+
+<script>
+(function () {
+  // スクリーンショットは、ページを離れずに大きく見られるようにする。
+  // リンクのままだと画像のURLへ飛ぶので、ブラウザの戻るでしか帰れず、
+  // 隣の画面と見比べることもできない。閉じるボタンと前後の送りを出す。
+  // ここが動かないときは、これまでどおりリンクとして開く。
+  var groups = Array.prototype.slice.call(document.querySelectorAll('.shots'));
+  if (!groups.length || !document.body) return;
+  var en = document.documentElement.lang === 'en';
+  var words = en
+    ? { dialog: 'Screenshot', close: 'Close', prev: 'Previous screen', next: 'Next screen' }
+    : { dialog: '画面を大きく見る', close: '閉じる', prev: '前の画面', next: '次の画面' };
+
+  var links = [];     // いま開いている並び。ページに複数あっても混ざらない
+  var at = 0;
+  var opener = null;  // 閉じたときに、押した絵へ戻す
+
+  var box = document.createElement('div');
+  box.className = 'lightbox';
+  box.hidden = true;
+  box.setAttribute('role', 'dialog');
+  box.setAttribute('aria-modal', 'true');
+  box.setAttribute('aria-label', words.dialog);
+  box.innerHTML =
+    '<button type="button" class="lightbox-btn lightbox-close" aria-label="' + words.close + '">×</button>' +
+    '<img class="lightbox-image" alt="">' +
+    '<button type="button" class="lightbox-btn lightbox-prev" aria-label="' + words.prev + '">‹</button>' +
+    '<button type="button" class="lightbox-btn lightbox-next" aria-label="' + words.next + '">›</button>' +
+    '<p class="lightbox-bar"><span class="lightbox-caption"></span>' +
+    '<span class="lightbox-count"></span></p>';
+  document.body.appendChild(box);
+
+  var image = box.querySelector('.lightbox-image');
+  var caption = box.querySelector('.lightbox-caption');
+  var count = box.querySelector('.lightbox-count');
+  var btnClose = box.querySelector('.lightbox-close');
+  var btnPrev = box.querySelector('.lightbox-prev');
+  var btnNext = box.querySelector('.lightbox-next');
+
+  function show(n) {
+    at = (n + links.length) % links.length;
+    var link = links[at];
+    var thumb = link.querySelector('img');
+    var text = thumb ? (thumb.getAttribute('alt') || '') : '';
+    image.src = link.getAttribute('href');
+    image.alt = text;
+    caption.textContent = text;
+    var many = links.length > 1;
+    count.textContent = many ? (at + 1) + ' / ' + links.length : '';
+    btnPrev.hidden = !many;
+    btnNext.hidden = !many;
+    // 隣のぶんを先に読ませる。送るたびに白くなるのを避ける。
+    if (many) {
+      [1, -1].forEach(function (d) {
+        var ahead = new Image();
+        ahead.src = links[(at + d + links.length) % links.length].getAttribute('href');
+      });
+    }
+  }
+
+  function open(group, n, from) {
+    links = Array.prototype.slice.call(group.querySelectorAll('a'));
+    opener = from || null;
+    box.hidden = false;
+    document.body.classList.add('lightbox-open');
+    show(n);
+    btnClose.focus();
+  }
+
+  function shut() {
+    box.hidden = true;
+    image.removeAttribute('src');
+    document.body.classList.remove('lightbox-open');
+    if (opener) { opener.focus(); opener = null; }
+  }
+
+  groups.forEach(function (group) {
+    Array.prototype.slice.call(group.querySelectorAll('a')).forEach(function (link, n) {
+      link.addEventListener('click', function (e) {
+        // 新しいタブで開きたい人の邪魔はしない
+        if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+        e.preventDefault();
+        open(group, n, link);
+      });
+    });
+  });
+
+  btnClose.addEventListener('click', shut);
+  btnPrev.addEventListener('click', function () { show(at - 1); });
+  btnNext.addEventListener('click', function () { show(at + 1); });
+
+  // 画像やボタン以外を押したら閉じる
+  box.addEventListener('click', function (e) {
+    if (e.target === image || e.target.closest('.lightbox-btn')) return;
+    shut();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (box.hidden) return;
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      shut();
+    } else if (e.key === 'ArrowLeft' && links.length > 1) {
+      e.preventDefault();
+      show(at - 1);
+    } else if (e.key === 'ArrowRight' && links.length > 1) {
+      e.preventDefault();
+      show(at + 1);
+    } else if (e.key === 'Tab') {
+      // 開いているあいだは、閉じる・前へ・次へ の中だけを回す
+      var stops = [btnClose, btnPrev, btnNext].filter(function (b) { return !b.hidden; });
+      var i = stops.indexOf(document.activeElement);
+      e.preventDefault();
+      stops[(i + (e.shiftKey ? -1 : 1) + stops.length) % stops.length].focus();
+    }
+  });
+
+  // 指で左右になぞっても送れる。狭い画面では矢印より先にこちらを使う。
+  var fromX = null;
+  var fromY = null;
+  box.addEventListener('touchstart', function (e) {
+    if (e.touches.length !== 1) { fromX = null; return; }
+    fromX = e.touches[0].clientX;
+    fromY = e.touches[0].clientY;
+  }, { passive: true });
+  box.addEventListener('touchend', function (e) {
+    if (fromX === null || links.length < 2) { fromX = null; return; }
+    var end = e.changedTouches[0];
+    var dx = end.clientX - fromX;
+    var dy = end.clientY - fromY;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) show(at + (dx < 0 ? 1 : -1));
+    fromX = null;
+  }, { passive: true });
+})();
+</script>
+<!-- ここまで -->
+
+</body>
+</html>

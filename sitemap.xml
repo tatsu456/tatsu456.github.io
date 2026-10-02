@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://tatsu456.github.io/counter1234/en/</loc>
-    <lastmod>2026-09-29</lastmod>
+    <lastmod>2026-10-02</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -177,7 +177,7 @@
   </url>
   <url>
     <loc>https://tatsu456.github.io/nukadoko-diary/en/</loc>
-    <lastmod>2026-09-29</lastmod>
+    <lastmod>2026-10-02</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -212,7 +212,7 @@
   </url>
   <url>
     <loc>https://tatsu456.github.io/splitbill/en/</loc>
-    <lastmod>2026-09-29</lastmod>
+    <lastmod>2026-10-02</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -253,6 +253,81 @@
   <url>
     <loc>https://tatsu456.github.io/ablooplay/privacy.html</loc>
     <lastmod>2026-09-26</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tatsu456.github.io/en/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://tatsu456.github.io/yamajitaku/en/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tatsu456.github.io/yamajitaku/en/privacy.html</loc>
+    <lastmod>2026-10-02</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tatsu456.github.io/albumdiet/en/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tatsu456.github.io/albumdiet/en/privacy.html</loc>
+    <lastmod>2026-10-02</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tatsu456.github.io/ablooplay/en/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tatsu456.github.io/ablooplay/en/privacy.html</loc>
+    <lastmod>2026-10-02</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tatsu456.github.io/kondate/en/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tatsu456.github.io/kondate/en/privacy.html</loc>
+    <lastmod>2026-10-02</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tatsu456.github.io/reitou/en/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tatsu456.github.io/reitou/en/privacy.html</loc>
+    <lastmod>2026-10-02</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tatsu456.github.io/splitbill/en/privacy.html</loc>
+    <lastmod>2026-10-02</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tatsu456.github.io/counter1234/en/privacy.html</loc>
+    <lastmod>2026-10-02</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tatsu456.github.io/nukadoko-diary/en/privacy.html</loc>
+    <lastmod>2026-10-02</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tatsu456.github.io/reitou/en/terms.html</loc>
+    <lastmod>2026-10-02</lastmod>
     <priority>0.6</priority>
   </url>
 </urlset>
