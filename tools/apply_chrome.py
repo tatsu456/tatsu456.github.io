@@ -3,13 +3,21 @@
 
 ユーザーサイト（ルート配信）なので、リンクは絶対パスで統一する。
 どのページでもナビのHTMLが完全に同一になり、増減の管理が1か所で済む。
+
+使い方: python3 tools/apply_chrome.py --nukadoko
+  --nukadoko を付けると、別リポジトリのぬか床日記（~/nukadoko-diary、環境変数 NUKADOKO_ROOT で変えられる）
+  の4ページにも同じヘッダー・フッターを入れる。そちらは ~/nukadoko-diary でも commit・push すること。
+
+英語ページの足し方: 本文だけの素の HTML（head は charset・viewport・title・description・stylesheet）を
+/<app>/en/ に置き、APPS_EN・POLICIES_EN に足して流す（日本語と英語の対は EN_OF が自動で作る。
+例外の対は EN_OF に手で足す）。sitemap.xml にも足す。英語版の無い日本語ページの「English」は /en/ を指す。
 """
-import os, re, sys
+import hashlib, html, os, re, sys
 
-ROOT = '/Users/taka/tatsu456.github.io'
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# スタイルシートの版。CSSを変えたらここを上げる（全ページのリンクに付く）
-CSS_VERSION = '20261002a'
+# スタイルシートの版。style.css の中身から作るので、CSS を変えれば必ず変わる（全ページのリンクに付く）
+CSS_VERSION = hashlib.sha1(open(os.path.join(ROOT, 'assets', 'style.css'), 'rb').read()).hexdigest()[:10]
 
 # Google アナリティクス（GA4）の測定ID。tatsu456.github.io 用のウェブストリーム。
 GA_ID = 'G-MMGJW4XELK'
@@ -106,7 +114,7 @@ APPS_EN = [
     ('/ablooplay/en/',      'ABLooplay',         'A-B repeat and slow playback'),
     ('/kondate/en/',        'Kondate Maker_EX',  'Dinner menu planner (Japanese only)'),
     ('/reitou/en/',         'Reitou Zukan',      'How to freeze 181 foods (Japanese only)'),
-    ('/nukadoko-diary/en/', 'Nuka Diary',        'Care log for your nuka pot'),
+    ('/nukadoko-diary/en/', 'Nuka Diary',        'Care log for nukadoko and other ferments'),
     ('/splitbill/en/',      'SplitBill_EX',      'Multi-currency bill splitting'),
     ('/counter1234/en/',    'Counter1234',       'Count without looking'),
 ]
@@ -139,10 +147,13 @@ JA_OF = {en: ja for ja, en in EN_OF.items()}
 
 def lang_selector(page, lang):
     """右上の言語の切り替え。いま見ている言語は押せない印にする。"""
+    # 対の相手のファイルがまだ無いとき（英語版を作る前のアプリなど）は、相手の言語のトップへ
     if lang == 'en':
-        ja, en = JA_OF.get(page, '/'), page
+        ja = JA_OF.get(page)
+        ja, en = (ja if ja and os.path.exists(local_file(ja)) else '/'), page
     else:
-        ja, en = page, EN_OF.get(page, '/en/')
+        en = EN_OF.get(page)
+        ja, en = page, (en if en and os.path.exists(local_file(en)) else '/en/')
     def item(code, label, href):
         if code == lang:
             return f'<span lang="{code}" aria-current="true">{label}</span>'
@@ -276,7 +287,7 @@ def crumbs(trail, lang='ja'):
                        else ('現在の位置', 'ホーム', '/'))
     parts = [f'<nav class="crumbs" aria-label="{aria}">', f'  <a href="{top}">{home}</a>']
     for href, label in trail:
-        parts.append('  <span class="sep">›</span>')
+        parts.append('  <span class="sep" aria-hidden="true">›</span>')
         if href:
             parts.append(f'  <a href="{href}">{label}</a>')
         else:
@@ -300,21 +311,26 @@ def footer(lang='ja'):
     </ul>
   </div>
   <div>
-    <h2>暮らしの手引き</h2>
+    <h2>プライバシーポリシー</h2>
     <ul>
-      <li><a href="/guides/">記事の一覧</a></li>
-{lis(GUIDES)}
+{lis(POLICIES)}
     </ul>
   </div>
   <div>
     <h2>サポート</h2>
     <ul>
       <li><a href="/#contact">お問い合わせ</a></li>
-      <li><a href="/privacy-policy.html">プライバシーポリシー</a></li>
       <li><a href="/reitou/terms.html">利用規約（冷凍図鑑）</a></li>
     </ul>
   </div>
-  <div class="copy">© 2026 tatsu456　アプリを作っています。</div>
+  <div>
+    <h2>暮らしの手引き</h2>
+    <ul>
+      <li><a href="/guides/">記事の一覧</a></li>
+{lis(GUIDES)}
+    </ul>
+  </div>
+  <div class="copy">© 2026 tatsu456</div>
 </div>
 </footer>'''
 
@@ -344,7 +360,7 @@ def footer_en():
       <li><a href="/guides/" hreflang="ja">Guides (in Japanese)</a></li>
     </ul>
   </div>
-  <div class="copy">© 2026 tatsu456 — I make small apps.</div>
+  <div class="copy">© 2026 tatsu456</div>
 </div>
 </footer>'''
 
@@ -519,67 +535,9 @@ PAGES = {
 
     'guides/index.html': ('/guides/', 'guides', [(None, '暮らしの手引き')]),
 
-    # 英語ページ（ヘッダー・パンくず・フッターも英語）。下の EN_PAGES から足す
 
-    # 分野ページ。ここが対象から漏れていて、CSSの版もアプリの並びも古いままだった
-    'guides/freezing/index.html': ('/guides/freezing/', 'guides',
-        [('/guides/', '暮らしの手引き'), (None, '冷凍保存')]),
-    'guides/nukadoko/index.html': ('/guides/nukadoko/', 'guides',
-        [('/guides/', '暮らしの手引き'), (None, 'ぬか床と発酵')]),
-    'guides/hiking/index.html': ('/guides/hiking/', 'guides',
-        [('/guides/', '暮らしの手引き'), (None, '登山')]),
-    'guides/living/index.html': ('/guides/living/', 'guides',
-        [('/guides/', '暮らしの手引き'), (None, 'くらしの段取り')]),
-    'guides/freezing-basics.html': ('/guides/freezing-basics.html', 'guides',
-        [('/guides/', '暮らしの手引き'), (None, '冷凍に向く食材・向かない食材の分かれ目')]),
-    'guides/freezing-vegetables.html': ('/guides/freezing-vegetables.html', 'guides',
-        [('/guides/', '暮らしの手引き'), (None, '野菜の冷凍・解凍 早見表')]),
-    'guides/nukadoko-troubleshooting.html': ('/guides/nukadoko-troubleshooting.html', 'guides',
-        [('/guides/', '暮らしの手引き'), (None, 'ぬか床の症状別・原因と手当て')]),
-    'guides/hiking-gear-by-altitude.html': ('/guides/hiking-gear-by-altitude.html', 'guides',
-        [('/guides/', '暮らしの手引き'), (None, '標高と季節で変わる登山の持ち物')]),
-    'guides/freezing-meat.html': ('/guides/freezing-meat.html', 'guides',
-        [('/guides/', '暮らしの手引き'), (None, '肉の冷凍と解凍')]),
-    'guides/freezing-seafood.html': ('/guides/freezing-seafood.html', 'guides',
-        [('/guides/', '暮らしの手引き'), (None, '魚介の冷凍と解凍')]),
-    'guides/freezing-staples.html': ('/guides/freezing-staples.html', 'guides',
-        [('/guides/', '暮らしの手引き'), (None, 'ごはん・パン・麺の冷凍')]),
-    'guides/freezing-dishes.html': ('/guides/freezing-dishes.html', 'guides',
-        [('/guides/', '暮らしの手引き'), (None, '作りおきと料理の冷凍')]),
-    'guides/freezer-care.html': ('/guides/freezer-care.html', 'guides',
-        [('/guides/', '暮らしの手引き'), (None, '冷凍焼けを防ぐ、冷凍庫の使い方')]),
-    'guides/pack-weight.html': ('/guides/pack-weight.html', 'guides',
-        [('/guides/', '暮らしの手引き'), (None, 'ザックの重さは体重の何％まで')]),
-    'guides/nukazuke-timing.html': ('/guides/nukazuke-timing.html', 'guides',
-        [('/guides/', '暮らしの手引き'), (None, 'ぬか漬けの漬け時間は、野菜と季節で変わる')]),
-    'guides/meal-planning.html': ('/guides/meal-planning.html', 'guides',
-        [('/guides/', '暮らしの手引き'), (None, '献立が決まらないときに、何から決めるか')]),
-    'guides/splitting-bills.html': ('/guides/splitting-bills.html', 'guides',
-        [('/guides/', '暮らしの手引き'), (None, '割り勘の計算は、足す順序で金額が変わる')]),
-    'guides/counting-situations.html': ('/guides/counting-situations.html', 'guides',
-        [('/guides/', '暮らしの手引き'), (None, '数え間違いが起きる場面と、その防ぎ方')]),
-    'guides/ferment-intervals.html': ('/guides/ferment-intervals.html', 'guides',
-        [('/guides/', '暮らしの手引き'), (None, '発酵食品ごとに、世話の間隔はこれだけ違う')]),
-    'guides/ferment-storage.html': ('/guides/ferment-storage.html', 'guides',
-        [('/guides/', '暮らしの手引き'), (None, '発酵食品を常温・冷暗所・冷蔵庫のどこに置くか')]),
-    'guides/hiking-water.html': ('/guides/hiking-water.html', 'guides',
-        [('/guides/', '暮らしの手引き'), (None, '登山に水をどれだけ持つか')]),
-    'guides/hiking-advisories.html': ('/guides/hiking-advisories.html', 'guides',
-        [('/guides/', '暮らしの手引き'), (None, '山で先に知っておきたい注意は、条件で変わる')]),
-    'guides/counting-record.html': ('/guides/counting-record.html', 'guides',
-        [('/guides/', '暮らしの手引き'), (None, '数えたあとに、記録をどう残すか')]),
-    'guides/counting-inventory.html': ('/guides/counting-inventory.html', 'guides',
-        [('/guides/', '暮らしの手引き'), (None, '棚卸しの段取り')]),
-    'guides/shopping-list.html': ('/guides/shopping-list.html', 'guides',
-        [('/guides/', '暮らしの手引き'), (None, '買い物リストは、売り場の順に並べると速い')]),
-    'guides/food-cost.html': ('/guides/food-cost.html', 'guides',
-        [('/guides/', '暮らしの手引き'), (None, '献立の材料費は、何で決まるか')]),
-    'guides/currency-rates.html': ('/guides/currency-rates.html', 'guides',
-        [('/guides/', '暮らしの手引き'), (None, '旅行の割り勘で、為替レートをいつ確定させるか')]),
-    'guides/lending-excluding.html': ('/guides/lending-excluding.html', 'guides',
-        [('/guides/', '暮らしの手引き'), (None, '割り勘から外すもの、立て替えたもの')]),
-    'guides/iphone-storage.html': ('/guides/iphone-storage.html', 'guides',
-        [('/guides/', '暮らしの手引き'), (None, 'iPhone の容量がいっぱいになったら、何から片付けるか')]),
+    '404.html': ('/404.html', 'home', []),
+
 
     'counter1234/index.html': ('/counter1234/', 'apps', [(None, 'Counter1234')]),
     'counter1234/privacy.html': ('/counter1234/privacy.html', 'support',
@@ -603,8 +561,15 @@ PAGES = {
     'reitou/terms.html': ('/reitou/terms.html', 'support',
         [('/reitou/', '冷凍図鑑'), (None, '利用規約')]),
 
-    'privacy-policy.html': ('/privacy-policy.html', 'support', [(None, 'プライバシーポリシー')]),
+    'privacy-policy.html': ('/privacy-policy.html', 'support',
+        [('/kondate/', '献立メーカー_EX'), (None, 'プライバシーポリシー')]),
 }
+
+# 手引き。分野の一覧と記事は GUIDE_GROUPS から作る（記事のパンくずは guide_trail() が作る）
+for _label, (_url, _title) in GUIDE_CATEGORIES.items():
+    PAGES[_url.lstrip('/') + 'index.html'] = (_url, 'guides', [('/guides/', '暮らしの手引き'), (None, _title)])
+for _href, _title in GUIDES:
+    PAGES[_href.lstrip('/')] = (_href, 'guides', [])
 
 
 SITE = 'https://tatsu456.github.io'
@@ -635,13 +600,16 @@ def local_file(href):
 
 
 # /nukadoko-diary/ を配信している別リポジトリ（tatsu456/nukadoko-diary）の手元
-NUKADOKO_ROOT = os.path.expanduser('~/nukadoko-diary')
+NUKADOKO_ROOT = os.environ.get('NUKADOKO_ROOT') or os.path.expanduser('~/nukadoko-diary')
 
 
-def apply(rel, page, section, trail, lang='ja', root=ROOT):
+def apply(rel, page, section, trail, lang='ja', root=ROOT, write=True):
     path = os.path.join(root, rel)
     s = open(path, encoding='utf-8').read()
     before = s
+    # 目印が素の形でないと、古いヘッダーを消すだけで入れ直さずに書いてしまう
+    if s.count('<body>') != 1 or s.count('</body>') != 1 or '\n<link rel="stylesheet"' not in s:
+        raise SystemExit(f'{path}: 素の <body>・</body>・行頭の <link rel="stylesheet"> が1つずつ要る')
 
     block = masthead(page, section, lang)
     c = crumbs(trail, lang)
@@ -666,6 +634,12 @@ def apply(rel, page, section, trail, lang='ja', root=ROOT):
     links = hreflang_links(page, lang)
     if links:
         s = re.sub(r'(\n<link rel="stylesheet")', '\n' + links + r'\1', s, count=1)
+
+    # 共有したときの見出し・説明・画像（Open Graph と X のカード）。毎回消して入れ直す
+    s = re.sub(r'<meta (?:property="og:[^"]+"|name="twitter:[^"]+")[^>]*>\n?', '', s)
+    og = og_tags(s, page, lang)
+    if og:
+        s = re.sub(r'(\n<link rel="stylesheet")', '\n' + og + r'\1', s, count=1)
 
     # パンくずと重複する戻りリンクを外す
     s = re.sub(r'\n?<p class="note"><a href="\.\./">← アプリ一覧</a></p>\n?', '\n', s)
@@ -719,9 +693,46 @@ def apply(rel, page, section, trail, lang='ja', root=ROOT):
     s = re.sub(r'\n{4,}', '\n\n\n', s)
 
     if s != before:
-        open(path, 'w', encoding='utf-8').write(s)
+        if write:
+            open(path, 'w', encoding='utf-8').write(s)
         return True
     return False
+
+
+# 共有したときに出す画像。アプリのページとポリシーはそのアプリのアイコン
+OG_ICONS = [
+    ('/yamajitaku/', 'icon-yamajitaku.png'), ('/albumdiet/', 'icon-albumdiet.png'),
+    ('/ablooplay/', 'icon-ablooplay.png'), ('/kondate/', 'icon-kondate.png'),
+    ('/privacy-policy.html', 'icon-kondate.png'), ('/reitou/', 'icon-reitou.png'),
+    ('/nukadoko-diary/', 'icon-nukadoko.png'), ('/splitbill/', 'icon-splitbill.png'),
+    ('/counter1234/', 'icon-counter1234.png'),
+]
+
+
+def og_tags(s, page, lang):
+    """<title> と meta description から、Open Graph と X のカードのタグを作る。404 には付けない。"""
+    if page.endswith('/404.html'):
+        return ''
+    t = re.search(r'<title>(.*?)</title>', s, flags=re.S)
+    if not t:
+        return ''
+    def attr(v):
+        return html.escape(html.unescape(v.strip()), quote=True)
+    d = re.search(r'<meta name="description" content="([^"]*)">', s)
+    tags = [
+        ('property', 'og:type', 'website'),
+        ('property', 'og:site_name', 'tatsu456'),
+        ('property', 'og:locale', 'en_US' if lang == 'en' else 'ja_JP'),
+        ('property', 'og:url', SITE + page),
+        ('property', 'og:title', attr(t.group(1))),
+    ]
+    if d:
+        tags.append(('property', 'og:description', attr(d.group(1))))
+    icon = next((f for prefix, f in OG_ICONS if page.startswith(prefix)), None)
+    if icon:
+        tags.append(('property', 'og:image', f'{SITE}/assets/{icon}'))
+    tags.append(('name', 'twitter:card', 'summary'))
+    return '\n'.join(f'<meta {k}="{n}" content="{v}">' for k, n, v in tags)
 
 
 def en_pages():
@@ -749,6 +760,7 @@ NUKADOKO_PAGES = {
     'en/index.html': ('/nukadoko-diary/en/', 'apps', [(None, 'Nuka Diary')], 'en'),
     'en/privacy.html': ('/nukadoko-diary/en/privacy.html', 'support',
         [('/nukadoko-diary/en/', 'Nuka Diary'), (None, 'Privacy Policy')], 'en'),
+    '404.html': ('/nukadoko-diary/404.html', 'home', [], 'ja'),
 }
 
 
@@ -784,4 +796,11 @@ if __name__ == '__main__':
             if apply(rel, page, section, trail, lang, root=NUKADOKO_ROOT):
                 n += 1
                 print(f'  ✓ nukadoko-diary/{rel}')
+    elif os.path.isdir(NUKADOKO_ROOT):
+        stale = [rel for rel, (page, section, trail, lang) in NUKADOKO_PAGES.items()
+                 if os.path.exists(os.path.join(NUKADOKO_ROOT, rel))
+                 and apply(rel, page, section, trail, lang, root=NUKADOKO_ROOT, write=False)]
+        if stale:
+            print(f'⚠ ぬか床日記の {len(stale)} ページ（{", ".join(stale)}）が古いまま。'
+                  '--nukadoko を付けて流し、~/nukadoko-diary でも commit・push する')
     print(f'\n{n} ページ更新')

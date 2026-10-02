@@ -16,7 +16,15 @@
 <link rel="alternate" hreflang="ja" href="https://tatsu456.github.io/splitbill/">
 <link rel="alternate" hreflang="en" href="https://tatsu456.github.io/splitbill/en/">
 <link rel="alternate" hreflang="x-default" href="https://tatsu456.github.io/splitbill/">
-<link rel="stylesheet" href="/assets/style.css?v=20261002a">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="tatsu456">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:url" content="https://tatsu456.github.io/splitbill/">
+<meta property="og:title" content="SplitBill_EX 多通貨の割り勘">
+<meta property="og:description" content="外税・チップ・カード手数料を入れたまま精算できる多通貨の割り勘アプリ。カード会社が実際に請求する順序で計算し、誰が誰にいくら払うかだけを出します。">
+<meta property="og:image" content="https://tatsu456.github.io/assets/icon-splitbill.png">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="/assets/style.css?v=12234de5d0">
 </head>
 <body>
 
@@ -118,7 +126,7 @@
 
 <nav class="crumbs" aria-label="現在の位置">
   <a href="/">ホーム</a>
-  <span class="sep">›</span>
+  <span class="sep" aria-hidden="true">›</span>
   <span aria-current="page">SplitBill_EX</span>
 </nav>
 
@@ -157,18 +165,22 @@ SplitBill_EX は、その全部を入れたまま「最終的に誰が誰にい�
   <li>外税・チップ・クレジットカード手数料を、カード会社が実際に請求する順序で計算します</li>
   <li>同じレシートに混ざった自分用の買い物を、割り勘から外せます</li>
   <li>30 通貨に対応。為替レートは起動時に自動取得し、オフラインでは最後のレートで計算を続けます</li>
-  <li>全員の貸し借りを相殺してから突き合わせるので、送金の回数が最小になります</li>
-  <li>6 桁のルーム ID を共有すると、メンバー・会計・精算結果が全員でリアルタイムに同期します</li>
+  <li>全員の貸し借りを相殺してから突き合わせるので、送金は3人なら最大2回、5人でも最大4回で済みます</li>
+  <li>6 桁のルーム ID を共有すると、メンバー・会計・精算結果が全員でリアルタイムに同期します。電波が無い場所でも入力を続けられ、つながったときに同期します</li>
   <li>「タクシー代だけ立て替えた」のような一対一の貸し借りも記録できます</li>
   <li>記録した会計はあとから全項目を編集できます</li>
   <li>精算結果は履歴として保存でき、CSV で書き出せます</li>
   <li>10 言語に対応しています</li>
   <li>はじめて開いたときは、サンプルの旅行を使った使い方ガイドが案内します（設定タブから見返せます）</li>
+  <li>無料で、広告が表示されます。広告を消すサブスクリプション「広告を非表示」（1週間・自動更新）は任意で、購読しなくても全機能を使えます</li>
 </ul>
 
 <div class="card">
   ルームを使わなければ、会計のデータが端末の外に出ることはありません。
-  ルームを使った場合の扱いは、下記のプライバシーポリシーをご覧ください。
+  ルームを使うと、参加者名・会計・精算結果が開発者の管理するデータベースに保存され、
+  <strong>ルーム ID を知っている人は誰でも読み書きできます</strong>。ルームのデータはアプリの中から削除できます。
+  また、アプリには Google AdMob の広告が表示され、広告 SDK がいくつかのデータを収集します。
+  ルームを共有する前に、<a href="privacy.html">プライバシーポリシー</a>をお読みください。
 </div>
 
 <h2>よくある質問</h2>
@@ -191,9 +203,16 @@ SplitBill_EX は、その全部を入れたまま「最終的に誰が誰にい�
 会計ごとに％または金額で指定できますので、明細の並び順に合わせてご確認ください。
 </p>
 
+<h3>広告を消したい</h3>
+<p>
+設定タブの「広告を非表示」の欄で「購読する」を押すと、広告が表示されなくなります。
+期間が終わる24時間以上前に解約しない限り、自動で更新されます。
+管理・解約は、iPhone の「設定」→ ご自身の名前 →「サブスクリプション」から行えます。
+</p>
+
 <h2>リンク</h2>
 <ul>
-  <li><a href="https://sites.google.com/view/splitbillex/" target="_blank" rel="noopener">プライバシーポリシー</a></li>
+  <li><a href="privacy.html">プライバシーポリシー</a></li>
   <li>お問い合わせ：<a href="mailto:tatlink002@gmail.com">tatlink002@gmail.com</a></li>
 </ul>
 
@@ -211,6 +230,26 @@ SplitBill_EX は、その全部を入れたまま「最終的に誰が誰にい�
       <li><a href="/nukadoko-diary/">ぬか床日記</a></li>
       <li><a href="/splitbill/">SplitBill_EX</a></li>
       <li><a href="/counter1234/">Counter1234</a></li>
+    </ul>
+  </div>
+  <div>
+    <h2>プライバシーポリシー</h2>
+    <ul>
+      <li><a href="/yamajitaku/privacy.html">山じたく</a></li>
+      <li><a href="/albumdiet/privacy.html">アルバムダイエット</a></li>
+      <li><a href="/ablooplay/privacy.html">ABループレイ</a></li>
+      <li><a href="/privacy-policy.html">献立メーカー_EX</a></li>
+      <li><a href="/reitou/privacy.html">冷凍図鑑</a></li>
+      <li><a href="/nukadoko-diary/privacy.html">ぬか床日記</a></li>
+      <li><a href="/splitbill/privacy.html">SplitBill_EX</a></li>
+      <li><a href="/counter1234/privacy.html">Counter1234</a></li>
+    </ul>
+  </div>
+  <div>
+    <h2>サポート</h2>
+    <ul>
+      <li><a href="/#contact">お問い合わせ</a></li>
+      <li><a href="/reitou/terms.html">利用規約（冷凍図鑑）</a></li>
     </ul>
   </div>
   <div>
@@ -244,15 +283,7 @@ SplitBill_EX は、その全部を入れたまま「最終的に誰が誰にい�
       <li><a href="/guides/iphone-storage.html">iPhone の容量がいっぱいになったら、何から片付けるか</a></li>
     </ul>
   </div>
-  <div>
-    <h2>サポート</h2>
-    <ul>
-      <li><a href="/#contact">お問い合わせ</a></li>
-      <li><a href="/privacy-policy.html">プライバシーポリシー</a></li>
-      <li><a href="/reitou/terms.html">利用規約（冷凍図鑑）</a></li>
-    </ul>
-  </div>
-  <div class="copy">© 2026 tatsu456　アプリを作っています。</div>
+  <div class="copy">© 2026 tatsu456</div>
 </div>
 </footer>
 

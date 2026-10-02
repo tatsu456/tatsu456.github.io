@@ -14,20 +14,10 @@ for h, _ in GUIDES:
     s = open(os.path.join(ROOT, h.lstrip('/'))).read()
     desc[h] = re.search(r'<meta name="description" content="([^"]*)"', s).group(1)
 
-changed = 0
 for d in ('freezing', 'nukadoko', 'hiking', 'living'):
     p = os.path.join(ROOT, 'guides', d, 'index.html')
     s = open(p).read()
     orig = s
-
-    def fix(m):
-        global changed
-        href, head, body = m.group(1), m.group(2), m.group(3)
-        if href not in desc or body == desc[href]:
-            return m.group(0)
-        changed += 1
-        print(f'  {d}/ {href}')
-        return head + desc[href] + '</p>'
 
     s = re.sub(r'(?s)(?:<h3><a href="(/guides/[a-z-]+\.html)">.*?</a></h3>\s*)(<p>)(.*?)</p>',
                lambda m: (lambda href, body: m.group(0) if href not in desc or body == desc[href]

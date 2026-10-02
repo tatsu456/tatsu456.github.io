@@ -6,6 +6,8 @@ NOTES.local.md
 # 生成スクリプトの副産物
 __pycache__/
 *.pyc
+# tools/build_guide.py の下書きの既定の置き場
+.work/
 
 # ローカル確認用のサーバ設定（公開サイトには不要）
 .claude/

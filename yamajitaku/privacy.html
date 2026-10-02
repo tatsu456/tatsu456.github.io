@@ -16,7 +16,15 @@
 <link rel="alternate" hreflang="ja" href="https://tatsu456.github.io/yamajitaku/privacy.html">
 <link rel="alternate" hreflang="en" href="https://tatsu456.github.io/yamajitaku/en/privacy.html">
 <link rel="alternate" hreflang="x-default" href="https://tatsu456.github.io/yamajitaku/privacy.html">
-<link rel="stylesheet" href="/assets/style.css?v=20261002a">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="tatsu456">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:url" content="https://tatsu456.github.io/yamajitaku/privacy.html">
+<meta property="og:title" content="プライバシーポリシー｜山じたく">
+<meta property="og:description" content="山じたくのプライバシーポリシー。取り扱う情報と、端末内での保存、外部への送信の有無について記載しています。">
+<meta property="og:image" content="https://tatsu456.github.io/assets/icon-yamajitaku.png">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="/assets/style.css?v=12234de5d0">
 </head>
 <body>
 
@@ -118,9 +126,9 @@
 
 <nav class="crumbs" aria-label="現在の位置">
   <a href="/">ホーム</a>
-  <span class="sep">›</span>
+  <span class="sep" aria-hidden="true">›</span>
   <a href="/yamajitaku/">山じたく</a>
-  <span class="sep">›</span>
+  <span class="sep" aria-hidden="true">›</span>
   <span aria-current="page">プライバシーポリシー</span>
 </nav>
 
@@ -128,13 +136,13 @@
 <p class="note"><a href="./">← 山じたく</a>／<a href="../">アプリ一覧</a></p>
 
 <h1>プライバシーポリシー</h1>
-<p class="tagline">山じたく（iOS / Android）／最終更新 2026年9月29日</p>
+<p class="tagline">山じたく（iOS / Android）／最終更新 2026年10月2日</p>
 
 <div class="card">
 <strong>要点</strong><br>
 山じたくは、利用者を識別できる情報を一切集めません。アカウント登録もありません。
 入力した内容は端末内（iOS版で iCloud 同期を入にしている場合は、ご自身の iCloud にも）保存され、
-開発者が見ることはできません。広告・解析・トラッキングも入っていません。
+開発者が見ることはできません。広告SDK・解析・トラッキングは入っていません（お店の検索結果を開く買い物リンクだけは、購入されると紹介料が入ることがあるリンクなので、アプリ内に「広告」と表示しています）。
 </div>
 
 <div class="card">
@@ -145,7 +153,7 @@
 これは Android がアプリのデータを預かる仕組みで、開発者はその中身にアクセスできません。
 端末の「設定 → Google → バックアップ」から切ることができます。
 端末を移すときは、アプリの設定から書き出したバックアップファイルをご自身で移すこともできます。
-そのほか（集める情報・外部に送る情報・広告や解析を入れていないこと）は両方で同じです。
+そのほか（集める情報・外部に送る情報・広告SDKや解析を入れていないこと）は両方で同じです。
 </div>
 
 <h2>1. 収集する情報</h2>
@@ -158,7 +166,7 @@ iCloud に保存された内容は Apple のサービス上にあり、開発者
 </p>
 
 <h2>2. 外部に送信される情報</h2>
-<p>次の2つの場合にかぎり、外部のサービスに通信が発生します。いずれも利用者を識別する情報は送りません。</p>
+<p>次の場合にかぎり、外部のサービスに通信が発生します。いずれも利用者を識別する情報は送りません。</p>
 
 <h3>天気予報の取得</h3>
 <p>
@@ -172,28 +180,43 @@ Open-Meteo のプライバシーに関する記載は
 
 <h3>地名の検索（任意）</h3>
 <p>
-「山の位置を調べる」で地名検索を使ったときにかぎり、入力した地名を Open-Meteo の地名検索APIに送信します。
+「山の位置を設定する」の画面で「地名を調べる（オンライン）」を使ったときにかぎり、入力した地名を Open-Meteo の地名検索APIに送信します。
 この機能を使わなければ通信は発生しません。
+</p>
+
+<h3>標高の取得（任意）</h3>
+<p>
+「山の位置」の画面で座標を貼り付けた（または入力した）ときにかぎり、その地点の標高を調べるため、その緯度・経度を Open-Meteo の標高APIに送信します。
+座標を入れなければ通信は発生しません。
+</p>
+
+<h3>買い物リンクと地図（押したときだけ）</h3>
+<p>
+持ち物の詳細や「買うもの」などでお店のボタンを押すと、その品の検索語を Amazon・楽天市場・Yahoo!ショッピングの検索ページに渡し、端末のブラウザ（またはお店のアプリ）で開きます。
+リンクには紹介料のための ID が付きますが、利用者を識別する情報は送りません。
+楽天市場と Yahoo!ショッピングへのリンクは、それぞれ楽天アフィリエイトとバリューコマースのサーバーを経由します。
+開いた先では各社のプライバシーポリシーが適用されます。
+登山口や山の位置を地図で開くボタンを押したときは、その地点の緯度・経度や名前を、地図アプリ（Apple の「マップ」や Google マップなど）に渡します。
 </p>
 
 <h2>3. 利用しないもの</h2>
 <ul>
-  <li>広告（広告SDKを一切組み込んでいません）</li>
+  <li>広告SDK・バナーや動画の広告（広告SDKを一切組み込んでいません。買い物リンクについては2節をご覧ください）</li>
   <li>アクセス解析・行動計測（Firebase、Google Analytics 等を使用していません）</li>
   <li>広告目的のトラッキング（iOS版では App Tracking Transparency の許可も求めません。Android版は広告ID（AD_ID）の権限を持ちません）</li>
   <li>位置情報の取得（端末のGPSにはアクセスしません。山の緯度経度はアプリ内蔵のデータか手入力です）</li>
   <li>連絡先・カレンダー・ヘルスケアなどへのアクセス</li>
 </ul>
 
-<h2>3-2. カメラと写真について</h2>
+<h2>4. カメラと写真について</h2>
 <p>
 持ち物の写真を撮る機能を使うときだけ、カメラの許可をお願いします。
-撮った写真は<strong>その場で320px角まで小さくしてから端末内に保存する</strong>だけで、
+撮った写真は<strong>その場で320px角まで小さくしてから端末内（iOS版で iCloud 同期を入にしている場合は、ご自身の iCloud にも）に保存する</strong>だけで、
 原寸の写真は残しません。外部に送信することもありません。
 写真を「選ぶ」ほうは端末の写真選択ツールを使うため、写真ライブラリへの許可は必要ありません。
 </p>
 
-<h2>3-3. 登山計画書に入れる個人情報</h2>
+<h2>5. 登山計画書に入れる個人情報</h2>
 <p>
 登山計画書を作る機能では、ご自身と同行者の氏名・年齢・住所・電話番号・緊急連絡先・血液型・山岳保険などを入力できます。
 これらは<strong>ほかの山行のデータと同じく端末の中</strong>（iOS版で iCloud 同期を入にしている場合は、ご自身の iCloud にも）に保存され、
@@ -202,35 +225,35 @@ Open-Meteo のプライバシーに関する記載は
 同行者の情報を入れる場合は、ご本人の了解を得てから入力してください。
 </p>
 
-<h2>4. 通知</h2>
+<h2>6. 通知</h2>
 <p>
-出発前日のお知らせ、下山連絡の期限の1時間前のお知らせ、山行の日の「日の入りまで」の表示（iOS版はロック画面のライブアクティビティ、Android版は通知）は、
+出発前日のお知らせ、下山連絡の期限の1時間前のお知らせ、決めた引き返す時刻のお知らせ、まだ買っていない道具がある山行の出発3日前のお知らせ、山行の日の「日の入りまで」の表示（iOS版はロック画面のライブアクティビティ、Android版は通知）は、
 すべて端末内で予約・表示されます。外部のサーバーを経由しません。通知は端末の設定からいつでも切ることができます。
 </p>
 
-<h2>5. データの保存と削除</h2>
+<h2>7. データの保存と削除</h2>
 <p>
 データは端末内（iOS版でiCloud同期を入にしている場合は、ご自身の iCloud にも）保存されます。
 アプリを削除すると端末内のデータは消えます。iOS版で iCloud 上に残ったデータは、
-端末の「設定 → Apple ID → iCloud → iCloud Drive」からアプリの項目を削除することで消せます。
+端末の「設定」→ お名前 →「iCloud」→「iCloud Drive」からアプリの項目を削除することで消せます。
 <strong>Android版</strong>はアプリを削除すれば端末内のデータは消えます。
 自動バックアップが有効だった場合、Google ドライブ上の控えは
 「Google ドライブ → バックアップ」から削除できます。
 アプリの設定からバックアップファイルを書き出して、ご自身で保管することもできます。
 </p>
 
-<h2>6. 子どものプライバシー</h2>
+<h2>8. 子どものプライバシー</h2>
 <p>
 本アプリは特定の年齢層を対象としたものではなく、いかなる年齢の利用者からも個人情報を収集しません。
 </p>
 
-<h2>7. 第三者への提供</h2>
+<h2>9. 第三者への提供</h2>
 <p>
 収集している情報がないため、第三者に提供する情報もありません。
 情報を販売・共有することはありません。
 </p>
 
-<h2>8. 免責</h2>
+<h2>10. 免責</h2>
 <p>
 本アプリが表示する持ち物リスト・注意喚起・重量の見積もり・天気予報は、
 一般的な情報をもとにした目安です。正確性・完全性を保証するものではありません。
@@ -238,12 +261,12 @@ Open-Meteo のプライバシーに関する記載は
 本アプリの利用に起因する損害について、開発者は責任を負いかねます。
 </p>
 
-<h2>9. 変更</h2>
+<h2>11. 変更</h2>
 <p>
 本ポリシーを変更する場合は、このページを更新し、最終更新日を改めます。
 </p>
 
-<h2>10. お問い合わせ</h2>
+<h2>12. お問い合わせ</h2>
 <p>
 本ポリシーに関するご質問は <a href="mailto:tatlink002@gmail.com">tatlink002@gmail.com</a> までお願いします。
 </p>
@@ -262,6 +285,26 @@ Open-Meteo のプライバシーに関する記載は
       <li><a href="/nukadoko-diary/">ぬか床日記</a></li>
       <li><a href="/splitbill/">SplitBill_EX</a></li>
       <li><a href="/counter1234/">Counter1234</a></li>
+    </ul>
+  </div>
+  <div>
+    <h2>プライバシーポリシー</h2>
+    <ul>
+      <li><a href="/yamajitaku/privacy.html">山じたく</a></li>
+      <li><a href="/albumdiet/privacy.html">アルバムダイエット</a></li>
+      <li><a href="/ablooplay/privacy.html">ABループレイ</a></li>
+      <li><a href="/privacy-policy.html">献立メーカー_EX</a></li>
+      <li><a href="/reitou/privacy.html">冷凍図鑑</a></li>
+      <li><a href="/nukadoko-diary/privacy.html">ぬか床日記</a></li>
+      <li><a href="/splitbill/privacy.html">SplitBill_EX</a></li>
+      <li><a href="/counter1234/privacy.html">Counter1234</a></li>
+    </ul>
+  </div>
+  <div>
+    <h2>サポート</h2>
+    <ul>
+      <li><a href="/#contact">お問い合わせ</a></li>
+      <li><a href="/reitou/terms.html">利用規約（冷凍図鑑）</a></li>
     </ul>
   </div>
   <div>
@@ -295,15 +338,7 @@ Open-Meteo のプライバシーに関する記載は
       <li><a href="/guides/iphone-storage.html">iPhone の容量がいっぱいになったら、何から片付けるか</a></li>
     </ul>
   </div>
-  <div>
-    <h2>サポート</h2>
-    <ul>
-      <li><a href="/#contact">お問い合わせ</a></li>
-      <li><a href="/privacy-policy.html">プライバシーポリシー</a></li>
-      <li><a href="/reitou/terms.html">利用規約（冷凍図鑑）</a></li>
-    </ul>
-  </div>
-  <div class="copy">© 2026 tatsu456　アプリを作っています。</div>
+  <div class="copy">© 2026 tatsu456</div>
 </div>
 </footer>
 

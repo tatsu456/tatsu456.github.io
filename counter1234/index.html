@@ -12,11 +12,19 @@
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="画面を見なくても数えられるiPhone用カウンター。音量ボタンで加算・減算でき、増減の幅も指定できます。数え場所を名前を付けて複数保存できます。">
-<title>Counter1234</title>
+<title>Counter1234｜画面を見ずに数えるカウンター</title>
 <link rel="alternate" hreflang="ja" href="https://tatsu456.github.io/counter1234/">
 <link rel="alternate" hreflang="en" href="https://tatsu456.github.io/counter1234/en/">
 <link rel="alternate" hreflang="x-default" href="https://tatsu456.github.io/counter1234/">
-<link rel="stylesheet" href="/assets/style.css?v=20261002a">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="tatsu456">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:url" content="https://tatsu456.github.io/counter1234/">
+<meta property="og:title" content="Counter1234｜画面を見ずに数えるカウンター">
+<meta property="og:description" content="画面を見なくても数えられるiPhone用カウンター。音量ボタンで加算・減算でき、増減の幅も指定できます。数え場所を名前を付けて複数保存できます。">
+<meta property="og:image" content="https://tatsu456.github.io/assets/icon-counter1234.png">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="/assets/style.css?v=12234de5d0">
 </head>
 <body>
 
@@ -118,7 +126,7 @@
 
 <nav class="crumbs" aria-label="現在の位置">
   <a href="/">ホーム</a>
-  <span class="sep">›</span>
+  <span class="sep" aria-hidden="true">›</span>
   <span aria-current="page">Counter1234</span>
 </nav>
 
@@ -156,7 +164,8 @@
 <ul>
   <li>+1 だけでなく、加算・減算の幅を自分で決められます</li>
   <li>音量ボタンで数えられます。画面を見ずに、手の中だけで進められます</li>
-  <li>数え場所を複数保存できます。名前を付けて、あとから呼び戻せます</li>
+  <li>数え場所を最大100件まで保存できます。名前を付けて、あとから呼び戻せます。連携した数え場所は、数えるたびに一緒に進みます</li>
+  <li>押し間違えたら、元に戻すボタンで最大50回前までさかのぼれます</li>
   <li>数えるたびに手ごたえ（触覚フィードバック）を返します</li>
   <li>長く数えるときは、画面が消えないようにできます（設定）</li>
   <li>数字だけを大きく映す全画面表示に切り替えられます</li>
@@ -164,19 +173,22 @@
   <li>ライト／ダークの見た目を選べます</li>
   <li>日本語・英語ほか 10 言語に対応しています</li>
   <li>はじめて開いたときは、使い方ガイドが実際に押しながら1分ほどで案内します（設定の「ヘルプ」から見返せます）</li>
+  <li>無料・広告あり。設定から一度購入すると、広告をずっと消せます</li>
 </ul>
 
 <div class="card">
-  数えた値と設定は、すべてお使いの端末内にのみ保存されます。
-  アカウント登録はありません。
+  数えた値・数え場所の名前・設定は、すべてお使いの端末内にのみ保存されます。
+  アカウント登録もサインインもありません。
+  無料で提供するため Google AdMob の広告を表示し、広告 SDK が配信・測定・診断のためにいくつかのデータを収集します。
+  内容と断り方は<a href="privacy.html">プライバシーポリシー</a>に書いています。
 </div>
 
 <h2>よくある質問</h2>
 
 <h3>数え間違えたときは？</h3>
 <p>
-直前の操作は取り消せます。値そのものを直したいときは、数字を長押しすると
-入力し直せます。
+画面上部で歯車のすぐ右にある元に戻すボタン（矢印のアイコン）で、ひとつ前の数字に戻せます。続けて押せば、最大50回前までさかのぼれます。
+値そのものを直したいときは、数字を長押しすると入力し直せます。
 </p>
 
 <h3>音量ボタンで数えられません</h3>
@@ -187,13 +199,14 @@
 
 <h3>広告を消したい</h3>
 <p>
-設定画面から購入できます。機種変更などで消えてしまった場合は、同じ画面の
-「購入を復元」をお試しください。
+設定画面の「広告を削除する」から一度購入すると、広告がずっと表示されなくなります。
+機種変更などで購入が反映されない場合は、同じ画面の「購入を復元する」をお試しください。
+動画広告を1本見て、24時間だけ消すこともできます（「動画を見て24時間広告なし」。動画の用意ができたときに押せます）。
 </p>
 
 <h2>リンク</h2>
 <ul>
-  <li><a href="https://sites.google.com/view/counter-privacy-2026/" target="_blank" rel="noopener">プライバシーポリシー</a></li>
+  <li><a href="privacy.html">プライバシーポリシー</a></li>
   <li>お問い合わせ：<a href="mailto:tatlink002@gmail.com">tatlink002@gmail.com</a></li>
 </ul>
 
@@ -211,6 +224,26 @@
       <li><a href="/nukadoko-diary/">ぬか床日記</a></li>
       <li><a href="/splitbill/">SplitBill_EX</a></li>
       <li><a href="/counter1234/">Counter1234</a></li>
+    </ul>
+  </div>
+  <div>
+    <h2>プライバシーポリシー</h2>
+    <ul>
+      <li><a href="/yamajitaku/privacy.html">山じたく</a></li>
+      <li><a href="/albumdiet/privacy.html">アルバムダイエット</a></li>
+      <li><a href="/ablooplay/privacy.html">ABループレイ</a></li>
+      <li><a href="/privacy-policy.html">献立メーカー_EX</a></li>
+      <li><a href="/reitou/privacy.html">冷凍図鑑</a></li>
+      <li><a href="/nukadoko-diary/privacy.html">ぬか床日記</a></li>
+      <li><a href="/splitbill/privacy.html">SplitBill_EX</a></li>
+      <li><a href="/counter1234/privacy.html">Counter1234</a></li>
+    </ul>
+  </div>
+  <div>
+    <h2>サポート</h2>
+    <ul>
+      <li><a href="/#contact">お問い合わせ</a></li>
+      <li><a href="/reitou/terms.html">利用規約（冷凍図鑑）</a></li>
     </ul>
   </div>
   <div>
@@ -244,15 +277,7 @@
       <li><a href="/guides/iphone-storage.html">iPhone の容量がいっぱいになったら、何から片付けるか</a></li>
     </ul>
   </div>
-  <div>
-    <h2>サポート</h2>
-    <ul>
-      <li><a href="/#contact">お問い合わせ</a></li>
-      <li><a href="/privacy-policy.html">プライバシーポリシー</a></li>
-      <li><a href="/reitou/terms.html">利用規約（冷凍図鑑）</a></li>
-    </ul>
-  </div>
-  <div class="copy">© 2026 tatsu456　アプリを作っています。</div>
+  <div class="copy">© 2026 tatsu456</div>
 </div>
 </footer>
 

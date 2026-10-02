@@ -16,7 +16,15 @@
 <link rel="alternate" hreflang="ja" href="https://tatsu456.github.io/yamajitaku/privacy.html">
 <link rel="alternate" hreflang="en" href="https://tatsu456.github.io/yamajitaku/en/privacy.html">
 <link rel="alternate" hreflang="x-default" href="https://tatsu456.github.io/yamajitaku/privacy.html">
-<link rel="stylesheet" href="/assets/style.css?v=20261002a">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="tatsu456">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="https://tatsu456.github.io/yamajitaku/en/privacy.html">
+<meta property="og:title" content="Privacy Policy — Yamajitaku">
+<meta property="og:description" content="Yamajitaku’s privacy policy: the information the app handles, how it is stored on your device, and whether anything is sent outside.">
+<meta property="og:image" content="https://tatsu456.github.io/assets/icon-yamajitaku.png">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="/assets/style.css?v=12234de5d0">
 </head>
 <body>
 
@@ -33,7 +41,7 @@
       <a href="/ablooplay/en/">ABLooplay<small>A-B repeat and slow playback</small></a>
       <a href="/kondate/en/">Kondate Maker_EX<small>Dinner menu planner (Japanese only)</small></a>
       <a href="/reitou/en/">Reitou Zukan<small>How to freeze 181 foods (Japanese only)</small></a>
-      <a href="/nukadoko-diary/en/">Nuka Diary<small>Care log for your nuka pot</small></a>
+      <a href="/nukadoko-diary/en/">Nuka Diary<small>Care log for nukadoko and other ferments</small></a>
       <a href="/splitbill/en/">SplitBill_EX<small>Multi-currency bill splitting</small></a>
       <a href="/counter1234/en/">Counter1234<small>Count without looking</small></a>
       </div>
@@ -63,22 +71,22 @@
 
 <nav class="crumbs" aria-label="Breadcrumb">
   <a href="/en/">Home</a>
-  <span class="sep">›</span>
+  <span class="sep" aria-hidden="true">›</span>
   <a href="/yamajitaku/en/">Yamajitaku</a>
-  <span class="sep">›</span>
+  <span class="sep" aria-hidden="true">›</span>
   <span aria-current="page">Privacy Policy</span>
 </nav>
 
 
 <h1>Privacy Policy</h1>
-<p class="tagline">Yamajitaku (iOS / Android) / Last updated September 29, 2026</p>
+<p class="tagline">Yamajitaku (iOS / Android) / Last updated October 2, 2026</p>
 <p class="note">This is an English translation of the <a href="../privacy.html" hreflang="ja">Japanese privacy policy</a>. If the two differ, the Japanese version prevails.</p>
 
 <div class="card">
 <strong>Summary</strong><br>
 Yamajitaku collects no information at all that can identify you. There is no account registration either.
 What you enter is saved on your device (and, in the iOS version with iCloud sync turned on, in your own iCloud as well),
-and the developer cannot see it. There are no ads, no analytics and no tracking.
+and the developer cannot see it. There is no ad SDK, no analytics and no tracking. (Only the shopping links that open stores’ search results are labeled “<span lang="ja">広告</span>” (advertising) in the app, because a referral fee may be paid if you buy something through them.)
 </div>
 
 <div class="card">
@@ -89,7 +97,7 @@ it is also backed up to <strong>your own Google account (Google Drive)</strong>.
 This is Android’s own system for keeping app data on your behalf, and the developer cannot access its contents.
 You can turn it off in the device’s Settings → Google → Backup.
 When moving to a new device, you can also move a backup file exported from the app’s settings yourself.
-Everything else (the information collected, the information sent outside, and the absence of ads and analytics) is the same for both.
+Everything else (the information collected, the information sent outside, and the absence of an ad SDK and analytics) is the same for both.
 </div>
 
 <h2>1. Information collected</h2>
@@ -102,7 +110,7 @@ Content saved in iCloud is on Apple’s service, and the developer cannot access
 </p>
 
 <h2>2. Information sent outside</h2>
-<p>Communication with outside services happens only in the following two cases. In neither case is information that identifies you sent.</p>
+<p>Communication with outside services happens only in the following cases. In none of them is information that identifies you sent.</p>
 
 <h3>Getting weather forecasts</h3>
 <p>
@@ -116,28 +124,43 @@ For Open-Meteo’s statement on privacy, please see
 
 <h3>Place-name search (optional)</h3>
 <p>
-Only when you use place-name search in “Find the mountain’s location” (山の位置を調べる) is the place name you enter sent to Open-Meteo’s place-name search API.
+Only when you use “Search place names (online)” (<span lang="ja">地名を調べる（オンライン）</span>) on the “Set the mountain’s location” (<span lang="ja">山の位置を設定する</span>) screen is the place name you enter sent to Open-Meteo’s place-name search API.
 If you do not use this feature, no communication takes place.
+</p>
+
+<h3>Getting the altitude (optional)</h3>
+<p>
+Only when you paste (or type) coordinates on the “Mountain location” (<span lang="ja">山の位置</span>) screen are those coordinates sent to Open-Meteo’s elevation API, to look up the altitude of that point.
+If you do not enter coordinates, no communication takes place.
+</p>
+
+<h3>Shopping links and maps (only when you tap them)</h3>
+<p>
+When you tap a store button in an item’s details, the “to buy” list (<span lang="ja">買うもの</span>) and similar places, the search term for that item is passed to the search page of Amazon, Rakuten Ichiba or Yahoo! Shopping and opened in your device’s browser (or the store’s app).
+The links carry an ID used for referral fees, but no information that identifies you is sent.
+Links to Rakuten Ichiba and Yahoo! Shopping go through the servers of Rakuten Affiliate and ValueCommerce, respectively.
+Once a page opens, that company’s privacy policy applies.
+When you tap a button that opens the trailhead or the mountain’s location on a map, the latitude and longitude of that point and/or its name are passed to a maps app (such as Apple Maps or Google Maps).
 </p>
 
 <h2>3. What the app does not use</h2>
 <ul>
-  <li>Advertising (no advertising SDK is built in at all)</li>
+  <li>An advertising SDK, or banner or video ads (no advertising SDK is built in at all; for the shopping links, see section 2)</li>
   <li>Analytics or usage measurement (Firebase, Google Analytics and the like are not used)</li>
   <li>Tracking for advertising purposes (the iOS version does not ask for App Tracking Transparency permission either; the Android version does not have the advertising ID (AD_ID) permission)</li>
   <li>Getting your location (the app does not access the device’s GPS; a mountain’s latitude and longitude come from data built into the app or are entered by hand)</li>
   <li>Access to contacts, calendars, Health and the like</li>
 </ul>
 
-<h2>3-2. Camera and photos</h2>
+<h2>4. Camera and photos</h2>
 <p>
 Camera permission is requested only when you use the feature for taking photos of your gear.
-A photo you take is only <strong>shrunk on the spot to 320 px square and saved on the device</strong>;
+A photo you take is only <strong>shrunk on the spot to 320 px square and saved on the device (and, in the iOS version with iCloud sync turned on, in your own iCloud as well)</strong>;
 the full-size photo is not kept. It is not sent outside either.
 Choosing a photo uses the device’s photo picker, so no permission to access your photo library is needed.
 </p>
 
-<h2>3-3. Personal information in climbing plans</h2>
+<h2>5. Personal information in climbing plans</h2>
 <p>
 The climbing-plan feature lets you enter the names, ages, addresses, phone numbers, emergency contacts, blood types, mountaineering insurance and other details of yourself and your companions.
 These are saved <strong>on the device, just like your other trip data</strong> (and, in the iOS version with iCloud sync turned on, in your own iCloud as well),
@@ -146,35 +169,35 @@ A plan you create (PDF or text) is handed over only when you perform a share act
 If you enter information about your companions, please get their consent before entering it.
 </p>
 
-<h2>4. Notifications</h2>
+<h2>6. Notifications</h2>
 <p>
-The reminder the day before departure, the reminder one hour before the check-in deadline, and the “until sunset” display on the day of a trip (a Live Activity on the Lock Screen in the iOS version, a notification in the Android version)
+The reminder the day before departure, the reminder one hour before the check-in deadline, the reminder at the turnaround time you set, the reminder three days before departure for a trip with gear you have not bought yet, and the “until sunset” display on the day of a trip (a Live Activity on the Lock Screen in the iOS version, a notification in the Android version)
 are all scheduled and shown on the device. They do not go through any outside server. You can turn notifications off at any time in the device’s settings.
 </p>
 
-<h2>5. Storing and deleting data</h2>
+<h2>7. Storing and deleting data</h2>
 <p>
 Data is saved on the device (and, in the iOS version with iCloud sync turned on, in your own iCloud as well).
 Deleting the app deletes the data on the device. In the iOS version, data left in iCloud can be deleted
-by removing the app’s entry under the device’s Settings → Apple ID → iCloud → iCloud Drive.
+by removing the app’s entry under the device’s Settings → [your name] → iCloud → iCloud Drive.
 In the <strong>Android version</strong>, deleting the app deletes the data on the device.
 If automatic backup was enabled, the copy on Google Drive can be deleted from
 Google Drive → Backups.
 You can also export a backup file from the app’s settings and keep it yourself.
 </p>
 
-<h2>6. Children’s privacy</h2>
+<h2>8. Children’s privacy</h2>
 <p>
 This app is not aimed at any particular age group, and it does not collect personal information from users of any age.
 </p>
 
-<h2>7. Sharing with third parties</h2>
+<h2>9. Sharing with third parties</h2>
 <p>
 Since no information is collected, there is no information to provide to third parties either.
 Information is never sold or shared.
 </p>
 
-<h2>8. Disclaimer</h2>
+<h2>10. Disclaimer</h2>
 <p>
 The packing lists, warnings, weight estimates and weather forecasts shown by this app
 are guides based on general information. Their accuracy and completeness are not guaranteed.
@@ -182,12 +205,12 @@ Final decisions and actions in the mountains are the responsibility of the user.
 The developer cannot accept responsibility for any damage arising from the use of this app.
 </p>
 
-<h2>9. Changes</h2>
+<h2>11. Changes</h2>
 <p>
 If this policy is changed, this page will be updated and the last-updated date revised.
 </p>
 
-<h2>10. Contact</h2>
+<h2>12. Contact</h2>
 <p>
 Please send questions about this policy to <a href="mailto:tatlink002@gmail.com">tatlink002@gmail.com</a>.
 </p>
@@ -229,7 +252,7 @@ Please send questions about this policy to <a href="mailto:tatlink002@gmail.com"
       <li><a href="/guides/" hreflang="ja">Guides (in Japanese)</a></li>
     </ul>
   </div>
-  <div class="copy">© 2026 tatsu456 — I make small apps.</div>
+  <div class="copy">© 2026 tatsu456</div>
 </div>
 </footer>
 
