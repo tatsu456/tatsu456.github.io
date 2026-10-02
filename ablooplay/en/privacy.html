@@ -71,7 +71,7 @@
 
 
 <h1>Privacy Policy</h1>
-<p class="tagline">ABLooplay (iOS) / Last updated September 29, 2026</p>
+<p class="tagline">ABLooplay (iOS) / Last updated October 2, 2026</p>
 <p class="note">This is an English translation of the <a href="../privacy.html" hreflang="ja">Japanese privacy policy</a>. If the two differ, the Japanese version prevails.</p>
 
 <div class="card">
@@ -102,7 +102,8 @@ a server run by the developer, and the developer never receives their contents.
 <h2>3. How files are handled</h2>
 <p>
 The only files imported are files you choose in the Files app, songs you choose from your music library,
-and episodes you choose from podcasts. Files from the Files app are chosen through the standard iOS picker,
+episodes you choose from podcasts, videos you choose in the Photos app, and files another app hands over through its share button.
+Files from the Files app and the Photos app are chosen through the standard iOS picker,
 so <strong>the app cannot see anything other than what you choose</strong>.
 </p>
 <ul>
@@ -110,7 +111,8 @@ so <strong>the app cannot see anything other than what you choose</strong>.
   <li><strong>Rewriting</strong>: when you correct the title, artist, album or track number, the tags of the copy inside the app are rewritten. The original file is not touched</li>
   <li><strong>Location</strong>: files inside the app are visible in the Files app as <em>On My iPhone &gt; ABLooplay</em>. You can take them out at any time</li>
   <li><strong>Music library</strong>: iOS asks for your permission only when you use “From Music Library”. Of the songs you choose, those without copy protection are copied into the app. The contents of your library are never sent outside the device</li>
-  <li><strong>Scripts (LRC)</strong>: the app reads timed text files (LRC) that you choose and keeps their contents only on the device. Sentences you type for dictation are only checked against the script on the device; they are neither saved nor sent</li>
+  <li><strong>Videos</strong>: from a video you choose with “From Videos in Photos” or one shared from another app, <strong>only the audio is extracted</strong>, on the device, and kept in the app. The picture is not kept, and the original video is not touched. Because Photos goes through the iOS picker, the app does not ask for access to your photo library</li>
+  <li><strong>Scripts and subtitles</strong>: the app reads timed text files (LRC) and subtitle files (SRT, VTT) that you choose, and lesson text that you paste in, and keeps their contents only on the device. Sentences you type for dictation are only checked against the script on the device; they are neither saved nor sent</li>
   <li><strong>Exporting</strong>: “Export This Section” and “Export Sections as LRC” only create a file on the device and pass it to the iOS share sheet. You choose where it goes; the app itself never sends it</li>
   <li><strong>Deletion</strong>: when you delete the app, the files imported into it are deleted along with it</li>
 </ul>
@@ -148,7 +150,7 @@ You can manage and cancel subscriptions in the Settings app → [your name] → 
   <li>Analytics or behavior tracking (Firebase, Google Analytics and the like are not used)</li>
   <li>Tracking for advertising purposes (the app does not ask for App Tracking Transparency permission either)</li>
   <li>Location (the app does not access the device's GPS)</li>
-  <li>Access to the photo library, camera, contacts, calendar, Health and the like (the microphone is used only for “Record Voice”; see section 3 above)</li>
+  <li>Access to the photo library, camera, contacts, calendar, Health and the like (“From Videos in Photos” receives only the videos you choose in the iOS picker; the microphone is used only for “Record Voice”; see section 3 above)</li>
   <li>Account registration or sign-in</li>
 </ul>
 
