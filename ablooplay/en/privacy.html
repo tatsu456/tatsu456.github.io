@@ -79,13 +79,13 @@
 
 
 <h1>Privacy Policy</h1>
-<p class="tagline">ABLooplay (iOS) / Last updated October 2, 2026</p>
+<p class="tagline">ABLooplay (iOS) / Last updated October 10, 2026</p>
 <p class="note">This is an English translation of the <a href="../privacy.html" hreflang="ja">Japanese privacy policy</a>. If the two differ, the Japanese version prevails.</p>
 
 <div class="card">
 <strong>Summary</strong><br>
-ABLooplay <strong>does not collect any information about its users</strong>. Audio files you import never leave your device.
-The app goes online <strong>only to search for and download podcasts</strong>, and payment for the paid features (ABLooplay Pro) is handled by Apple.
+ABLooplay <strong>does not collect any information about its users</strong>. Audio files you import and your own videos never leave your device.
+The app goes online <strong>only to search for and download podcasts and to use YouTube videos</strong>, and payment for the paid features (ABLooplay Pro) is handled by Apple.
 There is no account registration, and the app contains no advertising, analytics or tracking.
 </div>
 
@@ -93,19 +93,33 @@ There is no account registration, and the app contains no advertising, analytics
 <p><strong>None.</strong> There is no user information that the developer can obtain, store or view.</p>
 <p>
 This app has no server.
-Loading audio files, playback, creating waveforms and rewriting tags all take place only on the device.
+Loading audio files and your own videos, playback, creating waveforms and rewriting tags all take place only on the device.
 </p>
 
 <h2>2. Information sent outside the device</h2>
 <p>
-Only when you use the podcast features does the app make the following connections. Neither goes through
+Only when you use the podcast features or YouTube videos in the Videos tab does the app make the following connections. None of them goes through
 a server run by the developer, and the developer never receives their contents.
 </p>
+<h3>Podcasts</h3>
 <ul>
   <li><strong>Searching for shows</strong>: the search terms you enter are sent to Apple's search service (iTunes Search API), and a list of shows is received</li>
   <li><strong>Getting episodes</strong>: the RSS feed and audio files of the show you choose are downloaded from that show's publisher. As with any ordinary web connection, your IP address and similar information reach the publisher</li>
 </ul>
-<p>Other than this, the app does not send audio files, tags, settings or usage information outside the device.</p>
+<h3>YouTube videos (YouTube API Services)</h3>
+<p>
+In the Videos tab, YouTube videos are played with the <strong>YouTube API Services</strong> (YouTube's embedded player).
+By using the features that play YouTube videos, you agree to be bound by the <a href="https://www.youtube.com/t/terms">YouTube Terms of Service</a>.
+</p>
+<ul>
+  <li><strong>Adding a video</strong>: the link you paste is sent to YouTube (oEmbed) to look up the video's title and channel name. The video's thumbnail image is received from YouTube to tell whether the video is vertical</li>
+  <li><strong>Playing a video</strong>: playback is done by YouTube's embedded player, which communicates directly between your device and YouTube (Google). As with any ordinary web connection, your IP address, device and browser information, the videos you watch and similar information reach YouTube</li>
+  <li><strong>Cookies and similar technologies</strong>: the embedded player may place or read cookies and similar information in the app's web view. This is done by YouTube (Google); the developer does not read its contents</li>
+  <li>How YouTube (Google) handles information is governed by the <a href="https://policies.google.com/privacy">Google Privacy Policy</a></li>
+  <li>The list of videos you add (video ID, title and channel name) and the sections you make for them are stored only on the device. The app does not ask you to sign in to YouTube and does not access your YouTube account information</li>
+  <li>YouTube videos are never saved (downloaded) to the device</li>
+</ul>
+<p>Other than this, the app does not send audio files, videos, tags, settings or usage information outside the device.</p>
 
 <h2>3. How files are handled</h2>
 <p>
@@ -117,9 +131,11 @@ so <strong>the app cannot see anything other than what you choose</strong>.
 <ul>
   <li><strong>Copying</strong>: files you choose are copied into the app. This is because, if the app only remembered where a file was, it could no longer be played once the actual iCloud Drive file was removed from the device</li>
   <li><strong>Rewriting</strong>: when you correct the title, artist, album or track number, the tags of the copy inside the app are rewritten. The original file is not touched</li>
+  <li><strong>Filling in tags automatically</strong>: for MP3 files inside the app whose title, artist or album tags (ID3) are empty, the file name and folder names are written into those tags on the device. Only empty fields are written</li>
   <li><strong>Location</strong>: files inside the app are visible in the Files app as <em>On My iPhone &gt; ABLooplay</em>. You can take them out at any time</li>
   <li><strong>Music library</strong>: iOS asks for your permission only when you use “From Music Library”. Of the songs you choose, those without copy protection are copied into the app. The contents of your library are never sent outside the device</li>
   <li><strong>Videos</strong>: from a video you choose with “From Videos in Photos” or one shared from another app, <strong>only the audio is extracted</strong>, on the device, and kept in the app. The picture is not kept, and the original video is not touched. Because Photos goes through the iOS picker, the app does not ask for access to your photo library</li>
+  <li><strong>My Videos</strong>: videos (mp4, m4v, mov, 3gp) that you put in the ABLooplay folder with the Files app are listed where they are under “My Videos” in the Videos tab and played only on the device. Their waveforms and thumbnails are also made on the device. Deleting a video from the list also deletes its file</li>
   <li><strong>Scripts and subtitles</strong>: the app reads timed text files (LRC) and subtitle files (SRT, VTT) that you choose, and lesson text that you paste in, and keeps their contents only on the device. Sentences you type for dictation are only checked against the script on the device; they are neither saved nor sent</li>
   <li><strong>Exporting</strong>: “Export This Section” and “Export Sections as LRC” only create a file on the device and pass it to the iOS share sheet. You choose where it goes; the app itself never sends it</li>
   <li><strong>Deletion</strong>: when you delete the app, the files imported into it are deleted along with it</li>
@@ -127,13 +143,13 @@ so <strong>the app cannot see anything other than what you choose</strong>.
 
 <h3>Notifications (practice reminders)</h3>
 <p>
-iOS asks for your permission only when you turn on “Practice Reminder” in the Settings tab.
+iOS asks for your permission only when you turn on “Practice Reminder”.
 These are notifications created on the device only (local notifications), which remind you of “Today's practice” at the time you set. Notifications sent from a server (push notifications) are not used.
 </p>
 
 <h3>Microphone (recording your own voice)</h3>
 <p>
-The app asks for iOS permission and uses the microphone only when you tap “Record Voice” on the practice screen. This is to record you
+The app asks for iOS permission and uses the microphone only when you tap “Record Voice” on a practice screen (for songs or videos). This is to record you
 imitating the section and play it right after the original so you can compare the two.
 </p>
 <ul>
@@ -164,7 +180,7 @@ You can manage and cancel subscriptions in the Settings app → [your name] → 
 
 <h2>6. What is stored on the device</h2>
 <p>
-Playback speed, key, repeat sections with their names and “Learned” marks, loaded scripts, favorites, playlists, the last song you listened to and recently practiced songs, practice time (total per day), settings, cached waveform data, and a record of whether Pro can be used are stored only on the device.
+Playback speed, key, repeat sections with their names and “Learned” marks, loaded scripts, favorites and favorite sections, playlists, the last song you listened to and recently practiced songs, practice time (total per day), the list of videos added to the Videos tab and their sections, settings, cached waveform and thumbnail data, and a record of whether Pro can be used are stored only on the device.
 These are your settings and are never sent outside the device. They are deleted when you delete the app.
 </p>
 
@@ -176,14 +192,14 @@ It does not collect personal information from children under 13 either.
 
 <h2>8. Sharing with third parties</h2>
 <p>
-Since no information is collected, there is no information to provide to third parties.
-No third-party SDKs are included in the app.
+Since no information is collected, there is no information that the developer provides to third parties.
+No third-party SDKs are included in the app. The connection between your device and YouTube (Google) when YouTube videos are played is as described in section 2 above.
 </p>
 
 <h2>9. Copyright</h2>
 <p>
-This app is a playback tool. It assumes that you are entitled to lawfully use the audio you import (including podcast episodes),
-and it has no involvement in where files are obtained.
+This app is a playback tool. It assumes that you are entitled to lawfully use the audio you import (including podcast episodes) and your own videos,
+and it has no involvement in where files are obtained. YouTube videos are only played in YouTube's embedded player and are never saved.
 </p>
 
 <h2>10. Changes to this policy</h2>
